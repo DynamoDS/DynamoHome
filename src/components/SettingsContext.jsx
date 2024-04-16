@@ -3,11 +3,11 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 // Create the context
 const SettingsContext = createContext();
 
-// Provider component that wraps your app components
+// Provider component that wraps the app components
 export function SettingsProvider({ children }) {
     const [settings, setSettings] = useState({});
 
-    // Function to update settings
+    // Update settings
     const updateSettings = (newSettings) => {
         setSettings(prev => ({ ...prev, ...newSettings }));
     };
@@ -19,7 +19,7 @@ export function SettingsProvider({ children }) {
     );
 }
 
-// Custom hook to use settings
+// Use settings hook
 export function useSettings() {
     return useContext(SettingsContext);
 }
