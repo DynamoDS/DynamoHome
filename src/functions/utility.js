@@ -48,3 +48,13 @@ export function showSamplesFilesInFolder() {
     chrome.webview.hostObjects.scriptObject.ShowSampleFilesInFolder();
   }
 }
+
+/**
+ * A call to a backend function requesting to save the current HomePage settings
+ */
+export function saveHomePageSettings(settings) {
+  if (chrome.webview !== undefined) {
+    const settingsJson = JSON.stringify(settings);
+    chrome.webview.hostObjects.scriptObject.SaveSettings(settingsJson);
+  }
+}

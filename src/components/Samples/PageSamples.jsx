@@ -6,11 +6,14 @@ import { GridViewIcon, ListViewIcon } from '../Common/CustomIcons.jsx';
 import { Tooltip } from '../Common/Tooltip.jsx';
 import { CustomSampleFirstCellRenderer } from "./CustomSampleFirstCellRenderer.jsx";
 import { SamplesGrid } from './SamplesGrid.jsx';
-import { openFile, showSamplesFilesInFolder } from '../../functions/utility.js';
+import { openFile, showSamplesFilesInFolder, saveHomePageSettings } from '../../functions/utility.js';
+import { useSettings } from '../SettingsContext.jsx';
 
-export function SamplesPage (){
-    const [viewMode, setViewMode] = useState('grid'); 
+export function SamplesPage ({ samplesViewMode }){
+    const { settings, updateSettings } = useSettings();
+    const [viewMode, setViewMode] = useState(samplesViewMode); 
     const [collapsedRows, setCollapsedRows] = useState({});
+    const [initialized, setInitialized] = useState(false);
 
     // Set a placeholder for the graphs which will be used differently during dev and prod 
     let initialSamples = [];
@@ -50,6 +53,22 @@ export function SamplesPage (){
             }
         };
     }, []); 
+
+    
+    useEffect(() => {
+        // Set the viewMode based on the HomePage preferences
+        setViewMode(samplesViewMode);
+    }, [samplesViewMode]); 
+
+    useEffect(() => {
+        if (initialized || samplesViewMode !== viewMode) {
+            setInitialized(true);
+            updateSettings({ samplesViewMode: viewMode });
+            
+            // Send settings to Dynamo to save
+            saveHomePageSettings({ ...settings, samplesViewMode: viewMode });
+        } 
+    }, [viewMode]);
 
     // This variable defins the table structure displaying the graphs
     const columns = React.useMemo(() => [

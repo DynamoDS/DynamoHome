@@ -6,19 +6,35 @@ import { FormattedMessage } from 'react-intl';
 
 export function MainContent({ selectedSidebarItem }){
     const [isDisabled, setIsDisabled] = useState(false);
+    const [settings, setSettings] = useState(null);
 
     const setShowStartPageChanged = (showStartPage) => {
         setIsDisabled(!showStartPage);
     };
 
+    const setHomePageSettings = (settingsJson) => {
+        try{
+            if (settingsJson) {
+                const settingsObject = JSON.parse(settingsJson);
+                setSettings(settingsObject);
+            } else {
+                console.log(`Received null or empty settings`);
+            }
+        }catch(exeption){
+            console.log($`Failed to set the HomePage settings with the following error ${exception}`);
+        }
+    }
+
     useEffect(() => {
-        // Set the setShowStartPageChanged global function
+        // Set global functions
         window.setShowStartPageChanged = setShowStartPageChanged;
+        window.setHomePageSettings = setHomePageSettings;
 
         return () => {
             delete window.setShowStartPageChanged;
+            delete window.setHomePageSettings;
         };
-    }, [isDisabled]); 
+    }, [isDisabled, settings]); 
 
     return (
         <>
@@ -31,10 +47,10 @@ export function MainContent({ selectedSidebarItem }){
                 )}
                 
                 <div className={`page-container ${selectedSidebarItem === 'Recent' ? '' : 'hidden'}`}>
-                    <RecentPage setIsDisabled={setIsDisabled} />
+                    <RecentPage setIsDisabled={setIsDisabled} recentPageViewMode={settings?.recentPageViewMode || "grid"} />
                 </div>
                 <div className={`page-container ${selectedSidebarItem === 'Samples' ? '' : 'hidden'}`}>
-                    <SamplesPage />
+                    <SamplesPage samplesViewMode={settings?.samplesViewMode || "grid"} />
                 </div>
                 <div className={`page-container ${selectedSidebarItem === 'Learning' ? '' : 'hidden'}`}>
                     <LearningPage />

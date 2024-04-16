@@ -6,12 +6,15 @@ import { CustomLocationCellRenderer } from './CustomLocationCellRenderer.jsx';
 import { CustomAuthorCellRenderer } from "./CustomAuthorCellRenderer.jsx";
 import { GraphTable } from './GraphTable.jsx';
 import { GridViewIcon, ListViewIcon } from '../Common/CustomIcons.jsx';
-import { openFile } from '../../functions/utility.js';
+import { openFile, saveHomePageSettings } from '../../functions/utility.js';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip.jsx';
+import { useSettings } from '../SettingsContext.jsx';
 
-export function RecentPage ({ setIsDisabled }){
-    const [viewMode, setViewMode] = useState('grid'); 
+export function RecentPage ({ setIsDisabled, recentPageViewMode }){    
+    const { settings, updateSettings } = useSettings();
+    const [viewMode, setViewMode] = useState(recentPageViewMode); 
+    const [initialized, setInitialized] = useState(false);
 
     // Set a placeholder for the graphs which will be used differently during dev and prod 
     let initialGraphs = [];
@@ -47,6 +50,21 @@ export function RecentPage ({ setIsDisabled }){
             }
         };
     }, []); 
+
+    useEffect(() => {
+        // Set the viewMode based on the HomePage preferences
+        setViewMode(recentPageViewMode);
+    }, [recentPageViewMode]); 
+
+    useEffect(() => {
+        if (initialized || recentPageViewMode !== viewMode) {
+            setInitialized(true);
+            updateSettings({ recentPageViewMode: viewMode });
+            
+            // Send settings to Dynamo to save
+            saveHomePageSettings({ ...settings, recentPageViewMode: viewMode });
+        } 
+    }, [viewMode]);
 
     // This variable defins the table structure displaying the graphs
     const columns = React.useMemo(() => [
