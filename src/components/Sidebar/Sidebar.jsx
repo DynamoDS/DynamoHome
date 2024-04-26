@@ -13,7 +13,7 @@ export function Sidebar({ onItemSelect, selectedSidebarItem })
 
     const isSelected = (item) => selectedSidebarItem === item;
 
-    // Trigger the backend command based on the drop-down value
+    /**Trigger the backend command based on the drop-down value */ 
     const setSelectedValue = (value) => {
         sideBarCommand(value);
     };

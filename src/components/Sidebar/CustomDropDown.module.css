@@ -1,55 +1,64 @@
-/* Custom Select Component Stylesheet */
 .custom-dropdown {
     position: relative;
     cursor: pointer;
     font-size: 14px;
-    border-bottom: 2px solid transparent;
-    transition: border-bottom-color 0.3s ease;
     margin-top: 15px;
+    background-color: transparent;
+    border-radius: 4px;
+    transition: box-shadow 0.3s ease-out; 
 }
 
-.custom-dropdown.open,
-.custom-dropdown:hover {
-    border-bottom-color: #38abdf;
+/* Applies shadow when dropdown is hovered */
+.custom-dropdown:not(:has(.arrow-container:hover)):hover {
+    box-shadow: 0 0 4px rgba(255,255,255,0.15);
 }
 
-.custom-dropdown.open::after,
-.custom-dropdown::after {
-    /* Create a pseudo-element for the 5px thick rectangle */
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -7px;    /* Position it just below the 1px border */
-    height: 5px;
-    background-color: #40687a;    /* Darker blue color */
-    opacity: 0;    /* Start with an invisible border */
-    transition: opacity 0.3s ease;    /* Transition for the opacity */
+/* Differentiate the active state with a more intense shadow */
+.custom-dropdown:not(:has(.arrow-container:hover)):active {
+    box-shadow: 0 0 4px rgba(255,255,255,0.25);
 }
 
-.custom-dropdown:hover::after {
-    opacity: 1;
+/* Custom-dropdown: Blue color when the control is 'active' or 'selected' */
+.custom-dropdown.open{
+    box-shadow: 0 0 4px rgba(56,171,223,0.35);
 }
 
-.custom-dropdown.open:not(:hover) {
-    border-bottom-color: white;
+/* Dropdown-selected: Blue color when the control is 'active' or 'selected' */
+.custom-dropdown.open .dropdown-selected{
+    border: solid 1px rgba(56,171,223,0.35); 
 }
 
-.custom-dropdown.open:not(:hover)::after {
-    background-color: #808080;
-    opacity: 1;
+/* Vertical line: Blue color when the control is 'active' or 'selected' */
+.custom-dropdown.open .vertical-line{
+    background-color: rgba(56,171,223,0.35); 
+}
+
+.arrow-container {
+    padding: 6px;
+    border-radius: 4px;
+    transition: box-shadow 0.3s ease-out;
+}
+
+/* Applies shadow when arrow box is hovered */
+.arrow-container:hover {
+    box-shadow: 0 0 4px rgba(255,255,255,0.15) !important;
+}
+
+/* Differentiate the active state with a more intense shadow */
+.arrow-container:active {
+    box-shadow: 0 0 4px rgba(255,255,255,0.25) !important;
 }
 
 .dropdown-selected {
-    display: flex;    /* Use flexbox layout */
-    justify-content: space-between;    /* Space between items */
-    align-items: center;    /* Align items vertically */
-    padding: 10px;
-    padding-left: 14px;
-    padding-right: 6px;
+    display: flex;   
+    justify-content: space-between;    
+    align-items: center;    
+    padding: 0px;
+    padding-left: 10px;
     background-color: transparent;
     border-radius: 4px;
     border: solid 1px #9B9B9B;
+    transition: background-color 0.3s ease;
 }
 
 .dropdown-selected:hover .vertical-line{
@@ -61,11 +70,9 @@
     border: solid 1px transparent;
 }
 
-/* Style for .dropdown-selected when active (e.g., when clicked) */
 .dropdown-selected:active {
-    background-color: #1e1e1e; /* Change background color when active */
-    color: #fff; /* Change text color when active */
-    /* Add any other styles you want for the active state */
+    background-color: #1e1e1e; 
+    color: #fff; 
 }
 
 .dropdown-options {
@@ -76,11 +83,17 @@
     background-color: #535353;
     display: none;
     margin-top: 3px;
+    border-radius: 4px;
     z-index: 1000;
+}
+
+.dropdown-options:hover {
+    box-shadow: 0 0 4px rgba(255,255,255,0.25) !important;
 }
 
 .dropdown-options.open {
     display: block;
+    box-shadow: 0 0 4px rgba(56,171,223,0.35);
 }
 
 .dropdown-option{
@@ -93,11 +106,11 @@
 
 .vertical-line {
     position: absolute;
-    right: 35px;
+    right: 37px;
     top: 0;
     bottom: 0;
-    width: 1px; /* Adjust the width as needed */
-    height: 100%; /* Vertically extend the line to match the container */
-    background-color: #9B9B9B; /* Adjust the color as needed */
-    margin: 0 px; /* Add spacing to separate the line from text and arrow */
+    width: 1px; 
+    height: 100%;
+    background-color: #9B9B9B; 
+    margin: 0px; 
 }

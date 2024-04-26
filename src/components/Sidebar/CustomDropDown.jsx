@@ -4,19 +4,33 @@ import { OpenArrow } from '../Common/Arrow';
 
 export const CustomDropdown = ({ id, selectedValue, options, onSelect, placeholder, onSelectionChange }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [lastSelected, setLastSelected] = useState(options[0]);
     const dropdownRef = useRef(null);
+    const arrowColor = isOpen ? "rgba(56,171,223,0.35)" : "#949494";
+
     const toggleDropdown = () => setIsOpen(!isOpen);
+
+    /** Peforms the selected action type when used as a Drop-down */
     const handleOptionSelect = (option) => {
         onSelect(option.label);
         setIsOpen(false);
-
+        setLastSelected(option); 
         if (onSelectionChange) {
-            // Call the passed function with the selected value
             onSelectionChange(option.value); 
         }
     };
 
-    // Close dropdown when clicking outside
+    /** Peforms the selected action type when used as a Button */
+    const handleDefaultAction = () => {
+        if (lastSelected) {
+            onSelect(lastSelected.label);
+            if (onSelectionChange) {
+                onSelectionChange(lastSelected.value);
+            }
+        }
+    };
+
+    /** Handles navigate away from the drop-down control */
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -35,11 +49,15 @@ export const CustomDropdown = ({ id, selectedValue, options, onSelect, placehold
 
     return (
         <div className={`${styles['custom-dropdown']} ${isOpen ? styles.open : ''}`} ref={dropdownRef}>
-            <div className={styles['dropdown-selected']} onClick={toggleDropdown}>
-                <span>{placeholder}</span>
+            <div className={styles['dropdown-selected']} onClick={handleDefaultAction}>
+                <span>{placeholder}</span>  
                 <span className={styles['vertical-line']}></span>
-                {/* SVG Arrow */}
-                <OpenArrow isOpen={isOpen} />
+                <div className={styles['arrow-container']} onClick={(e) => {
+                    e.stopPropagation(); 
+                    toggleDropdown();
+                }}>
+                    <OpenArrow isOpen={isOpen} color={arrowColor} />
+                </div>
             </div>
             <div className={`${styles['dropdown-options']} ${isOpen ? styles.open : ''}`}>
                 {options.map((option, index) => (
