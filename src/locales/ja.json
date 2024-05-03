@@ -1,0 +1,17 @@
+{
+  "title.text.recent": "最近",
+  "title.text.samples": "サンプル",
+  "title.text.learning": "学習",
+  "tooltip.text.recent": "View recent files",
+  "tooltip.text.samples": "View sample graphs",
+  "tooltip.text.learning": "View learning content",
+  "tooltip.text.grid.view.button": "グリッド表示",
+  "tooltip.text.list.view.button": "リスト ビュー",
+  "learning.title.text.learning": "学習",
+  "learning.title.text.guides": "インタラクティブ ガイド",
+  "learning.title.text.videos": "ビデオ チュートリアル",
+  "samples.showsamples.text": "Show Samples in Folder",
+  "main.page.loading.text": "ロード中",
+  "recent.item.old.format": "Dynamo 1.x ファイル形式",
+  "recent.item.old.format.tooltip": "Author and thumbnail not available for files saved in Dynamo 1.x format"
+}

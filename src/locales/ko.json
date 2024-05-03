@@ -1,0 +1,17 @@
+{
+  "title.text.recent": "최근 항목",
+  "title.text.samples": "샘플",
+  "title.text.learning": "학습",
+  "tooltip.text.recent": "View recent files",
+  "tooltip.text.samples": "View sample graphs",
+  "tooltip.text.learning": "View learning content",
+  "tooltip.text.grid.view.button": "그리드 뷰",
+  "tooltip.text.list.view.button": "리스트 뷰",
+  "learning.title.text.learning": "학습",
+  "learning.title.text.guides": "대화식 안내서",
+  "learning.title.text.videos": "비디오 튜토리얼",
+  "samples.showsamples.text": "Show Samples in Folder",
+  "main.page.loading.text": "로드하는 중",
+  "recent.item.old.format": "Dynamo 1.x 파일 형식",
+  "recent.item.old.format.tooltip": "Author and thumbnail not available for files saved in Dynamo 1.x format"
+}

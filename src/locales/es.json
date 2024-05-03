@@ -1,0 +1,17 @@
+{
+  "title.text.recent": "Recientes",
+  "title.text.samples": "Muestras",
+  "title.text.learning": "Aprendizaje",
+  "tooltip.text.recent": "View recent files",
+  "tooltip.text.samples": "View sample graphs",
+  "tooltip.text.learning": "View learning content",
+  "tooltip.text.grid.view.button": "Vista de rejilla",
+  "tooltip.text.list.view.button": "Vista de lista",
+  "learning.title.text.learning": "Aprendizaje",
+  "learning.title.text.guides": "Guías interactivas",
+  "learning.title.text.videos": "Vídeos de aprendizajes",
+  "samples.showsamples.text": "Show Samples in Folder",
+  "main.page.loading.text": "Cargando",
+  "recent.item.old.format": "Formato de archivo de Dynamo 1.x",
+  "recent.item.old.format.tooltip": "Author and thumbnail not available for files saved in Dynamo 1.x format"
+}
