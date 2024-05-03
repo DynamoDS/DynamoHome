@@ -47,6 +47,6 @@ export const getMessagesForLocale = (locale) => {
   case 'zh-TW':
     return TraditionalChineseMessages;
   default:
-    return englishMessages;
+    return EnglishMessages;
   }
 };
