@@ -1,6 +1,6 @@
 import CzechMessages from './../locales/cs.json';
 import GermanMessages from './../locales/de.json';
-import englishMessages from './../locales/en.json';
+import EnglishMessages from './../locales/en.json';
 import SpanishMessages from './../locales/es.json';
 import FrenchMessages from './../locales/fr.json';
 import ItalianMessages from './../locales/it.json';
@@ -15,9 +15,9 @@ import TraditionalChineseMessages from './../locales/zh-Hant.json';
 export const getMessagesForLocale = (locale) => {
   switch (locale) {
   case 'en':
-    return englishMessages;
+    return EnglishMessages;
   case 'en-US':
-    return englishMessages;
+    return EnglishMessages;
   case 'es-ES':
     return SpanishMessages;
   case 'cs-CZ':
