@@ -1,17 +1,17 @@
 {
   "title.text.recent": "最近使用的项目",
   "title.text.samples": "样例",
-  "title.text.learning": "学习",
-  "tooltip.text.recent": "View recent files",
-  "tooltip.text.samples": "View sample graphs",
-  "tooltip.text.learning": "View learning content",
+  "title.text.learning": "正在学习",
+  "tooltip.text.recent": "查看最近使用的文件",
+  "tooltip.text.samples": "查看样例图",
+  "tooltip.text.learning": "查看学习内容",
   "tooltip.text.grid.view.button": "网格视图",
   "tooltip.text.list.view.button": "列表视图",
-  "learning.title.text.learning": "学习",
+  "learning.title.text.learning": "正在学习",
   "learning.title.text.guides": "互动指南",
   "learning.title.text.videos": "视频教程",
-  "samples.showsamples.text": "Show Samples in Folder",
+  "samples.showsamples.text": "在文件夹中显示样例",
   "main.page.loading.text": "正在加载",
   "recent.item.old.format": "Dynamo 1.x 文件格式",
-  "recent.item.old.format.tooltip": "Author and thumbnail not available for files saved in Dynamo 1.x format"
+  "recent.item.old.format.tooltip": "作者和缩略图不适用于以 Dynamo 1.x 格式保存的文件"
 }

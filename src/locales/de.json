@@ -1,17 +1,17 @@
 {
   "title.text.recent": "Zuletzt verwendet",
   "title.text.samples": "Beispiele",
-  "title.text.learning": "Schulungen",
-  "tooltip.text.recent": "View recent files",
-  "tooltip.text.samples": "View sample graphs",
-  "tooltip.text.learning": "View learning content",
+  "title.text.learning": "Lerninhalte",
+  "tooltip.text.recent": "Zuletzt verwendete Dateien anzeigen",
+  "tooltip.text.samples": "Beispieldiagramme anzeigen",
+  "tooltip.text.learning": "Lerninhalte anzeigen",
   "tooltip.text.grid.view.button": "Rasteransicht",
   "tooltip.text.list.view.button": "Listenansicht",
-  "learning.title.text.learning": "Schulungen",
-  "learning.title.text.guides": "Interaktiver Leitfaden",
-  "learning.title.text.videos": "Videolernprogramme",
-  "samples.showsamples.text": "Show Samples in Folder",
+  "learning.title.text.learning": "Lerninhalte",
+  "learning.title.text.guides": "Interaktive Leitfäden",
+  "learning.title.text.videos": "Video-Lernprogramme",
+  "samples.showsamples.text": "Beispiele in Ordner anzeigen",
   "main.page.loading.text": "Wird geladen",
   "recent.item.old.format": "Dynamo 1.x-Dateiformat",
-  "recent.item.old.format.tooltip": "Author and thumbnail not available for files saved in Dynamo 1.x format"
+  "recent.item.old.format.tooltip": "Für Dateien, die im Dynamo 1.x-Format gespeichert wurden, sind Autor und Miniaturansicht nicht verfügbar"
 }

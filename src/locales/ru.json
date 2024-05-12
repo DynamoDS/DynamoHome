@@ -2,16 +2,16 @@
   "title.text.recent": "Последние",
   "title.text.samples": "Образцы",
   "title.text.learning": "Обучение",
-  "tooltip.text.recent": "View recent files",
-  "tooltip.text.samples": "View sample graphs",
-  "tooltip.text.learning": "View learning content",
-  "tooltip.text.grid.view.button": "Вид сетки",
+  "tooltip.text.recent": "Просмотр последних файлов",
+  "tooltip.text.samples": "Просмотр образцов графиков",
+  "tooltip.text.learning": "Просмотр обучающих материалов",
+  "tooltip.text.grid.view.button": "Сетка",
   "tooltip.text.list.view.button": "Список",
   "learning.title.text.learning": "Обучение",
   "learning.title.text.guides": "Интерактивные руководства",
   "learning.title.text.videos": "Учебные видеоролики",
-  "samples.showsamples.text": "Show Samples in Folder",
+  "samples.showsamples.text": "Показать образцы в папке",
   "main.page.loading.text": "Загрузка",
   "recent.item.old.format": "Формат файлов Dynamo 1.x",
-  "recent.item.old.format.tooltip": "Author and thumbnail not available for files saved in Dynamo 1.x format"
+  "recent.item.old.format.tooltip": "Автор и миниатюра недоступны для файлов, сохраненных в формате Dynamo 1.x"
 }

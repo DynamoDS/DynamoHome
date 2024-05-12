@@ -2,16 +2,16 @@
   "title.text.recent": "最近",
   "title.text.samples": "範例",
   "title.text.learning": "學習",
-  "tooltip.text.recent": "View recent files",
-  "tooltip.text.samples": "View sample graphs",
-  "tooltip.text.learning": "View learning content",
-  "tooltip.text.grid.view.button": "格線檢視",
+  "tooltip.text.recent": "檢視最近使用的檔案",
+  "tooltip.text.samples": "檢視範例圖表",
+  "tooltip.text.learning": "檢視學習內容",
+  "tooltip.text.grid.view.button": "網格檢視",
   "tooltip.text.list.view.button": "清單檢視",
   "learning.title.text.learning": "學習",
   "learning.title.text.guides": "互動式指南",
-  "learning.title.text.videos": "視訊自學課程",
-  "samples.showsamples.text": "Show Samples in Folder",
+  "learning.title.text.videos": "影片自學課程",
+  "samples.showsamples.text": "顯示資料夾中的範例",
   "main.page.loading.text": "正在載入",
   "recent.item.old.format": "Dynamo 1.x 檔案格式",
-  "recent.item.old.format.tooltip": "Author and thumbnail not available for files saved in Dynamo 1.x format"
+  "recent.item.old.format.tooltip": "以 Dynamo 1.x 格式儲存的檔案沒有作者和縮圖"
 }

@@ -2,16 +2,16 @@
   "title.text.recent": "Récent",
   "title.text.samples": "Exemples",
   "title.text.learning": "Formation",
-  "tooltip.text.recent": "View recent files",
-  "tooltip.text.samples": "View sample graphs",
-  "tooltip.text.learning": "View learning content",
-  "tooltip.text.grid.view.button": "Vue de grille",
-  "tooltip.text.list.view.button": "Affichage sous forme de liste",
+  "tooltip.text.recent": "Afficher les fichiers récents",
+  "tooltip.text.samples": "Afficher des exemples de graphiques",
+  "tooltip.text.learning": "Afficher le contenu de formation",
+  "tooltip.text.grid.view.button": "Vue grille",
+  "tooltip.text.list.view.button": "Vue liste",
   "learning.title.text.learning": "Formation",
   "learning.title.text.guides": "Guides interactifs",
   "learning.title.text.videos": "Didacticiels vidéo",
-  "samples.showsamples.text": "Show Samples in Folder",
+  "samples.showsamples.text": "Afficher des exemples dans le dossier",
   "main.page.loading.text": "Chargement",
   "recent.item.old.format": "Format de fichier Dynamo 1.x",
-  "recent.item.old.format.tooltip": "Author and thumbnail not available for files saved in Dynamo 1.x format"
+  "recent.item.old.format.tooltip": "L'auteur et la miniature ne sont pas disponibles pour les fichiers enregistrés au format Dynamo 1.x"
 }

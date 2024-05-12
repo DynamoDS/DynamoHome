@@ -2,16 +2,16 @@
   "title.text.recent": "Poslední",
   "title.text.samples": "Ukázky",
   "title.text.learning": "Výuka",
-  "tooltip.text.recent": "View recent files",
-  "tooltip.text.samples": "View sample graphs",
-  "tooltip.text.learning": "View learning content",
+  "tooltip.text.recent": "Zobrazit poslední soubory",
+  "tooltip.text.samples": "Zobrazení vzorových grafů",
+  "tooltip.text.learning": "Zobrazit výukový obsah",
   "tooltip.text.grid.view.button": "Zobrazení rastru",
   "tooltip.text.list.view.button": "Zobrazení seznamu",
   "learning.title.text.learning": "Výuka",
   "learning.title.text.guides": "Interaktivní vodítka",
   "learning.title.text.videos": "Výukové videofilmy",
-  "samples.showsamples.text": "Show Samples in Folder",
+  "samples.showsamples.text": "Zobrazit vzorky ve složce",
   "main.page.loading.text": "Načítání",
   "recent.item.old.format": "Formát souboru aplikace Dynamo 1.x",
-  "recent.item.old.format.tooltip": "Author and thumbnail not available for files saved in Dynamo 1.x format"
+  "recent.item.old.format.tooltip": "Pro soubory uložené ve formátu Dynamo 1.x není k dispozici autor ani miniatura."
 }
