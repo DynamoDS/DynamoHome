@@ -1,0 +1,28 @@
+############################ Header ################################################
+# Configuration file for Continuous Localization (CL) process. 
+#
+#	To reduce the size of this file, instructions on what each parameter is used for,
+#	with the respective values to use, can be found on:
+#	https://wiki.autodesk.com/display/ForgeCL/CL+-+Setup+-+Continuous+Localization+Configuration+File
+#
+######################### End of Header ##############################################
+ 
+common:
+  branch_section:
+    maintainer: [zeusongit, QilongTang, reddyashish]
+    ignore_this_branch: true
+    auto_merge_pr: false
+
+  variable_section:
+    langProject: [csy, deu, esp, fra, ita, jpn, kor, plk, ptb, rus, chs, cht]
+    # Microsoft 3-letter language codes as defined on https://www.microsoft.com/resources/msdn/goglobal/default.mspx
+    langThreeLetter: {enu: enu, eng: eng, deu: deu, fra: fra, ita: ita, esp: esp, ptb: ptb, ptg: ptg, jpn: jpn, chs: chs, cht: cht, kor: kor, csy: csy, plk: plk, rus: rus, hun: hun, trk: trk, cat: cat}
+    langBCP47: {enu: en, eng: en-GB, deu: de, fra: fr, ita: it, esp: es, ptb: pt-BR, ptg: pt-PT, jpn: ja, chs: zh-Hans, cht: zh-Hant, zhh: zh-Hant-HK, kor: ko, csy: cs, hun: hu, plk: pl, rus: ru, rom: ro, fin: fi, nor: no, sve: sv, nld: nl, dan: da, hrv: hr, trk: tr, cat: ca}
+
+  components:
+    - name: DynamoHome  
+      main_owner: Soft
+      content_owner: N/A
+      lang: [csy, deu, esp, fra, ita, jpn, kor, plk, ptb, rus, chs, cht]
+      file_rules:
+        - src\locales\**en.json, src\locales\**%langBCP47%.json

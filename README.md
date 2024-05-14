@@ -99,9 +99,9 @@ Localization is done via [`react-intl`](https://www.npmjs.com/package/react-intl
 export const getMessagesForLocale = (locale) => {
   switch(locale) {
     case 'en':
-      return englishMessages;
+      return EnglishMessages;
     default:
-      return englishMessages;
+      return EnglishMessages;
   }
 }
 ```
