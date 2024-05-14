@@ -1,4 +1,11 @@
 {
+  "button.title.text.new": "Создать",
+  "button.title.text.open": "Открыть",
+  "button.title.text.open.file": "Открыть файл",
+  "button.title.text.open.template": "Открытие шаблона",
+  "button.title.text.backup.locations": "Backup Locations",
+  "button.title.text.workspace": "Рабочее пространство",
+  "button.title.text.custom.node": "Пользовательский узел",
   "title.text.recent": "Последние",
   "title.text.samples": "Образцы",
   "title.text.learning": "Обучение",

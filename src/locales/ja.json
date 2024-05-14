@@ -1,4 +1,11 @@
 {
+  "button.title.text.new": "新規作成",
+  "button.title.text.open": "開く",
+  "button.title.text.open.file": "ファイルを開く",
+  "button.title.text.open.template": "テンプレートを開く",
+  "button.title.text.backup.locations": "Backup Locations",
+  "button.title.text.workspace": "ワークスペース",
+  "button.title.text.custom.node": "カスタム ノード",
   "title.text.recent": "最近",
   "title.text.samples": "サンプル",
   "title.text.learning": "学習",

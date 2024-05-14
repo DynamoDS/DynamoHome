@@ -1,4 +1,11 @@
 {
+  "button.title.text.new": "Nuovo",
+  "button.title.text.open": "Apri",
+  "button.title.text.open.file": "Apri file",
+  "button.title.text.open.template": "Apri modello",
+  "button.title.text.backup.locations": "Backup Locations",
+  "button.title.text.workspace": "Area di lavoro",
+  "button.title.text.custom.node": "Nodo personalizzato",
   "title.text.recent": "Recenti",
   "title.text.samples": "Esempi",
   "title.text.learning": "Apprendimento",

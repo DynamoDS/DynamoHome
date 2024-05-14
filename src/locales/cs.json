@@ -1,4 +1,11 @@
 {
+  "button.title.text.new": "Nový",
+  "button.title.text.open": "Otevřít",
+  "button.title.text.open.file": "Otevřít soubor",
+  "button.title.text.open.template": "Otevřít šablonu",
+  "button.title.text.backup.locations": "Backup Locations",
+  "button.title.text.workspace": "Pracovní prostor",
+  "button.title.text.custom.node": "Vlastní uzel",
   "title.text.recent": "Poslední",
   "title.text.samples": "Ukázky",
   "title.text.learning": "Výuka",

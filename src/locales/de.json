@@ -1,4 +1,11 @@
 {
+  "button.title.text.new": "Neu",
+  "button.title.text.open": "Öffnen",
+  "button.title.text.open.file": "Datei öffnen",
+  "button.title.text.open.template": "Vorlage öffnen",
+  "button.title.text.backup.locations": "Backup Locations",
+  "button.title.text.workspace": "Arbeitsbereich",
+  "button.title.text.custom.node": "Benutzerdefinierter Block",
   "title.text.recent": "Zuletzt verwendet",
   "title.text.samples": "Beispiele",
   "title.text.learning": "Lerninhalte",
