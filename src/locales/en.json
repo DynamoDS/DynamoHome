@@ -1,4 +1,11 @@
 {
+    "button.title.text.new": "New",
+    "button.title.text.open": "Open",
+    "button.title.text.open.file": "Open File",
+    "button.title.text.open.template": "Open Template",
+    "button.title.text.backup.locations": "Backup Locations",
+    "button.title.text.workspace": "Workspace",
+    "button.title.text.custom.node": "Custom Node",
     "title.text.recent": "Recent",
     "title.text.samples": "Samples",
     "title.text.learning": "Learning",

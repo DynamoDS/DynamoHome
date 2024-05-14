@@ -29,12 +29,12 @@ export function Sidebar({ onItemSelect, selectedSidebarItem })
                         id="openDropdown"
                         selectedValue={selectedFile}
                         onSelect={setSelectedFile}
-                        placeholder="Open"
+                        placeholder={<FormattedMessage id="button.title.text.open" />}
                         onSelectionChange={setSelectedValue}
                         options={[
-                            { label: 'Open File', value: 'open-file' },
-                            { label: 'Open Template', value: 'open-template' },
-                            { label: 'Backup Locations', value: 'open-backup-locations' }
+                            { label: <FormattedMessage id="button.title.text.open.file" />, value: 'open-file' },
+                            { label: <FormattedMessage id="button.title.text.open.template" />, value: 'open-template' },
+                            { label: <FormattedMessage id="button.title.text.backup.locations" />, value: 'open-backup-locations' }
                         ]}
                     />
 
@@ -43,11 +43,11 @@ export function Sidebar({ onItemSelect, selectedSidebarItem })
                         id="newDropdown"
                         selectedValue={selectedNew}
                         onSelect={setSelectedNew}
-                        placeholder="New"
+                        placeholder={<FormattedMessage id="button.title.text.new" />}
                         onSelectionChange={setSelectedValue}
                         options={[
-                            { label: 'Workspace', value: 'workspace' },
-                            { label: 'Custom Node', value: 'custom-node' }
+                            { label: <FormattedMessage id="button.title.text.workspace" />, value: 'workspace' },
+                            { label: <FormattedMessage id="button.title.text.custom.node" />, value: 'custom-node' }
                         ]}
                     />
 
