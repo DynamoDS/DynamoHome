@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { getMessagesForLocale } from './localization/localization.js';
 import { LayoutContainer } from './components/LayoutContainer.jsx';
+import { SettingsProvider } from './components/SettingsContext.jsx';
 
 function App() {
   const [locale, setLocale] = useState('en');
@@ -23,7 +24,9 @@ function App() {
 
   return (
     <IntlProvider locale={locale} messages={messages}>
-      <LayoutContainer id='homeContainer' />
+      <SettingsProvider>
+        <LayoutContainer id='homeContainer' />
+      </SettingsProvider>
     </IntlProvider>
   );
 }

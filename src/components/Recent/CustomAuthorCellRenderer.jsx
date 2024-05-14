@@ -15,8 +15,6 @@ export const CustomAuthorCellRenderer = ({ value, row }) => {
   const author = value;
   const isOldFormat = author === intl.formatMessage({ id: 'recent.item.old.format' });
 
-  console.log(author);
-  console.log(isOldFormat);
   return (
     <div className={styles["title-cell"]}>
         <p>{author}</p>
