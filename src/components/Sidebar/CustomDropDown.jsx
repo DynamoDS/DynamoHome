@@ -12,9 +12,7 @@ export const CustomDropdown = ({ id, selectedValue, options, onSelect, placehold
 
     /** Peforms the selected action type when used as a Drop-down */
     const handleOptionSelect = (option) => {
-        onSelect(option.label);
         setIsOpen(false);
-        setLastSelected(option); 
         if (onSelectionChange) {
             onSelectionChange(option.value); 
         }
@@ -22,11 +20,8 @@ export const CustomDropdown = ({ id, selectedValue, options, onSelect, placehold
 
     /** Peforms the selected action type when used as a Button */
     const handleDefaultAction = () => {
-        if (lastSelected) {
-            onSelect(lastSelected.label);
-            if (onSelectionChange) {
-                onSelectionChange(lastSelected.value);
-            }
+        if (onSelectionChange) {
+            onSelectionChange(lastSelected.value);
         }
     };
 

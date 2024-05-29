@@ -2,14 +2,14 @@ import React from "react";
 import { SamplesGridItem } from "./SamplesGridItem";
 import styles from './SamplesGrid.module.css';
 
-const renderSample = (sample, key) => {
+const renderSample = (sample, keyPrefix) => {
     if (sample.Children && sample.Children.length > 0) {
         // Separate the children into leaf nodes and nested nodes
         const leafNodes = sample.Children.filter(child => !child.Children || child.Children.length === 0);
         const nestedNodes = sample.Children.filter(child => child.Children && child.Children.length > 0);
 
         return (
-            <div key={key} className={styles["sample-container"]}>
+            <div key={keyPrefix} className={styles["sample-container"]}>
                 <div className='drop-shadow-2xl'>
                     <p className='title-paragraph'>{sample.FileName}</p>
                 </div>
@@ -24,9 +24,9 @@ const renderSample = (sample, key) => {
     } else {
         // Render a SamplesGridItem for leaf nodes
         return (
-            <div className={styles["sample-container"]}>
+            <div key={keyPrefix} className={styles["sample-container"]}>
                 <div className={styles["graphs-grid"]}>
-                    <SamplesGridItem key={key} FileName={sample.FileName} FilePath={sample.FilePath} />
+                    <SamplesGridItem key={keyPrefix} FileName={sample.FileName} FilePath={sample.FilePath} />
                 </div>
             </div>
         );

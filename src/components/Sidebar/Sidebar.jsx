@@ -8,9 +8,6 @@ import styles from './Sidebar.module.css';
 
 export function Sidebar({ onItemSelect, selectedSidebarItem })
 {
-    const [selectedFile, setSelectedFile] = useState('');
-    const [selectedNew, setSelectedNew] = useState('');
-
     const isSelected = (item) => selectedSidebarItem === item;
 
     /**Trigger the backend command based on the drop-down value */ 
@@ -27,8 +24,6 @@ export function Sidebar({ onItemSelect, selectedSidebarItem })
                     {/* Files Dropdown */}
                     <CustomDropdown 
                         id="openDropdown"
-                        selectedValue={selectedFile}
-                        onSelect={setSelectedFile}
                         placeholder={<FormattedMessage id="button.title.text.open" />}
                         onSelectionChange={setSelectedValue}
                         options={[
@@ -41,8 +36,6 @@ export function Sidebar({ onItemSelect, selectedSidebarItem })
                     {/* New Dropdown */}
                     <CustomDropdown 
                         id="newDropdown"
-                        selectedValue={selectedNew}
-                        onSelect={setSelectedNew}
                         placeholder={<FormattedMessage id="button.title.text.new" />}
                         onSelectionChange={setSelectedValue}
                         options={[
