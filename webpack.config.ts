@@ -1,10 +1,12 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const path = require('path');
+import 'webpack-dev-server';
+import { Configuration } from "webpack";
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
 
-module.exports = {
+const config: Configuration = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     path: path.join(__dirname, '/dist/build'),
     filename: 'index.bundle.js',
@@ -13,12 +15,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|ts)x?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },  
+        use: 'ts-loader',
+      },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
@@ -26,7 +26,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   optimization: {
     minimize: true,
@@ -37,7 +37,7 @@ module.exports = {
         terserOptions: {
           format: {
             comments: false,
-        },
+          },
         },
       }),
     ]
@@ -52,6 +52,8 @@ module.exports = {
       directory: path.join(__dirname, '/dist/build'),
     },
     hot: true,
-    open: true,
+    open: true
   },
 };
+
+export default config;
