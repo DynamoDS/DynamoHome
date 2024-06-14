@@ -1,6 +1,6 @@
 import React from 'react';
 import { img } from '../../assets/home.js';
-import { startGuidedTour } from '../../functions/utility.js';
+import { startGuidedTour } from '../../functions/utility';
 import { CardItem } from '../Common/CardItem.jsx';
 
 export function GuideGridItem({ id, Name, Description, Type, Thumbnail }) {

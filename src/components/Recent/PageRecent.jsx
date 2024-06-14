@@ -6,7 +6,7 @@ import { CustomLocationCellRenderer } from './CustomLocationCellRenderer.jsx';
 import { CustomAuthorCellRenderer } from "./CustomAuthorCellRenderer.jsx";
 import { GraphTable } from './GraphTable.jsx';
 import { GridViewIcon, ListViewIcon } from '../Common/CustomIcons.jsx';
-import { openFile, saveHomePageSettings } from '../../functions/utility.js';
+import { openFile, saveHomePageSettings } from '../../functions/utility';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip.jsx';
 import { useSettings } from '../SettingsContext.jsx';

@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { CustomDropdown } from './CustomDropDown.jsx';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip.jsx';
-import { sideBarCommand } from '../../functions/utility.js';
+import { sideBarCommand } from '../../functions/utility';
 import styles from './Sidebar.module.css';
 
 export function Sidebar({ onItemSelect, selectedSidebarItem })

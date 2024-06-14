@@ -1,6 +1,6 @@
 import React from 'react';
 import { img } from '../../assets/home.js';
-import { openFile } from '../../functions/utility.js';
+import { openFile } from '../../functions/utility';
 import { CardItem } from '../Common/CardItem.jsx';
 
 export function GraphGridItem({ id, Caption, ContextData, Description, DateModified, Thumbnail, setIsDisabled }) {

@@ -6,7 +6,7 @@ import { GridViewIcon, ListViewIcon } from '../Common/CustomIcons.jsx';
 import { Tooltip } from '../Common/Tooltip.jsx';
 import { CustomSampleFirstCellRenderer } from "./CustomSampleFirstCellRenderer.jsx";
 import { SamplesGrid } from './SamplesGrid.jsx';
-import { openFile, showSamplesFilesInFolder, saveHomePageSettings } from '../../functions/utility.js';
+import { openFile, showSamplesFilesInFolder, saveHomePageSettings } from '../../functions/utility';
 import { useSettings } from '../SettingsContext.jsx';
 
 export function SamplesPage ({ samplesViewMode }){
