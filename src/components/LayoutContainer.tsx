@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { MainContent } from './MainContent.jsx';
-import { Sidebar } from './Sidebar/Sidebar.jsx';
+import { useState } from 'react';
+import { MainContent } from 'src/components/MainContent';
+import { Sidebar } from 'src/components/Sidebar/Sidebar';
 import SplitPane from 'react-split-pane';
 
-export function LayoutContainer(){
+export const LayoutContainer = () => {
     // State to track the selected sidebar item
     const sideBarWidth = 300;
-    const [selectedSidebarItem, setSelectedSidebarItem] = useState('Recent');
+    const [selectedSidebarItem, setSelectedSidebarItem] = useState<SidebarItem>('Recent');
 
     // Event handler for sidebar item click
-    const handleSidebarItemClick = (item) => {
+    const handleSidebarItemClick = (item: SidebarItem) => {
         setSelectedSidebarItem(item);
     }
     
