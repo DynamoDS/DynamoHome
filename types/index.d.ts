@@ -4,3 +4,6 @@ declare module 'src/components/SettingsContext';
 declare module 'src/components/Sidebar/Sidebar';
 declare module 'react-split-pane';
 declare module 'src/components/MainContent';
+declare module 'src/components/Recent/PageRecent';
+declare module 'src/components/Samples/PageSamples';
+declare module 'src/components/Learning/PageLearning';

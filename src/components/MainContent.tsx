@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { RecentPage } from './Recent/PageRecent.jsx';
-import { SamplesPage } from './Samples/PageSamples.jsx';
-import { LearningPage } from './Learning/PageLearning.jsx';
+import { useState, useEffect } from 'react';
+import { RecentPage } from 'src/components/Recent/PageRecent';
+import { SamplesPage } from 'src/components/Samples/PageSamples';
+import { LearningPage } from 'src/components/Learning/PageLearning';
 import { FormattedMessage } from 'react-intl';
 
-export function MainContent({ selectedSidebarItem }){
-    const [isDisabled, setIsDisabled] = useState(false);
-    const [settings, setSettings] = useState(null);
+export function MainContent({ selectedSidebarItem }) {
+    const [isDisabled, setIsDisabled] = useState<boolean>(false);
+    const [settings, setSettings] = useState<HomePageSetting | null>(null);
 
-    const setShowStartPageChanged = (showStartPage) => {
+    const setShowStartPageChanged = (showStartPage: boolean) => {
         setIsDisabled(!showStartPage);
     };
 
-    const setHomePageSettings = (settingsJson) => {
-        try{
+    const setHomePageSettings = (settingsJson: string) => {
+        try {
             if (settingsJson) {
                 const settingsObject = JSON.parse(settingsJson);
                 setSettings(settingsObject);
             } else {
                 console.log(`Received null or empty settings`);
             }
-        }catch(exeption){
-            console.log($`Failed to set the HomePage settings with the following error ${exception}`);
+        } catch (exception) {
+            console.log(`Failed to set the HomePage settings with the following error ${exception}`);
         }
     }
 
@@ -34,7 +34,7 @@ export function MainContent({ selectedSidebarItem }){
             delete window.setShowStartPageChanged;
             delete window.setHomePageSettings;
         };
-    }, [isDisabled, settings]); 
+    }, [isDisabled, settings]);
 
     return (
         <>
@@ -45,7 +45,7 @@ export function MainContent({ selectedSidebarItem }){
                         <div className="loading-text"><FormattedMessage id="main.page.loading.text" /></div>
                     </div>
                 )}
-                
+
                 <div className={`page-container ${selectedSidebarItem === 'Recent' ? '' : 'hidden'}`}>
                     <RecentPage setIsDisabled={setIsDisabled} recentPageViewMode={settings?.recentPageViewMode || "grid"} />
                 </div>
