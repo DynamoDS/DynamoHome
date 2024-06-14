@@ -15,9 +15,14 @@ const config: Configuration = {
   module: {
     rules: [
       {
-        test: /\.(js|ts)x?$/,
-        exclude: /node_modules/,
+        test: /\.(ts|tsx)$/,
         use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(js|jsx)$/,
+        use: 'babel-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
@@ -27,12 +32,16 @@ const config: Configuration = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    alias: {
+      root: __dirname,
+      src: path.resolve(__dirname, 'src'),
+    },
   },
   optimization: {
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        parallel: true,
+        // parallel: true,
         extractComments: false,
         terserOptions: {
           format: {
@@ -52,7 +61,7 @@ const config: Configuration = {
       directory: path.join(__dirname, '/dist/build'),
     },
     hot: true,
-    open: true
+    open: false
   },
 };
 

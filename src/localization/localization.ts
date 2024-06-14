@@ -12,7 +12,7 @@ import RussianMessages from './../locales/ru.json';
 import SimplifiedChineseMessages from './../locales/zh-Hans.json';
 import TraditionalChineseMessages from './../locales/zh-Hant.json';
 
-export const getMessagesForLocale = (locale) => {
+export const getMessagesForLocale = (locale: Locale) => {
   switch (locale) {
   case 'en':
     return EnglishMessages;
