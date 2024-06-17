@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ModalItem from './ModalItem'; // Import your Modal component
-import { Tooltip } from '../Common/Tooltip.jsx';
+import { Tooltip } from '../Common/Tooltip';
 import styles from './VideoCarouselItem.module.css';
 
 export function VideoCarouselItem({ id, title, videoId, description }) {

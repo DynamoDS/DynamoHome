@@ -1,7 +1,6 @@
-import React from "react";
 import styles from './Arrow.module.css';
 
-export const ClosedArrow = ({ isOpen, direction, color  }) => {
+export const ClosedArrow = ({ isOpen, direction, color }: Arrow) => {
     let arrowClasses = [styles.closedArrow]; // Start with an array of classes
     if (isOpen) arrowClasses.push(styles.open);
     if (direction === 'left') arrowClasses.push(styles.left);
@@ -25,7 +24,7 @@ export const ClosedArrow = ({ isOpen, direction, color  }) => {
     );
 };
 
-export const OpenArrow = ({ isOpen, direction, color }) => {
+export const OpenArrow = ({ isOpen, direction, color }: Arrow) => {
     let arrowClasses = [styles.openArrow]; // Start with an array of classes
     if (isOpen) arrowClasses.push(styles.open);
     if (direction === 'left') arrowClasses.push(styles.left);
@@ -35,16 +34,16 @@ export const OpenArrow = ({ isOpen, direction, color }) => {
     const arrowClassString = arrowClasses.join(' ');
 
     return (
-        <svg 
+        <svg
             className={arrowClassString}
-            width="24" 
-            height="24" 
+            width="24"
+            height="24"
             viewBox="0 0 24 24"
         >
-            <path 
-                d="M8 10l4 4 4-4" 
+            <path
+                d="M8 10l4 4 4-4"
                 stroke={color || "#949494"}
-                strokeWidth="2" 
+                strokeWidth="2"
                 fill="none"
             />
         </svg>

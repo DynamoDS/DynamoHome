@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Portal from './Portal'; // Import your Portal component
 
 export const Tooltip = ({ children, content, verticalOffset = 12 }) => {

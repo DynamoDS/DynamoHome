@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '../Common/CustomIcons.module.css';
 
 export const GridViewIcon = () => (

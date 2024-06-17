@@ -1,6 +1,6 @@
 import React from "react";
 import { img } from '../../assets/home.js';
-import { Tooltip } from '../Common/Tooltip.jsx';
+import { Tooltip } from '../Common/Tooltip';
 import styles from './CustomCellRenderer.module.css';
 import cardStyles from '../Common/CardItems.module.css';
 

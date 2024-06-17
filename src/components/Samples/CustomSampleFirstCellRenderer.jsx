@@ -1,5 +1,5 @@
 import React from "react";
-import { ClosedArrow } from '../Common/Arrow.jsx';
+import { ClosedArrow } from '../Common/Arrow';
 
 /**
  * Exports a custom cell renderer for the first column of the samples table view.

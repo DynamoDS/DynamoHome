@@ -1,7 +1,7 @@
 import React from 'react';
 import { img } from '../../assets/home.js';
 import { openFile } from '../../functions/utility';
-import { CardItem } from '../Common/CardItem.jsx';
+import { CardItem } from '../Common/CardItem';
 
 export function GraphGridItem({ id, Caption, ContextData, Description, DateModified, Thumbnail, setIsDisabled }) {
     const handleClick = (e) => {

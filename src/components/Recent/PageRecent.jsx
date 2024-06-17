@@ -5,10 +5,10 @@ import { CustomNameCellRenderer } from './CustomNameCellRenderer.jsx';
 import { CustomLocationCellRenderer } from './CustomLocationCellRenderer.jsx';
 import { CustomAuthorCellRenderer } from "./CustomAuthorCellRenderer.jsx";
 import { GraphTable } from './GraphTable.jsx';
-import { GridViewIcon, ListViewIcon } from '../Common/CustomIcons.jsx';
+import { GridViewIcon, ListViewIcon } from '../Common/CustomIcons';
 import { openFile, saveHomePageSettings } from '../../functions/utility';
 import { FormattedMessage } from 'react-intl';
-import { Tooltip } from '../Common/Tooltip.jsx';
+import { Tooltip } from '../Common/Tooltip';
 import { useSettings } from '../SettingsContext';
 
 export function RecentPage ({ setIsDisabled, recentPageViewMode }){    

@@ -1,8 +1,7 @@
-import React from 'react';
-import { Tooltip } from './Tooltip.jsx';
+import { Tooltip } from './Tooltip';
 import styles from './CardItems.module.css';
 
-export const CardItem = ({ imageSrc, onClick, tooltipContent, titleText, subtitleText }) => {
+export const CardItem = ({ imageSrc, onClick, tooltipContent, titleText, subtitleText }: CardItem) => {
     return (
         <div className={styles['graph-container']}>
             <a className={styles['graph-link']} onClick={onClick}>

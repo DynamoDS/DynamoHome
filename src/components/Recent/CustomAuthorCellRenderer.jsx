@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Tooltip } from '../Common/Tooltip.jsx';
-import { QuestionMarkIcon } from '../Common/CustomIcons.jsx';
+import { Tooltip } from '../Common/Tooltip';
+import { QuestionMarkIcon } from '../Common/CustomIcons';
 import styles from './CustomCellRenderer.module.css';
 
 

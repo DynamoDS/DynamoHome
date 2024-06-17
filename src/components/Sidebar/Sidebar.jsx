@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { CustomDropdown } from './CustomDropDown.jsx';
 import { FormattedMessage } from 'react-intl';
-import { Tooltip } from '../Common/Tooltip.jsx';
+import { Tooltip } from '../Common/Tooltip';
 import { sideBarCommand } from '../../functions/utility';
 import styles from './Sidebar.module.css';
 
