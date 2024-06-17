@@ -9,7 +9,7 @@ import { GridViewIcon, ListViewIcon } from '../Common/CustomIcons.jsx';
 import { openFile, saveHomePageSettings } from '../../functions/utility';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip.jsx';
-import { useSettings } from '../SettingsContext.jsx';
+import { useSettings } from '../SettingsContext';
 
 export function RecentPage ({ setIsDisabled, recentPageViewMode }){    
     const { settings, updateSettings } = useSettings();

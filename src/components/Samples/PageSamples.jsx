@@ -7,7 +7,7 @@ import { Tooltip } from '../Common/Tooltip.jsx';
 import { CustomSampleFirstCellRenderer } from "./CustomSampleFirstCellRenderer.jsx";
 import { SamplesGrid } from './SamplesGrid.jsx';
 import { openFile, showSamplesFilesInFolder, saveHomePageSettings } from '../../functions/utility';
-import { useSettings } from '../SettingsContext.jsx';
+import { useSettings } from '../SettingsContext';
 
 export function SamplesPage ({ samplesViewMode }){
     const { settings, updateSettings } = useSettings();

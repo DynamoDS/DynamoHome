@@ -1,14 +1,14 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 // Create the context
-const SettingsContext = createContext();
+const SettingsContext = createContext<any>(null);
 
 // Provider component that wraps the app components
 export function SettingsProvider({ children }) {
     const [settings, setSettings] = useState({});
 
     // Update settings
-    const updateSettings = (newSettings) => {
+    const updateSettings = (newSettings: any) => {
         setSettings(prev => ({ ...prev, ...newSettings }));
     };
 
