@@ -3,19 +3,22 @@ import { img } from '../../assets/home.js';
 import { openFile } from '../../functions/utility.js';
 import { CardItem } from '../Common/CardItem.jsx';
 
-export function SamplesGridItem({ FileName, FilePath }) {
+export function SamplesGridItem({ FileName, FilePath, Description, DateModified, Thumbnail }) {
     const handleClick = (e) => {
         e.preventDefault();
         openFile(FilePath);
     };
 
+    console.log(Description);
+
     return (
         <CardItem 
-            imageSrc={img} 
+            imageSrc={Thumbnail || img} 
             onClick={handleClick} 
-            tooltipContent={FilePath} 
+            tooltipContent={Description} 
             titleText={FileName} 
-            subtitleText={FilePath} 
+            subtitleText={DateModified} 
         />
     );
 }
+
