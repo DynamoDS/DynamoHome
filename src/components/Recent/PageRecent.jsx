@@ -21,7 +21,7 @@ export function RecentPage ({ setIsDisabled, recentPageViewMode }){
     
     // If we are under development, we will load the graphs from the local asset folder
     if (process.env.NODE_ENV === 'development') {
-        initialGraphs = require('../../assets/home.js').graphs;
+        initialGraphs = require('../../assets/home').graphs;
     }
 
     const [graphs, setGraphs] = useState(initialGraphs);    

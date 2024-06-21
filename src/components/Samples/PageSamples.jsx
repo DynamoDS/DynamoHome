@@ -20,7 +20,7 @@ export function SamplesPage ({ samplesViewMode }){
     
     // If we are under development, we will load the graphs from the local asset folder
     if (process.env.NODE_ENV === 'development') {
-        initialSamples = require('../../assets/samples.js').samples;
+        initialSamples = require('../../assets/samples').samples;
     }
 
     const [samples, setSamples] = useState(initialSamples);    

@@ -1,4 +1,4 @@
-import { img } from '../../assets/home.js';
+import { img } from '../../assets/home';
 import { startGuidedTour } from '../../functions/utility';
 import { CardItem } from '../Common/CardItem';
 
