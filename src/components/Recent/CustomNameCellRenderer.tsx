@@ -7,13 +7,12 @@ import cardStyles from '../Common/CardItems.module.css';
 
 /**
  * Exports a custom cell renderer for the first column of the table view.
- * @param value - the name of the graph
+ * @param caption - the name of the graph
  * @param row - the data associate with this row containing all the information for the graph
  */
-export const CustomNameCellRenderer = ({ value, row }) => {
+export const CustomNameCellRenderer = ({ caption, row }: NameCell) => {
   const imgSrc = row.original.Thumbnail || img;
   const description = row.original.Description;
-  const Caption = value;
 
   return (
     <div className={styles["title-cell"]}>
@@ -24,8 +23,8 @@ export const CustomNameCellRenderer = ({ value, row }) => {
       </a>
         <div>
           {description
-            ? <Tooltip content={description}>{Caption}</Tooltip>
-            : Caption
+            ? <Tooltip content={description}>{caption}</Tooltip>
+            : caption
           }
         </div>
     </div>

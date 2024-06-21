@@ -1,20 +1,20 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-import { GraphGridItem } from './GraphGridItem.jsx';
-import { CustomNameCellRenderer } from './CustomNameCellRenderer.jsx';
-import { CustomLocationCellRenderer } from './CustomLocationCellRenderer.jsx';
-import { CustomAuthorCellRenderer } from "./CustomAuthorCellRenderer.jsx";
-import { GraphTable } from './GraphTable.jsx';
+import { GraphGridItem } from './GraphGridItem';
+import { CustomNameCellRenderer } from './CustomNameCellRenderer';
+import { CustomLocationCellRenderer } from './CustomLocationCellRenderer';
+import { CustomAuthorCellRenderer } from "./CustomAuthorCellRenderer";
+import { GraphTable } from './GraphTable';
 import { GridViewIcon, ListViewIcon } from '../Common/CustomIcons';
 import { openFile, saveHomePageSettings } from '../../functions/utility';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
 import { useSettings } from '../SettingsContext';
 
-export function RecentPage ({ setIsDisabled, recentPageViewMode }){    
+export function RecentPage ({ setIsDisabled, recentPageViewMode }: {setIsDisabled: (disable:boolean)=> void, recentPageViewMode: string}){    
     const { settings, updateSettings } = useSettings();
     const [viewMode, setViewMode] = useState(recentPageViewMode); 
-    const [initialized, setInitialized] = useState(false);
+    const [initialized, setInitialized] = useState<boolean>(false);
 
     // Set a placeholder for the graphs which will be used differently during dev and prod 
     let initialGraphs = [];

@@ -3,8 +3,8 @@ import { img } from '../../assets/home';
 import { openFile } from '../../functions/utility';
 import { CardItem } from '../Common/CardItem';
 
-export function GraphGridItem({ id, Caption, ContextData, Description, DateModified, Thumbnail, setIsDisabled }) {
-    const handleClick = (e) => {
+export function GraphGridItem({ id, Caption, ContextData, Description, DateModified, Thumbnail, setIsDisabled }: GraphItem) {
+    const handleClick = (e:MouseEvent) => {
         // freezes the UI 
         setIsDisabled(true);
 

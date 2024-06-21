@@ -1,4 +1,3 @@
-import React from "react";
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
 import { QuestionMarkIcon } from '../Common/CustomIcons';
@@ -7,12 +6,11 @@ import styles from './CustomCellRenderer.module.css';
 
 /**
  * Exports a custom cell renderer for the author cell.
- * @param value - the name of the graph
+ * @param author - the name of the graph
  * @param row - the data associate with this row containing all the information for the graph
  */
-export const CustomAuthorCellRenderer = ({ value, row }) => {
+export const CustomAuthorCellRenderer = ({ author }: AuthorCell) => {
   const intl = useIntl();
-  const author = value;
   const isOldFormat = author === intl.formatMessage({ id: 'recent.item.old.format' });
 
   return (

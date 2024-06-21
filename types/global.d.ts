@@ -9,6 +9,7 @@ interface Window {
   setShowStartPageChanged: (showStartPage: boolean) => void;
   setHomePageSettings: (settingsJson: any) => void;
   receiveInteractiveGuidesDataFromDotNet: (jsonData: any) => void;
+  receiveGraphDataFromDotNet: (jsonData: any) => void;
   chrome?: {
     webview?: any;
   };

@@ -4,16 +4,15 @@ import styles from './CustomCellRenderer.module.css';
 
 /**
  * Exports a custom cell renderer for the location column of the table view.
- * @param value - the location of the graph on the system
+ * @param caption - the location of the graph on the system
  */
-export const CustomLocationCellRenderer = ({ value }) => {
-  const Caption = value;
+export const CustomLocationCellRenderer = ({ caption }: { caption: string }) => {
 
   return (
     <div className={styles["title-cell"]}>
         <div>
-          <Tooltip content={Caption}>
-            {Caption}
+          <Tooltip content={caption}>
+            {caption}
           </Tooltip>
         </div>
     </div>
