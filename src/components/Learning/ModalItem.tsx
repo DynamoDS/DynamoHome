@@ -1,8 +1,7 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import styles from './ModalItem.module.css';
 
-const ModalItem = ({ isOpen, onClose, children }) => {
+const ModalItem = ({ isOpen, onClose, children }:  ModalItem) => {
     if (!isOpen) return null;
 
     return ReactDOM.createPortal(

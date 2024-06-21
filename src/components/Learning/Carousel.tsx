@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { OpenArrow } from '../Common/Arrow';
 import styles from './Carousel.module.css';
 
-export const Carousel = ({ children }) => {
+export const Carousel = ({ children }: {children: ReactNode}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const itemsPerPage = 4;
     const totalItems = React.Children.count(children);

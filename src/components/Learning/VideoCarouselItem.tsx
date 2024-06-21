@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ModalItem from './ModalItem'; // Import your Modal component
 import { Tooltip } from '../Common/Tooltip';
 import styles from './VideoCarouselItem.module.css';
 
-export function VideoCarouselItem({ id, title, videoId, description }) {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+export function VideoCarouselItem({ id, title, videoId, description }: VideoCarouselItem) {
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const youtubeEmbedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`; // Added autoplay query parameter
     const tooltip = <div>

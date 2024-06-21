@@ -1,24 +1,24 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-import { VideoCarouselItem } from './VideoCarouselItem.jsx';
-import { videos } from '../../assets/learning.js';
-import { Carousel } from "./Carousel.jsx";
-import { GuideGridItem } from "./GuideGridItem.jsx";
+import { VideoCarouselItem } from './VideoCarouselItem';
+import { videos } from '../../assets/learning';
+import { Carousel } from "./Carousel";
+import { GuideGridItem } from "./GuideGridItem";
 import { FormattedMessage } from 'react-intl';
 
 export function LearningPage(){
     // Set a placeholder for the guides which will be used differently during dev and prod 
-    let initialGuides = [];
+    let initialGuides: Guide[] = [];
 
     // If we are under development, we will load the graphs from the local asset folder
     if (process.env.NODE_ENV === 'development') {
-        initialGuides = require('../../assets/learning.js').guides;
+        initialGuides = require('../../assets/learning').guides;
     }
 
     const [guides, setGuides] = useState(initialGuides);    
 
     // A method exposed to the backend used to set the interactive guides data coming from Dynamo
-    const receiveInteractiveGuidesDataFromDotNet = (jsonData) => {
+    const receiveInteractiveGuidesDataFromDotNet = (jsonData: any) => {
         try {
             // jsonData is already an object, so no need to parse it
             const data = jsonData;

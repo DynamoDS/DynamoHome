@@ -1,9 +1,8 @@
-import React from 'react';
 import { img } from '../../assets/home.js';
 import { startGuidedTour } from '../../functions/utility';
 import { CardItem } from '../Common/CardItem';
 
-export function GuideGridItem({ id, Name, Description, Type, Thumbnail }) {
+export const GuideGridItem = ({ id, Name, Description, Type, Thumbnail }: Guide) => {
     const triggerStartGuidedTourCommand = () => {
         startGuidedTour(Type);
     };

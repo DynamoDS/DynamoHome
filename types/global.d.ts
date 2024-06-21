@@ -5,9 +5,10 @@ type SidebarCommand = 'open-file' | 'open-template' | 'open-backup-locations' | 
 type SidebarItem = 'Recent' | 'Samples' | 'Learning';
 type HomePageSetting = { recentPageViewMode: 'grid' | 'list' | undefined, samplesViewMode: 'grid' | 'list' | undefined }
 interface Window {
-  setLocale: (value: Locale) => void,
-  setShowStartPageChanged: (showStartPage: boolean) => void,
-  setHomePageSettings: (settingsJson: any) => void,
+  setLocale: (value: Locale) => void;
+  setShowStartPageChanged: (showStartPage: boolean) => void;
+  setHomePageSettings: (settingsJson: any) => void;
+  receiveInteractiveGuidesDataFromDotNet: (jsonData: any) => void;
   chrome?: {
     webview?: any;
   };

@@ -1,6 +1,6 @@
 type CardItem = {
   imageSrc: string;
-  onClick: () => {};
+  onClick: () => void;
   tooltipContent: string;
   titleText: string;
   subtitleText: string;
