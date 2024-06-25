@@ -1,17 +1,15 @@
-import React from 'react';
-import { useState, useEffect, useRef } from 'react';
-import { CustomDropdown } from './CustomDropDown.jsx';
+import { CustomDropdown } from './CustomDropDown';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
 import { sideBarCommand } from '../../functions/utility';
 import styles from './Sidebar.module.css';
 
-export function Sidebar({ onItemSelect, selectedSidebarItem })
+export function Sidebar({ onItemSelect, selectedSidebarItem }: Sidebar)
 {
-    const isSelected = (item) => selectedSidebarItem === item;
+    const isSelected = (item: string) => selectedSidebarItem === item;
 
     /**Trigger the backend command based on the drop-down value */ 
-    const setSelectedValue = (value) => {
+    const setSelectedValue = (value: SidebarCommand) => {
         sideBarCommand(value);
     };
 

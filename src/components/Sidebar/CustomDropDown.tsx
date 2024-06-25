@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './CustomDropDown.module.css';
 import { OpenArrow } from '../Common/Arrow';
 
-export const CustomDropdown = ({ id, selectedValue, options, onSelect, placeholder, onSelectionChange }) => {
+export const CustomDropdown = ({ id, options, placeholder, onSelectionChange }: Dropdown) => {
     const [isOpen, setIsOpen] = useState(false);
     const [lastSelected, setLastSelected] = useState(options[0]);
     const dropdownRef = useRef(null);
@@ -11,7 +11,7 @@ export const CustomDropdown = ({ id, selectedValue, options, onSelect, placehold
     const toggleDropdown = () => setIsOpen(!isOpen);
 
     /** Peforms the selected action type when used as a Drop-down */
-    const handleOptionSelect = (option) => {
+    const handleOptionSelect = (option: option) => {
         setIsOpen(false);
         if (onSelectionChange) {
             onSelectionChange(option.value); 
@@ -27,7 +27,7 @@ export const CustomDropdown = ({ id, selectedValue, options, onSelect, placehold
 
     /** Handles navigate away from the drop-down control */
     useEffect(() => {
-        const handleClickOutside = (event) => {
+        const handleClickOutside = (event: MouseEvent) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setIsOpen(false);
             }
