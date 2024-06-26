@@ -95,7 +95,7 @@ export function RecentPage ({ setIsDisabled, recentPageViewMode }: {setIsDisable
       ], []);
 
     // Handles mouse click over each row
-    const handleRowClick = (row) => {
+    const handleRowClick = (row: Row) => {
         // freezes the UI   
         setIsDisabled(true);   
         

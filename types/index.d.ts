@@ -7,3 +7,5 @@ declare module 'src/components/MainContent';
 declare module 'src/components/Recent/PageRecent';
 declare module 'src/components/Samples/PageSamples';
 declare module 'src/components/Learning/PageLearning';
+declare module 'react-table';
+declare module 'src/components/Samples/SamplesGrid';

@@ -6,16 +6,16 @@ import styles from './CustomCellRenderer.module.css';
 
 /**
  * Exports a custom cell renderer for the author cell.
- * @param author - the name of the graph
+ * @param value - the name of the graph
  * @param row - the data associate with this row containing all the information for the graph
  */
-export const CustomAuthorCellRenderer = ({ author }: AuthorCell) => {
+export const CustomAuthorCellRenderer = ({ value }: AuthorCell) => {
   const intl = useIntl();
-  const isOldFormat = author === intl.formatMessage({ id: 'recent.item.old.format' });
+  const isOldFormat = value === intl.formatMessage({ id: 'recent.item.old.format' });
 
   return (
     <div className={styles["title-cell"]}>
-        <p>{author}</p>
+        <p>{value}</p>
         {isOldFormat && 
             <Tooltip content={<FormattedMessage id="recent.item.old.format.tooltip" />}>
                 <QuestionMarkIcon />

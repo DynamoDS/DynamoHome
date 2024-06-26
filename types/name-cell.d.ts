@@ -1,5 +1,5 @@
 type NameCell = {
-  caption: string;
+  value: string;
   row: {
     original: {
       Thumbnail?: string;

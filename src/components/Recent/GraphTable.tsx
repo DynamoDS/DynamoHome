@@ -29,7 +29,7 @@ export const GraphTable = ({ columns, data, onRowClick }) => {
       useResizeColumns 
     );
 
-  const handleRowClick = (row) => {
+  const handleRowClick = (row:Row) => {
     // Call the passed onRowClick function with row information
     if (onRowClick) {
       onRowClick(row);
@@ -41,9 +41,9 @@ export const GraphTable = ({ columns, data, onRowClick }) => {
     <div className={styles['table-container']}>
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup) => (
+          {headerGroups.map((headerGroup: any) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column, columnIndex) => (
+              {headerGroup.headers.map((column: any, columnIndex: any) => (
                 <th {...column.getHeaderProps()}>
                   {column.render("Header")}
                   {/* Add resizer div for all columns except the last one */}
@@ -60,7 +60,7 @@ export const GraphTable = ({ columns, data, onRowClick }) => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
+          {rows.map((row: Row) => {
             prepareRow(row);
             return (
               <tr
@@ -69,7 +69,7 @@ export const GraphTable = ({ columns, data, onRowClick }) => {
                   style: { cursor: "pointer" },
                 })}
               >
-                {row.cells.map((cell) => {
+                {row.cells.map((cell: Cell) => {
                   return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                 })}
               </tr>

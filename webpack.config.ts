@@ -61,7 +61,7 @@ const config: Configuration = {
       directory: path.join(__dirname, '/dist/build'),
     },
     hot: true,
-    open: false
+    open: true
   },
 };
 

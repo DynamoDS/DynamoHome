@@ -1,4 +1,4 @@
 type AuthorCell = {
-  author: string;
+  value: string;
   row?: any;
 }
