@@ -1,18 +1,18 @@
-import React from "react";
+import { CSSProperties } from 'react';
 import { ClosedArrow } from '../Common/Arrow';
 
 /**
  * Exports a custom cell renderer for the first column of the samples table view.
  * @param cell - the cell we are rendering
  */
-export const CustomSampleFirstCellRenderer = ({ value, row, rows, rowIndex, collapsedRows  }) => {
+export const CustomSampleFirstCellRenderer = ({ value, row, rows, rowIndex, collapsedRows  }: CustomSampleCellRenderer) => {
   const isChildRow = row.original.parentId !== null;
   const depth = row.original.depth || 0;
   const indent = (depth - 1) * 20; // Adjust the indent as needed
   const arrowIndent = (depth) * 20; // Adjust the indent as needed
   const isParentRow = row.original.isParent;
 
-  const isNextRowSibling = (nextRow) => {
+  const isNextRowSibling = (nextRow: Row) => {
     return nextRow.original.depth === depth && nextRow.original.parentId === row.original.parentId;
   };
 
@@ -21,7 +21,7 @@ export const CustomSampleFirstCellRenderer = ({ value, row, rows, rowIndex, coll
                       (rowIndex === rows.length - 1 || 
                        !isNextRowSibling(rows[rowIndex + 1]));
 
-  const containerStyle = {
+  const containerStyle: CSSProperties = {
     display: 'flex',
     alignItems: 'center',
     height: '100%',

@@ -1,8 +1,7 @@
-import React from "react";
 import { SamplesGridItem } from "./SamplesGridItem";
 import styles from './SamplesGrid.module.css';
 
-const renderSample = (sample, keyPrefix) => {
+const renderSample = (sample: Samples, keyPrefix: string | number) => {
     if (sample.Children && sample.Children.length > 0) {
         // Separate the children into leaf nodes and nested nodes
         const leafNodes = sample.Children.filter(child => !child.Children || child.Children.length === 0);
@@ -33,11 +32,11 @@ const renderSample = (sample, keyPrefix) => {
     }
 };
 
-export const SamplesGrid = ({ data }) => {
+export const SamplesGrid = ({ data }:{ data: Samples[]}) => {
     const rootChildren = data[0]?.Children || [];
     return (
         <div id="samplesContainer">
-            {rootChildren.map((sample, index) => renderSample(sample, sample.FileName || index))}
+            {rootChildren.map((sample: Samples, index) => renderSample(sample, sample.FileName || index))}
         </div>
     );
 };

@@ -14,6 +14,7 @@ type Original = {
   parentId?: string;
   isParent: boolean;
   ContextData: string;
+  depth: number;
 }
 
 type Row = {
@@ -24,12 +25,18 @@ type Row = {
 }
 
 type RowProps = {
-// type RowProps = any;
-  style: { 
-    cursor: 'pointer' | 'default' 
+  style: {
+    cursor: 'pointer' | 'default'
   };
   onClick: () => void | undefined;
 }
 
 type CollapsedRow = { [id: string]: string } | {};
 
+type CustomSampleCellRenderer = {
+  value: string;
+  row: Row;
+  rows: Row[]
+  rowIndex: number;
+  collapsedRows: CollapsedRow;
+}

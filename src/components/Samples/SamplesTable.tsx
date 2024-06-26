@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useTable, useFlexLayout, useResizeColumns } from 'react-table';
 import styles from '../Common/Table.module.css';
 
-export const SamplesTable = ({ columns, data, onRowClick, onCollapsedRowsChange }) => {
-  const [collapsedRows, setCollapsedRows] = useState({});
+export const SamplesTable = ({ columns, data, onRowClick, onCollapsedRowsChange }: SamplesTable) => {
+  const [collapsedRows, setCollapsedRows] = useState<CollapsedRow>({});
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -14,20 +14,20 @@ export const SamplesTable = ({ columns, data, onRowClick, onCollapsedRowsChange 
     []
   );
 
-  const handleCollapseClick = (id) => {
+  const handleCollapseClick = (id: string) => {
     setCollapsedRows((prevState) => ({
       ...prevState,
       [id]: !prevState[id]
     }));
   };
 
-  const handleChildRowClick = (row) => {
+  const handleChildRowClick = (row: Row) => {
     if (onRowClick) {
-      onRowClick(row.original);
+      onRowClick(row);
     }
   };
 
-  const isAncestorCollapsed = (row, collapsedRows) => {
+  const isAncestorCollapsed = (row: Row, collapsedRows: CollapsedRow) => {
     if (!row.original.parentId) {
       return false; // Root level
     }
@@ -35,11 +35,11 @@ export const SamplesTable = ({ columns, data, onRowClick, onCollapsedRowsChange 
       return true; // Immediate parent is collapsed
     }
     // Recursively check higher-level ancestors
-    const parentRow = rows.find((r) => r.original.id === row.original.parentId);
+    const parentRow = rows.find((r: Row) => r.original.id === row.original.parentId);
     return parentRow ? isAncestorCollapsed(parentRow, collapsedRows) : false;
   };
 
-  const flattenData = (data, parentId = null, depth = 0) => {
+  const flattenData = (data: Samples, parentId = null, depth = 0) => {
     if (!Array.isArray(data) || data.length === 0) {
       return [];
   }
@@ -98,7 +98,7 @@ export const SamplesTable = ({ columns, data, onRowClick, onCollapsedRowsChange 
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {rows.map((row) => {
+            {rows.map((row: Row) => {
               prepareRow(row);
               const isParentRow = row.original.isParent;
               const isChildRow = row.original.parentId !== null;
@@ -120,7 +120,7 @@ export const SamplesTable = ({ columns, data, onRowClick, onCollapsedRowsChange 
                       : undefined
                   })}
                 >
-                  {row.cells.map((cell, index) => {
+                  {row.cells.map((cell: Cell, index: number) => {
                     // Customize rendering for the first cell of parent rows
                     if (index === 0 && isParentRow) {
                       return (

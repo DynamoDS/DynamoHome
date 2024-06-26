@@ -3,8 +3,8 @@ import { img } from '../../assets/home';
 import { openFile } from '../../functions/utility';
 import { CardItem } from '../Common/CardItem';
 
-export function SamplesGridItem({ FileName, FilePath }) {
-    const handleClick = (e) => {
+export function SamplesGridItem({ FileName, FilePath }: {FileName: string, FilePath: string}) {
+    const handleClick = (e: MouseEvent) => {
         e.preventDefault();
         openFile(FilePath);
     };

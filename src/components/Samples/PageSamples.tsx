@@ -1,19 +1,19 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-import { SamplesTable } from './SamplesTable.jsx';
+import { SamplesTable } from './SamplesTable';
 import { FormattedMessage } from 'react-intl';
 import { GridViewIcon, ListViewIcon } from '../Common/CustomIcons';
 import { Tooltip } from '../Common/Tooltip';
-import { CustomSampleFirstCellRenderer } from "./CustomSampleFirstCellRenderer.jsx";
-import { SamplesGrid } from './SamplesGrid.jsx';
+import { CustomSampleFirstCellRenderer } from "./CustomSampleFirstCellRenderer";
+import { SamplesGrid } from './SamplesGrid';
 import { openFile, showSamplesFilesInFolder, saveHomePageSettings } from '../../functions/utility';
 import { useSettings } from '../SettingsContext';
 
 export function SamplesPage ({ samplesViewMode }){
     const { settings, updateSettings } = useSettings();
     const [viewMode, setViewMode] = useState(samplesViewMode); 
-    const [collapsedRows, setCollapsedRows] = useState({});
-    const [initialized, setInitialized] = useState(false);
+    const [collapsedRows, setCollapsedRows] = useState<CollapsedRow>({});
+    const [initialized, setInitialized] = useState<boolean>(false);
 
     // Set a placeholder for the graphs which will be used differently during dev and prod 
     let initialSamples = [];
@@ -23,10 +23,10 @@ export function SamplesPage ({ samplesViewMode }){
         initialSamples = require('../../assets/samples').samples;
     }
 
-    const [samples, setSamples] = useState(initialSamples);    
+    const [samples, setSamples] = useState<any>(initialSamples);    
 
     // A method exposed to the backend used to set the samples data coming from Dynamo
-    const receiveSamplesDataFromDotNet = (jsonData) => {
+    const receiveSamplesDataFromDotNet = (jsonData: any) => {
         try {
           // jsonData is already an object, so no need to parse it
           const data = jsonData;
@@ -36,7 +36,7 @@ export function SamplesPage ({ samplesViewMode }){
         }
     };
 
-    const handleCollapsedRowsChange = (newCollapsedRows) => {
+    const handleCollapsedRowsChange = (newCollapsedRows: CollapsedRow) => {
         setCollapsedRows(newCollapsedRows);
       };
 
@@ -94,7 +94,7 @@ export function SamplesPage ({ samplesViewMode }){
       ], [collapsedRows]);
 
     // Handles mouse click over each row
-    const handleRowClick = (row) => {
+    const handleRowClick = (row:Row) => {
         openFile(row.FilePath);
     };
 
