@@ -27,7 +27,7 @@ export const SamplesTable = ({ columns, data, onRowClick, onCollapsedRowsChange 
     }
   };
 
-  const isAncestorCollapsed = (row: Row, collapsedRows: CollapsedRow) => {
+  const isAncestorCollapsed = (row: Row, collapsedRows: CollapsedRow): boolean => {
     if (!row.original.parentId) {
       return false; // Root level
     }
@@ -39,27 +39,27 @@ export const SamplesTable = ({ columns, data, onRowClick, onCollapsedRowsChange 
     return parentRow ? isAncestorCollapsed(parentRow, collapsedRows) : false;
   };
 
-  const flattenData = (data: Samples, parentId = null, depth = 0) => {
+  const flattenData = (data: Samples, parentId = null, depth = 0): any[] => {
     if (!Array.isArray(data) || data.length === 0) {
-      return [];
-  }
+        return [];
+    }
 
-  const startingData = parentId === null ? data.flatMap(d => d.Children || []) : data;
+    const startingData = parentId === null ? data.flatMap(d => d.Children || []) : data;
 
-  useEffect(() => {
-    onCollapsedRowsChange(collapsedRows);
-  }, [collapsedRows, onCollapsedRowsChange]);
+    useEffect(() => {
+      onCollapsedRowsChange(collapsedRows);
+    }, [collapsedRows, onCollapsedRowsChange]);
 
-  return startingData.flatMap((item) => {
-      const isParent = item.Children && item.Children.length > 0;
-      // Constructing a unique ID for the parent
-      const id = parentId === null ? item.FileName : `${parentId}-${item.FileName}`;
-      const flatItem = { ...item, parentId, isParent, depth, id };
+    return startingData.flatMap((item) => {
+        const isParent = item.Children && item.Children.length > 0;
+        // Constructing a unique ID for the parent
+        const id = parentId === null ? item.FileName : `${parentId}-${item.FileName}`;
+        const flatItem = { ...item, parentId, isParent, depth, id };
 
-      // When flattening children, pass the newly constructed id as their parentId
-      const children = isParent ? flattenData(item.Children, id, depth + 1) : [];
-      return [flatItem, ...children];
-  });
+        // When flattening children, pass the newly constructed id as their parentId
+        const children = isParent ? flattenData(item.Children, id, depth + 1) : [];
+        return [flatItem, ...children];
+    });
   };
 
   const flatData = flattenData(data);
@@ -79,9 +79,9 @@ export const SamplesTable = ({ columns, data, onRowClick, onCollapsedRowsChange 
     <div className={styles['table-container']}>
         <table {...getTableProps()}>
           <thead>
-            {headerGroups.map((headerGroup) => (
+            {headerGroups.map((headerGroup: any) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column, columnIndex) => (
+                {headerGroup.headers.map((column: any, columnIndex: number) => (
                   <th {...column.getHeaderProps()}>
                     {column.render('Header')}
                     {/* Add resizer div for all columns except the last one */}

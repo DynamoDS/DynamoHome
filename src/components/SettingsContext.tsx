@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from 'react';
 const SettingsContext = createContext<any>(null);
 
 // Provider component that wraps the app components
-export function SettingsProvider({ children }) {
+export const SettingsProvider = ({ children }) => {
     const [settings, setSettings] = useState({});
 
     // Update settings

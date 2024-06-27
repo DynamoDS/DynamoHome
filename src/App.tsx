@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 
-import { getMessagesForLocale } from 'src/localization/localization';
-import { LayoutContainer } from 'src/components/LayoutContainer';
-import { SettingsProvider } from 'src/components/SettingsContext';
+import { getMessagesForLocale } from './localization/localization';
+import { LayoutContainer } from './components/LayoutContainer';
+import { SettingsProvider } from './components/SettingsContext';
 
 const App = () => {
   const [locale, setLocale] = useState<Locale>("en");

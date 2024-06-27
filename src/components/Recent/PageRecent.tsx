@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
 import { useSettings } from '../SettingsContext';
 
-export function RecentPage ({ setIsDisabled, recentPageViewMode }: {setIsDisabled: (disable:boolean)=> void, recentPageViewMode: string}){    
+export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) => {    
     const { settings, updateSettings } = useSettings();
     const [viewMode, setViewMode] = useState(recentPageViewMode); 
     const [initialized, setInitialized] = useState<boolean>(false);

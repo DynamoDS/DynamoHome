@@ -4,8 +4,7 @@ import { Tooltip } from '../Common/Tooltip';
 import { sideBarCommand } from '../../functions/utility';
 import styles from './Sidebar.module.css';
 
-export function Sidebar({ onItemSelect, selectedSidebarItem }: Sidebar)
-{
+export const Sidebar = ({ onItemSelect, selectedSidebarItem }: Sidebar) => {
     const isSelected = (item: string) => selectedSidebarItem === item;
 
     /**Trigger the backend command based on the drop-down value */ 

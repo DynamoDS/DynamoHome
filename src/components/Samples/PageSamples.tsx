@@ -9,7 +9,7 @@ import { SamplesGrid } from './SamplesGrid';
 import { openFile, showSamplesFilesInFolder, saveHomePageSettings } from '../../functions/utility';
 import { useSettings } from '../SettingsContext';
 
-export function SamplesPage ({ samplesViewMode }){
+export const SamplesPage = ({ samplesViewMode }) => {
     const { settings, updateSettings } = useSettings();
     const [viewMode, setViewMode] = useState(samplesViewMode); 
     const [collapsedRows, setCollapsedRows] = useState<CollapsedRow>({});

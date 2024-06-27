@@ -1,4 +1,3 @@
-import React from "react";
 import { img } from '../../assets/home';
 import { Tooltip } from '../Common/Tooltip';
 import styles from './CustomCellRenderer.module.css';

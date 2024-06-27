@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { MainContent } from 'src/components/MainContent';
-import { Sidebar } from 'src/components/Sidebar/Sidebar';
+import { MainContent } from '../components/MainContent';
+import { Sidebar } from '../components/Sidebar/Sidebar';
 import SplitPane from 'react-split-pane';
 
-export const LayoutContainer = () => {
+export const LayoutContainer = ({id}:{id?:string}) => {
     // State to track the selected sidebar item
     const sideBarWidth = 300;
     const [selectedSidebarItem, setSelectedSidebarItem] = useState<SidebarItem>('Recent');

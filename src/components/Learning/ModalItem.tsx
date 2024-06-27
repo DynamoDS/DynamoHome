@@ -16,7 +16,7 @@ const ModalItem = ({ isOpen, onClose, children }:  ModalItem) => {
             </button>
             </div>
         </>,
-        document.getElementById('modal-root') // Ensure you have a div with this id in your index.html
+        document.getElementById('modal-root') as HTMLElement// Ensure you have a div with this id in your index.html
     );
 };
 

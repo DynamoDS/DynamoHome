@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { RecentPage } from 'src/components/Recent/PageRecent';
-import { SamplesPage } from 'src/components/Samples/PageSamples';
-import { LearningPage } from 'src/components/Learning/PageLearning';
+import { RecentPage } from '../components/Recent/PageRecent';
+import { SamplesPage } from '../components/Samples/PageSamples';
+import { LearningPage } from '../components/Learning/PageLearning';
 import { FormattedMessage } from 'react-intl';
 
-export function MainContent({ selectedSidebarItem }) {
+export const MainContent = ({ selectedSidebarItem }) => {
     const [isDisabled, setIsDisabled] = useState<boolean>(false);
     const [settings, setSettings] = useState<HomePageSetting | null>(null);
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from 'react';
 import { VideoCarouselItem } from './VideoCarouselItem';
 import { videos } from '../../assets/learning';
