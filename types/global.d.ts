@@ -87,9 +87,17 @@ type NameCell = {
   }
 }
 
+// type Samples = {
+//   FileName: string;
+//   FilePath: string;
+// }
+
 type Samples = {
   FileName: string;
   FilePath: string;
+  Description: string;
+  DateModified: string;
+  Thumbnail: string;
   Children?: Samples[];
 }
 

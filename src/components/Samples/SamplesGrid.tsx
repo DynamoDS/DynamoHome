@@ -13,8 +13,13 @@ const renderSample = (sample: Samples, keyPrefix: string | number) => {
                     <p className='title-paragraph'>{sample.FileName}</p>
                 </div>
                 <div className={styles["graphs-grid"]}>
-                    {leafNodes.map((child, index) => (
-                        <SamplesGridItem key={child.FileName || index} FileName={child.FileName} FilePath={child.FilePath} />
+                    {leafNodes.map((child: Samples, index: number) => (
+                        <SamplesGridItem key={child.FileName || index} 
+                                         FileName={child.FileName} 
+                                         FilePath={child.FilePath} 
+                                         Thumbnail={child.Thumbnail} 
+                                         Description={child.Description}
+                                         DateModified={child.DateModified}/>
                     ))}
                 </div>
                 {nestedNodes.map((nested, nestedIndex) => renderSample(nested, nested.FileName || nestedIndex))}
@@ -25,7 +30,12 @@ const renderSample = (sample: Samples, keyPrefix: string | number) => {
         return (
             <div key={keyPrefix} className={styles["sample-container"]}>
                 <div className={styles["graphs-grid"]}>
-                    <SamplesGridItem key={keyPrefix} FileName={sample.FileName} FilePath={sample.FilePath} />
+                    <SamplesGridItem key={keyPrefix} 
+                                     FileName={sample.FileName} 
+                                     FilePath={sample.FilePath} 
+                                     Thumbnail={sample.Thumbnail} 
+                                     Description={sample.Description}
+                                     DateModified={sample.DateModified}/>
                 </div>
             </div>
         );

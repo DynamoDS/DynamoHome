@@ -2,7 +2,7 @@ import { img } from '../../assets/home';
 import { openFile } from '../../functions/utility';
 import { CardItem } from '../Common/CardItem';
 
-export const SamplesGridItem = ({ FileName, FilePath }: {FileName: string, FilePath: string}) => {
+export const SamplesGridItem = ({ FileName, FilePath, Description, DateModified, Thumbnail }: Samples) => {
     const handleClick = (e: MouseEvent) => {
         e.preventDefault();
         openFile(FilePath);
@@ -10,11 +10,12 @@ export const SamplesGridItem = ({ FileName, FilePath }: {FileName: string, FileP
 
     return (
         <CardItem 
-            imageSrc={img} 
+            imageSrc={Thumbnail || img} 
             onClick={handleClick} 
-            tooltipContent={FilePath} 
+            tooltipContent={Description} 
             titleText={FileName} 
-            subtitleText={FilePath} 
+            subtitleText={DateModified} 
         />
     );
 }
+
