@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, CSSProperties } from 'react';
 import Portal from './Portal'; // Import your Portal component
 
-export const Tooltip = ({ children, content, verticalOffset = 12 }) => {
-    const [show, setShow] = useState(false);
-    const [position, setPosition] = useState({});
+export const Tooltip = ({ children, content, verticalOffset = 12 }: Tooltip) => {
+    const [show, setShow] = useState<boolean>(false);
+    const [position, setPosition] = useState<CSSProperties>({});
     const tooltipRef = useRef(null);
     const contentRef = useRef(null); // Ref for the tooltip content
 

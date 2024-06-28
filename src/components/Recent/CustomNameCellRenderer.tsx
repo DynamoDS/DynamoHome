@@ -9,7 +9,7 @@ import cardStyles from '../Common/CardItems.module.css';
  * @param value - the name of the graph
  * @param row - the data associate with this row containing all the information for the graph
  */
-export const CustomNameCellRenderer = ({ value, row }: NameCell) => {
+export const CustomNameCellRenderer = ({ value, row }: CellParams) => {
   const imgSrc = row.original.Thumbnail || img;
   const description = row.original.Description;
   return (

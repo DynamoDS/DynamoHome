@@ -9,7 +9,7 @@ import styles from './CustomCellRenderer.module.css';
  * @param value - the name of the graph
  * @param row - the data associate with this row containing all the information for the graph
  */
-export const CustomAuthorCellRenderer = ({ value }: AuthorCell) => {
+export const CustomAuthorCellRenderer = ({ value }: CellParams) => {
   const intl = useIntl();
   const isOldFormat = value === intl.formatMessage({ id: 'recent.item.old.format' });
 

@@ -2,7 +2,7 @@ import React from "react";
 import { useTable, useFlexLayout, useResizeColumns } from "react-table";
 import styles from '../Common/Table.module.css';
 
-export const GraphTable = ({ columns, data, onRowClick }) => {
+export const GraphTable = ({ columns, data, onRowClick }: GraphTable) => {
   const defaultColumn = React.useMemo(
     () => ({
       size: "auto", // Width of the column
@@ -41,9 +41,10 @@ export const GraphTable = ({ columns, data, onRowClick }) => {
     <div className={styles['table-container']}>
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup: any) => (
+          {console.log(headerGroups)}
+          {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column: any, columnIndex: any) => (
+              {headerGroup.headers.map((column: any, columnIndex: number) => (
                 <th {...column.getHeaderProps()}>
                   {column.render("Header")}
                   {/* Add resizer div for all columns except the last one */}

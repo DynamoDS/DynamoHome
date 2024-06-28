@@ -5,7 +5,7 @@ import styles from './CustomCellRenderer.module.css';
  * Exports a custom cell renderer for the location column of the table view.
  * @param value - the location of the graph on the system
  */
-export const CustomLocationCellRenderer = ({ value }: { value: string }) => {
+export const CustomLocationCellRenderer = ({ value }: CellParams) => {
 
   return (
     <div className={styles["title-cell"]}>

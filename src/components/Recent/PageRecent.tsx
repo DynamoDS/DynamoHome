@@ -67,7 +67,7 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
     }, [viewMode]);
 
     // This variable defins the table structure displaying the graphs
-    const columns = React.useMemo(() => [
+    const columns: Column[] = React.useMemo(() => [
         {
           Header: 'Title',
           accessor: 'Caption',
