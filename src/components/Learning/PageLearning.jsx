@@ -7,15 +7,18 @@ import { GuideGridItem } from "./GuideGridItem.jsx";
 import { FormattedMessage } from 'react-intl';
 
 export function LearningPage(){
-    // Set a placeholder for the guides which will be used differently during dev and prod 
+    // Set a placeholder for the guides, and videos which will be used differently during dev and prod 
     let initialGuides = [];
+    let initialVideos = [];
 
     // If we are under development, we will load the graphs from the local asset folder
     if (process.env.NODE_ENV === 'development') {
         initialGuides = require('../../assets/learning.js').guides;
+        initialVideos = require('../../assets/learning.js').videos;
     }
 
     const [guides, setGuides] = useState(initialGuides);    
+    const [videos, setVideos] = useState(initialVideos);    
 
     // A method exposed to the backend used to set the interactive guides data coming from Dynamo
     const receiveInteractiveGuidesDataFromDotNet = (jsonData) => {
@@ -24,7 +27,18 @@ export function LearningPage(){
             const data = jsonData;
             setGuides(data);
         } catch (error) {
-            console.error('Error processing data:', error);
+            console.error('Error processing guides data:', error);
+        }
+    };
+
+    // A method exposed to the backend used to set the training video data coming from Dynamo
+    const receiveTrainingVideoDataFromDotNet = (jsonData) => {
+        try {
+            // jsonData is already an object, so no need to parse it
+            const data = jsonData;
+            setVideos(data);
+        } catch (error) {
+            console.error('Error processing videos data:', error);
         }
     };
 
@@ -32,13 +46,14 @@ export function LearningPage(){
         // If we are under production, we will override the graphs with the actual data sent from Dynamo
         if (process.env.NODE_ENV !== 'development') {
             window.receiveInteractiveGuidesDataFromDotNet = receiveInteractiveGuidesDataFromDotNet;
+            window.receiveTrainingVideoDataFromDotNet = receiveTrainingVideoDataFromDotNet;
         }
-
 
         // Cleanup function (optional)
         return () => {
             if (process.env.NODE_ENV !== 'development') {
                 delete window.receiveInteractiveGuidesDataFromDotNet;
+                delete window.receiveTrainingVideoDataFromDotNet;
             }
         };
     }, []); 
