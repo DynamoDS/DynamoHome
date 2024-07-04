@@ -1,5 +1,4 @@
-// @ts-check
-const { test, expect } = require('@playwright/test');
+import { test, expect } from '@playwright/test';
 
 test.describe('HomePage', () => {
 
@@ -7,7 +6,7 @@ test.describe('HomePage', () => {
     await page.goto('http://localhost:8080/');
 
     const screenBackground = page.locator('#homeContainer');
-    await expect(screenBackground).toBeVisible;
+    expect(screenBackground).toBeVisible;
   });
 
 });

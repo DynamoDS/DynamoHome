@@ -1,4 +1,4 @@
-const chromeMock = {
+export const chromeMock = {
   webview: {
     hostObjects: {
       scriptObject: {
@@ -7,5 +7,3 @@ const chromeMock = {
     },
   },
 };
-  
-module.exports = chromeMock;
