@@ -13,6 +13,7 @@ interface Window {
   receiveInteractiveGuidesDataFromDotNet: (jsonData: any) => void;
   receiveGraphDataFromDotNet: (jsonData: any) => void;
   receiveSamplesDataFromDotNet: (jsonData: any) => void;
+  receiveTrainingVideoDataFromDotNet: (jsonData: any) => void;
   chrome?: {
     webview?: any;
   };
