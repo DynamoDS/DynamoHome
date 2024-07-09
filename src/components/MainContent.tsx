@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { RecentPage } from '../components/Recent/PageRecent';
-import { SamplesPage } from '../components/Samples/PageSamples';
-import { LearningPage } from '../components/Learning/PageLearning';
+import { RecentPage } from './Recent/PageRecent';
+import { SamplesPage } from './Samples/PageSamples';
+import { LearningPage } from './Learning/PageLearning';
 import { FormattedMessage } from 'react-intl';
 
 export const MainContent = ({ selectedSidebarItem }) => {

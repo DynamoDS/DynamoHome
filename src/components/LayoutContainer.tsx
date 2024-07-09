@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { MainContent } from '../components/MainContent';
-import { Sidebar } from '../components/Sidebar/Sidebar';
+import { MainContent } from './MainContent';
+import { Sidebar } from './Sidebar/Sidebar';
 import SplitPane from 'react-split-pane';
 
 export const LayoutContainer = ({id}:{id?:string}) => {
