@@ -45,10 +45,10 @@ jobs:
           NODE_ENV: test
         run: npm run test:unit
       - name: The final publish step within dist folder
-        NODE_ENV: production
         working-directory: dist
         # This will publish the package and set access to public as if you had run npm access public after publishing.
         run: npm publish --access public
         env:
+          NODE_ENV: production
           # Get npm token from Github
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
