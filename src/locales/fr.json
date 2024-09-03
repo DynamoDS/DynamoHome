@@ -19,7 +19,7 @@
   "learning.title.text.videos": "Didacticiels vidéo",
   "samples.showsamples.text": "Ouvrir l'emplacement du fichier",
   "samples.showsamples.files.text": "Graphiques",
-  "samples.showsamples.datasets.text": "Jeux de données",
+  "samples.showsamples.datasets.text": "Datasets",
   "main.page.loading.text": "Chargement",
   "recent.item.old.format": "Format de fichier Dynamo 1.x",
   "recent.item.old.format.tooltip": "L'auteur et la miniature ne sont pas disponibles pour les fichiers enregistrés au format Dynamo 1.x"

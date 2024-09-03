@@ -17,9 +17,9 @@
   "learning.title.text.learning": "Formación",
   "learning.title.text.guides": "Guías interactivas",
   "learning.title.text.videos": "Aprendizajes en vídeo",
-  "samples.showsamples.text": "Abrir ubicación del archivo",
+  "samples.showsamples.text": "Abrir ubicación de archivo",
   "samples.showsamples.files.text": "Gráficos",
-  "samples.showsamples.datasets.text": "Conjuntos de datos",
+  "samples.showsamples.datasets.text": "Datasets",
   "main.page.loading.text": "Cargando",
   "recent.item.old.format": "Formato de archivo de Dynamo 1.x",
   "recent.item.old.format.tooltip": "Autor y miniatura no disponibles para los archivos guardados en el formato de Dynamo 1.x"

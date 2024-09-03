@@ -17,9 +17,9 @@
   "learning.title.text.learning": "Обучение",
   "learning.title.text.guides": "Интерактивные руководства",
   "learning.title.text.videos": "Учебные видеоролики",
-  "samples.showsamples.text": "Открыть расположение файла",
+  "samples.showsamples.text": "Открыть папку с файлом",
   "samples.showsamples.files.text": "Графики",
-  "samples.showsamples.datasets.text": "Наборы данных",
+  "samples.showsamples.datasets.text": "Datasets",
   "main.page.loading.text": "Загрузка",
   "recent.item.old.format": "Формат файлов Dynamo 1.x",
   "recent.item.old.format.tooltip": "Автор и миниатюра недоступны для файлов, сохраненных в формате Dynamo 1.x"

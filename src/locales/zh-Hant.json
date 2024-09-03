@@ -17,9 +17,9 @@
   "learning.title.text.learning": "學習",
   "learning.title.text.guides": "互動式指南",
   "learning.title.text.videos": "影片自學課程",
-  "samples.showsamples.text": "打開檔案位置",
+  "samples.showsamples.text": "開啟檔案位置",
   "samples.showsamples.files.text": "圖表",
-  "samples.showsamples.datasets.text": "數據集",
+  "samples.showsamples.datasets.text": "Datasets",
   "main.page.loading.text": "正在載入",
   "recent.item.old.format": "Dynamo 1.x 檔案格式",
   "recent.item.old.format.tooltip": "以 Dynamo 1.x 格式儲存的檔案沒有作者和縮圖"

@@ -19,7 +19,7 @@
   "learning.title.text.videos": "비디오 튜토리얼",
   "samples.showsamples.text": "파일 위치 열기",
   "samples.showsamples.files.text": "그래프",
-  "samples.showsamples.datasets.text": "데이터셋",
+  "samples.showsamples.datasets.text": "Datasets",
   "main.page.loading.text": "로드 중",
   "recent.item.old.format": "Dynamo 1.x 파일 형식",
   "recent.item.old.format.tooltip": "Dynamo 1.x 형식으로 저장된 파일에 대해서는 작성자 및 썸네일을 사용할 수 없습니다."
