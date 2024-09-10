@@ -19,7 +19,7 @@
   "learning.title.text.videos": "Учебные видеоролики",
   "samples.showsamples.text": "Открыть папку с файлом",
   "samples.showsamples.files.text": "Графики",
-  "samples.showsamples.datasets.text": "Datasets",
+  "samples.showsamples.datasets.text": "Наборы данных",
   "main.page.loading.text": "Загрузка",
   "recent.item.old.format": "Формат файлов Dynamo 1.x",
   "recent.item.old.format.tooltip": "Автор и миниатюра недоступны для файлов, сохраненных в формате Dynamo 1.x"

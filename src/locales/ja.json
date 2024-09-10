@@ -19,7 +19,7 @@
   "learning.title.text.videos": "ビデオ チュートリアル",
   "samples.showsamples.text": "ファイルの場所を開く",
   "samples.showsamples.files.text": "グラフ",
-  "samples.showsamples.datasets.text": "Datasets",
+  "samples.showsamples.datasets.text": "データセット",
   "main.page.loading.text": "ロード中",
   "recent.item.old.format": "Dynamo 1.x ファイル形式",
   "recent.item.old.format.tooltip": "Dynamo 1.x 形式で保存されたファイルの作成者とサムネイルは使用できません"
