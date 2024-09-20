@@ -22,7 +22,7 @@ export const CustomDropdown = ({
     const dropdownRef = useRef(null);
     const arrowColor = isOpen ? "rgba(56,171,223,0.35)" : "#949494";
 
-    const toggleDropdown = () => setIsOpen(!isOpen);
+    const toggleDropdown = () => setIsOpen(!isOpen); 
 
     /** Peforms the selected action type when used as a Drop-down */
     const handleOptionSelect = (option: option) => {
@@ -67,18 +67,20 @@ export const CustomDropdown = ({
             ref={dropdownRef}>
             <div
                 className={styles['dropdown-selected']}
-                onClick={wholeButtonActionable ? toggleDropdown : undefined}
+                onClick={wholeButtonActionable ? toggleDropdown : handleDefaultAction}  // Button behavior depends on wholeButtonActionable
             >
-                <span>{placeholder}</span>
+                <span>{placeholder}</span>  
                 {showDivider && <span className={styles['vertical-line']}></span>}
                 <div
                     className={styles['arrow-container']}
-                    onClick={wholeButtonActionable ? undefined : (e) => {
+                    onClick={(e) => {
                         e.stopPropagation();
-                        toggleDropdown();
+                        toggleDropdown(); // Arrow always toggles the dropdown
                     }}
                 >
-                    <OpenArrow isOpen={isOpen} color={arrowColor} />
+                    <div style={{ marginTop: 4 }}>
+                        <OpenArrow isOpen={isOpen} color={arrowColor} />
+                    </div>
                 </div>
             </div>
             <div className={`${styles['dropdown-options']} ${isOpen ? styles.open : ''}`}>
