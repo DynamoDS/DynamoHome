@@ -6,11 +6,16 @@ type Locale = 'en' | 'en-US' | 'es-ES' | 'de-DE' | 'cs-CZ' | 'fr-FR' | 'it-IT' |
 type SidebarCommand = 'open-file' | 'open-template' | 'open-backup-locations' | 'workspace' | 'custom-node';
 type SidebarItem = 'Recent' | 'Samples' | 'Learning';
 type ShowSamplesCommand = 'open-graphs' | 'open-datasets';
-type HomePageSetting = { recentPageViewMode: 'grid' | 'list' | undefined, samplesViewMode: 'grid' | 'list' | undefined }
+type HomePageSetting = {
+  recentPageViewMode: 'grid' | 'list' | undefined;
+  samplesViewMode: 'grid' | 'list' | undefined;
+  sideBarWidth: string | undefined;
+};
 interface Window {
   setLocale: (value: Locale) => void;
   setShowStartPageChanged?: (showStartPage: boolean) => void;
   setHomePageSettings?: (settingsJson: any) => void;
+  setSidePaneMinWidth?: (sidePaneMinWidth: string) => void;
   receiveInteractiveGuidesDataFromDotNet: (jsonData: any) => void;
   receiveGraphDataFromDotNet: (jsonData: any) => void;
   receiveSamplesDataFromDotNet: (jsonData: any) => void;
@@ -18,6 +23,12 @@ interface Window {
   chrome?: {
     webview?: any;
   };
+}
+interface MainContentProps {
+  selectedSidebarItem: SidebarItem;
+  settings: HomePageSetting | null;
+  isDisabled: boolean;
+  setIsDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 type Cell = {

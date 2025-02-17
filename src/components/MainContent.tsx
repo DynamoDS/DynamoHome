@@ -4,37 +4,7 @@ import { SamplesPage } from './Samples/PageSamples';
 import { LearningPage } from './Learning/PageLearning';
 import { FormattedMessage } from 'react-intl';
 
-export const MainContent = ({ selectedSidebarItem }) => {
-    const [isDisabled, setIsDisabled] = useState<boolean>(false);
-    const [settings, setSettings] = useState<HomePageSetting | null>(null);
-
-    const setShowStartPageChanged = (showStartPage: boolean) => {
-        setIsDisabled(!showStartPage);
-    };
-
-    const setHomePageSettings = (settingsJson: string) => {
-        try {
-            if (settingsJson) {
-                const settingsObject = JSON.parse(settingsJson);
-                setSettings(settingsObject);
-            } else {
-                console.log(`Received null or empty settings`);
-            }
-        } catch (exception) {
-            console.log(`Failed to set the HomePage settings with the following error ${exception}`);
-        }
-    }
-
-    useEffect(() => {
-        // Set global functions
-        window.setShowStartPageChanged = setShowStartPageChanged;
-        window.setHomePageSettings = setHomePageSettings;
-
-        return () => {
-            delete window.setShowStartPageChanged;
-            delete window.setHomePageSettings;
-        };
-    }, [isDisabled, settings]);
+export const MainContent = ({ selectedSidebarItem, settings, isDisabled, setIsDisabled }: MainContentProps) => {
 
     return (
         <>
