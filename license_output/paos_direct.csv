@@ -1,5 +1,5 @@
 publisher,name,version,copyright,dateAdded,estimatedReleaseDate,license,distributed
-"Autodesk Inc.",dynamo-home,"1.0.1","Copyright (c) 2023 DynamoDS","","",MIT,false
+"Autodesk Inc.",dynamo-home,"1.0.1","Copyright (c) 2025 DynamoDS","","",MIT,false
 "",react-dom,"18.2.0","Copyright (c) Facebook, Inc. and its affiliates.","","",MIT,false
 "Eric Ferraiuolo",react-intl,"6.6.2","Copyright 2019 Oath Inc.. All rights reserved.","","",BSD-3-Clause,false
 tomkp,react-split-pane,"0.1.92","Copyright (c) 2015 tomkp","","",MIT,false
