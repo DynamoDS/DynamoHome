@@ -15,7 +15,6 @@ interface Window {
   setLocale: (value: Locale) => void;
   setShowStartPageChanged?: (showStartPage: boolean) => void;
   setHomePageSettings?: (settingsJson: any) => void;
-  setSidePaneMinWidth?: (sidePaneMinWidth: string) => void;
   receiveInteractiveGuidesDataFromDotNet: (jsonData: any) => void;
   receiveGraphDataFromDotNet: (jsonData: any) => void;
   receiveSamplesDataFromDotNet: (jsonData: any) => void;
@@ -88,8 +87,8 @@ type Graph = {
 
 type GraphTable = {
   columns: Column[];
-  data: Graph[]; 
-  onRowClick: (row: Row) => void; 
+  data: Graph[];
+  onRowClick: (row: Row) => void;
 }
 
 type Guide = {

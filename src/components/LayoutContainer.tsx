@@ -7,14 +7,14 @@ import { saveHomePageSettings } from '../functions/utility';
 
 export const LayoutContainer = ({ id }: { id?: string }) => {
   const defaultMinSize = 250;
+  const defaultMaxSize = 500;
   const defaultBarWidth = 300;
 
   const { settings, updateSettings } = useSettings();
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [selectedSidebarItem, setSelectedSidebarItem] = useState<SidebarItem>('Recent');
-  const [sideBarMinSize, setSideBarMinSize] = useState<string | null>(null);
   const [sideBarWidth, setSideBarWidth] = useState<number | null>(null);
-  
+
   const setShowStartPageChanged = (showStartPage: boolean) => {
     setIsDisabled(!showStartPage);
   };
@@ -41,7 +41,7 @@ export const LayoutContainer = ({ id }: { id?: string }) => {
   }, [settings?.sideBarWidth]);
 
   useEffect(() => {
-    if (sideBarWidth !== null && settings) { 
+    if (sideBarWidth !== null && settings) {
       saveHomePageSettings({ ...settings, sideBarWidth: sideBarWidth.toString() });
     }
   }, [sideBarWidth]);
@@ -59,30 +59,14 @@ export const LayoutContainer = ({ id }: { id?: string }) => {
     }
   };
 
-  const setSidePaneMinWidth = (sidePaneMinWidth: string) => {
-    try {
-      if (sidePaneMinWidth) {
-        console.log(sidePaneMinWidth);
-        const sideBarMinSize = JSON.parse(sidePaneMinWidth);
-        setSideBarMinSize(sideBarMinSize);
-      } else {
-        console.log(`Received null or empty settings`);
-      }
-    } catch (exception) {
-      console.log(`Failed to set the side pane minimum width with the following error ${exception}`);
-    }
-  };
-
   useEffect(() => {
     // Set global functions
     window.setShowStartPageChanged = setShowStartPageChanged;
     window.setHomePageSettings = setHomePageSettings;
-    window.setSidePaneMinWidth = setSidePaneMinWidth;
 
     return () => {
       delete window.setShowStartPageChanged;
       delete window.setHomePageSettings;
-      delete window.setSidePaneMinWidth;
     };
   }, [isDisabled, settings]);
 
