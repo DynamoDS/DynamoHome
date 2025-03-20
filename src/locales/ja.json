@@ -6,7 +6,7 @@
   "button.title.text.backup.locations": "バックアップの場所",
   "button.title.text.workspace": "ワークスペース",
   "button.title.text.custom.node": "カスタム ノード",
-  "title.text.recent": "最近",
+  "title.text.recent": "最近使用したファイル",
   "title.text.samples": "サンプル",
   "title.text.learning": "学習",
   "tooltip.text.recent": "最近使用したファイルを表示",
