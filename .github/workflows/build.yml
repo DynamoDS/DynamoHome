@@ -39,7 +39,7 @@ jobs:
         with:
           ref: v1.16
       - name: Code Coverage Report
-        uses: zgosalvez/github-actions-report-lcov@55c5634f4f1085c376473dfd5971662ced3b9dc1 # v4.1.24
+        uses: zgosalvez/github-actions-report-lcov@ec80ffb0e31fc6b6c35e18a8ef83403b1a8a84ee # v4.1.25
         with:
           coverage-files: coverage/lcov.info
           # minimum-coverage: 50
