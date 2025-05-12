@@ -15,7 +15,13 @@ export const GraphGridItem = ({ id, Caption, ContextData, Description, DateModif
         <CardItem 
             imageSrc={Thumbnail || img} 
             onClick={handleClick} 
-            tooltipContent={Description} 
+            tooltipContent={
+                <>
+                <div>{Caption}</div>
+                <div>{ContextData}</div>
+                <div>{Description}</div>
+                </>
+                } 
             titleText={Caption} 
             subtitleText={DateModified} 
         />
