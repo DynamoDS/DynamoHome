@@ -1,6 +1,6 @@
 {
   "name": "@dynamods/dynamo-home",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "Dynamo Home",
   "author": "Autodesk Inc.",
   "main": "index.tsx",
@@ -71,7 +71,7 @@
     "webpack": "^5.92.0",
     "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.2"
+    "webpack-dev-server": "^5.2.2"
   },
   "bugs": {
     "url": "https://github.com/DynamoDS/DynamoHome/issues"
