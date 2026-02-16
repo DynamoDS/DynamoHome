@@ -26,6 +26,9 @@ export const CustomDropdown = ({
 
     /** Peforms the selected action type when used as a Drop-down */
     const handleOptionSelect = (option: option) => {
+        if (option.kind === 'divider' || option.kind === 'header') {
+            return;
+        }
         setIsOpen(false);
         if (onSelectionChange) {
             onSelectionChange(option.value); 
@@ -84,11 +87,30 @@ export const CustomDropdown = ({
                 </div>
             </div>
             <div className={`${styles['dropdown-options']} ${isOpen ? styles.open : ''}`}>
-                {options.map((option, index) => (
-                    <div id={`${id}-${index}`} key={index} className={styles['dropdown-option']} onClick={() => handleOptionSelect(option)}>
-                        {option.label}
-                    </div>
-                ))}
+                {options.map((option, index) => {
+                    const isSelectable = option.kind !== 'divider' && option.kind !== 'header';
+                    const optionClassName = `
+                        ${styles['dropdown-option']}
+                        ${option.kind === 'divider' ? styles['dropdown-option-divider'] : ''}
+                        ${option.kind === 'header' ? styles['dropdown-option-header'] : ''}
+                        ${!isSelectable ? styles['dropdown-option-static'] : ''}
+                    `;
+
+                    return (
+                        <div
+                            id={`${id}-${index}`}
+                            key={index}
+                            className={optionClassName}
+                            onClick={isSelectable ? () => handleOptionSelect(option) : undefined}
+                        >
+                            {option.kind === 'divider' ? (
+                                <div className={styles['dropdown-divider']} />
+                            ) : (
+                                option.label
+                            )}
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );

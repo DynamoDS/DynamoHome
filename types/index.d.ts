@@ -58,6 +58,7 @@ type CardItem = {
 type option = {
   label: JSX.Element | null | string;
   value: string;
+  kind?: 'item' | 'divider' | 'header';
 }
 
 type Dropdown = {

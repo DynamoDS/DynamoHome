@@ -1,15 +1,43 @@
 import { CustomDropdown } from './CustomDropDown';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
-import { sideBarCommand } from '../../functions/utility';
+import { openFile, sideBarCommand } from '../../functions/utility';
+import { templates } from '../../assets/home';
 import styles from './Sidebar.module.css';
 
 export const Sidebar = ({ onItemSelect, selectedSidebarItem }: Sidebar) => {
     const isSelected = (item: string) => selectedSidebarItem === item;
+    const templateOptions: option[] = templates.map((template) => ({
+        label: template.Caption,
+        value: template.ContextData,
+        kind: 'item' as const
+    }));
+    const newDropdownOptions: option[] = [
+        { label: <FormattedMessage id="button.title.text.workspace" />, value: 'workspace', kind: 'item' as const },
+        { label: <FormattedMessage id="button.title.text.custom.node" />, value: 'custom-node', kind: 'item' as const },
+        ...(templateOptions.length
+            ? [
+                { label: '', value: 'divider-templates', kind: 'divider' as const },
+                { label: 'Templates', value: 'templates-header', kind: 'header' as const },
+                ...templateOptions
+            ]
+            : [])
+    ];
 
     /**Trigger the backend command based on the drop-down value */ 
-    const setSelectedValue = (value: SidebarCommand) => {
-        sideBarCommand(value);
+    const setSelectedValue = (value: string) => {
+        if (
+            value === 'open-file' ||
+            value === 'open-template' ||
+            value === 'open-backup-locations' ||
+            value === 'workspace' ||
+            value === 'custom-node'
+        ) {
+            sideBarCommand(value);
+            return;
+        }
+
+        openFile(value);
     };
 
     return (
@@ -35,10 +63,7 @@ export const Sidebar = ({ onItemSelect, selectedSidebarItem }: Sidebar) => {
                         id="newDropdown"
                         placeholder={<FormattedMessage id="button.title.text.new" />}
                         onSelectionChange={setSelectedValue}
-                        options={[
-                            { label: <FormattedMessage id="button.title.text.workspace" />, value: 'workspace' },
-                            { label: <FormattedMessage id="button.title.text.custom.node" />, value: 'custom-node' }
-                        ]}
+                        options={newDropdownOptions}
                     />
 
                     <div className={styles['sidebar-items-container']}>

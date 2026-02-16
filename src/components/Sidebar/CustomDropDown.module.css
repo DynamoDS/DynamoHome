@@ -104,6 +104,32 @@
     background-color: #434343;
 }
 
+.dropdown-option-static {
+    cursor: default;
+}
+
+.dropdown-option-static:hover {
+    background-color: transparent;
+}
+
+.dropdown-option-divider {
+    padding: 6px 0;
+}
+
+.dropdown-option-header {
+    padding: 6px 10px 4px;
+    color: #c9c9c9;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #6a6a6a;
+    margin: 0 10px;
+}
+
 .vertical-line {
     position: absolute;
     right: 37px;
