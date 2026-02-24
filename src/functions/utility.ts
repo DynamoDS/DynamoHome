@@ -8,6 +8,16 @@ export function openFile(path:string) {
   }
 }
 
+                      /**
+ * A call to a backend function requesting to create a new workspace and open a template file
+ * @param {string} path - the location of the template file on the system
+ */
+export function newWorkspaceWithTemplate(path: string) {
+  if (window.chrome?.webview !== undefined) {
+    window.chrome.webview.hostObjects.scriptObject.NewWorkspaceWithTemplate(path);
+  }
+}
+
 /**
  * A call to a backend function requesting the start of a guided tour
  * @param {string} guidedTour - the type of guided tour to be started

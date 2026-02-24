@@ -60,20 +60,36 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
         }
     };
 
+    // Ensure templates fan-out handler exists (shared with Sidebar)
+    const ensureTemplatesFanout = () => {
+        if (!window.__templatesListeners) {
+            window.__templatesListeners = [];
+        }
+        if (!window.receiveTemplatesDataFromDotNet) {
+            window.receiveTemplatesDataFromDotNet = (jsonData: any) => {
+                const data = jsonData || [];
+                window.__templatesListeners?.forEach(fn => fn(data));
+            };
+        }
+    };
+
     useEffect(() => {
         // If we are under production, we will override the graphs with the actual data sent from Dynamo
         if (process.env.NODE_ENV !== 'development') {
             window.receiveGraphDataFromDotNet = receiveGraphDataFromDotNet;
-            window.receiveTemplatesDataFromDotNet = receiveTemplatesDataFromDotNet;
-        }
+            
+            // Use listener pattern for templates (shared with Sidebar)
+            ensureTemplatesFanout();
+            const listener = (data: any) => receiveTemplatesDataFromDotNet(data);
+            window.__templatesListeners!.push(listener);
 
-        // Cleanup function (optional)
-        return () => {
-            if (process.env.NODE_ENV !== 'development') {
+            return () => {
                 delete window.receiveGraphDataFromDotNet;
-                delete window.receiveTemplatesDataFromDotNet;
-            }
-        };
+                if (window.__templatesListeners) {
+                    window.__templatesListeners = window.__templatesListeners.filter(l => l !== listener);
+                }
+            };
+        }
     }, []); 
 
     useEffect(() => {
@@ -97,6 +113,10 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
             saveHomePageSettings({ ...settings, recentPageViewMode: viewMode });
         } 
     }, [viewMode]);
+
+    useEffect(() => {
+
+    }, []);
 
     useEffect(() => {
         if (templatesInitialized || (settings?.templatesPageViewMode && settings.templatesPageViewMode !== templatesViewMode)) {

@@ -1,17 +1,54 @@
 import { CustomDropdown } from './CustomDropDown';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
-import { openFile, sideBarCommand } from '../../functions/utility';
-import { templates } from '../../assets/home';
+import { openFile, sideBarCommand, newWorkspaceWithTemplate } from '../../functions/utility';
 import styles from './Sidebar.module.css';
+import { useState, useEffect } from 'react';
+
+// Ensure the fan-out handler exists (shared by Sidebar and Homepage)
+function ensureTemplatesFanout() {
+    if (!window.__templatesListeners) {
+        window.__templatesListeners = [];
+    }
+
+    if (!window.receiveTemplatesDataFromDotNet) {
+        window.receiveTemplatesDataFromDotNet = (jsonData: any) => {
+            const data = jsonData || [];
+            window.__templatesListeners?.forEach(fn => fn(data));
+        };
+    }
+}
 
 export const Sidebar = ({ onItemSelect, selectedSidebarItem }: Sidebar) => {
     const isSelected = (item: string) => selectedSidebarItem === item;
-    const templateOptions: option[] = templates.map((template) => ({
-        label: template.Caption,
-        value: template.ContextData,
-        kind: 'item' as const
-    }));
+    
+    // Store real templates from backend
+    const [realTemplates, setRealTemplates] = useState<any[]>([]);
+    
+    // Set up listener pattern 
+    useEffect(() => {
+        if (process.env.NODE_ENV !== 'development') {
+            ensureTemplatesFanout();
+
+            const listener = (data: any) => {
+                setRealTemplates(data || []);
+            };
+            
+            window.__templatesListeners!.push(listener);
+
+            return () => {
+                if (window.__templatesListeners) {
+                    window.__templatesListeners = window.__templatesListeners.filter(l => l !== listener);
+                }
+            };
+        }
+    }, []);
+    
+    // hardcoded template options (just for UI display)
+    const templateOptions: option[] = [
+        { label: 'Template 1', value: 'sidebar-template-1', kind: 'item' as const },
+        { label: 'Template 2', value: 'sidebar-template-2', kind: 'item' as const },
+    ];
     const newDropdownOptions: option[] = [
         { label: <FormattedMessage id="button.title.text.workspace" />, value: 'workspace', kind: 'item' as const },
         { label: <FormattedMessage id="button.title.text.custom.node" />, value: 'custom-node', kind: 'item' as const },
@@ -37,6 +74,34 @@ export const Sidebar = ({ onItemSelect, selectedSidebarItem }: Sidebar) => {
             return;
         }
 
+        // Handle template selections by filename pattern (order-independent)
+        if (value === 'sidebar-template-1') {
+            // Template 1 = Template_00_HowToCreateADynamoGraph.dyn
+            const template00 = realTemplates.find(t => 
+                (t?.ContextData || '').includes('Template_00_')
+            );
+            if (template00?.ContextData) {
+                newWorkspaceWithTemplate(template00.ContextData);
+            } else {
+                console.error('Template_00_ not found. Templates not loaded yet or missing.');
+            }
+            return;
+        }
+
+        if (value === 'sidebar-template-2') {
+            // Template 2 = Template_01_DynamoWorkflowImportExport.dyn
+            const template01 = realTemplates.find(t => 
+                (t?.ContextData || '').includes('Template_01_')
+            );
+            if (template01?.ContextData) {
+                newWorkspaceWithTemplate(template01.ContextData);
+            } else {
+                console.error('Template_01_ not found. Templates not loaded yet or missing.');
+            }
+            return;
+        }
+
+        // Not a template, try opening as file
         openFile(value);
     };
 
