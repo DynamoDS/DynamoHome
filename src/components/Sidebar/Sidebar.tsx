@@ -43,27 +43,29 @@ export const Sidebar = ({ onItemSelect, selectedSidebarItem }: Sidebar) => {
 
         // Handle template selections by filename pattern (order-independent)
         if (value === 'sidebar-template-1') {
-            // Template 1 = Template_00_HowToCreateADynamoGraph.dyn
-            const template00 = realTemplates.find(t => 
-                (t?.ContextData || '').includes('Template_00_')
-            );
-            if (template00?.ContextData) {
-                newWorkspaceWithTemplate(template00.ContextData);
+            // Template 1 = Create a Graph.dyn
+            const template1 = realTemplates.find(t => {
+                const path = (t?.ContextData || '').toLowerCase();
+                return path.includes('create a graph.dyn');
+            });
+            if (template1?.ContextData) {
+                newWorkspaceWithTemplate(template1.ContextData);
             } else {
-                console.error('Template_00_ not found. Templates not loaded yet or missing.');
+                console.error('Template 1 (Create a Graph) not found. Templates not loaded yet or missing.');
             }
             return;
         }
 
         if (value === 'sidebar-template-2') {
-            // Template 2 = Template_01_DynamoWorkflowImportExport.dyn
-            const template01 = realTemplates.find(t => 
-                (t?.ContextData || '').includes('Template_01_')
-            );
-            if (template01?.ContextData) {
-                newWorkspaceWithTemplate(template01.ContextData);
+            // Template 2 = Import & Export Workflow.dyn
+            const template2 = realTemplates.find(t => {
+                const path = (t?.ContextData || '').toLowerCase();
+                return path.includes('import & export workflow.dyn') || path.includes('import and export workflow.dyn');
+            });
+            if (template2?.ContextData) {
+                newWorkspaceWithTemplate(template2.ContextData);
             } else {
-                console.error('Template_01_ not found. Templates not loaded yet or missing.');
+                console.error('Template 2 (Import & Export Workflow) not found. Templates not loaded yet or missing.');
             }
             return;
         }
