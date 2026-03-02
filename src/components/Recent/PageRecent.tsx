@@ -10,6 +10,7 @@ import { openFile, saveHomePageSettings } from '../../functions/utility';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
 import { useSettings } from '../SettingsContext';
+import { useTemplates } from '../TemplatesContext';
 
 export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) => {    
     const { settings, updateSettings } = useSettings();
@@ -28,16 +29,6 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
 
     const [graphs, setGraphs] = useState(initialGraphs);
 
-    // Set a placeholder for the templates which will be used differently during dev and prod 
-    let initialTemplates = [];
-    
-    // If we are under development, we will load the templates from the local asset folder
-    if (process.env.NODE_ENV === 'development') {
-        initialTemplates = require('../../assets/home').templates;
-    }
-
-    const [templates, setTemplates] = useState(initialTemplates);    
-
     // A method exposed to the backend used to set the graph data coming from Dynamo
     const receiveGraphDataFromDotNet = (jsonData) => {
         try {
@@ -49,47 +40,21 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
         }
     };
 
-    // A method exposed to the backend used to set the templates data coming from Dynamo
-    const receiveTemplatesDataFromDotNet = (jsonData) => {
-        try {
-          // jsonData is already an object, so no need to parse it
-          const data = jsonData;
-          setTemplates(data);
-        } catch (error) {
-          console.error('Error processing templates data:', error);
-        }
-    };
-
-    // Ensure templates fan-out handler exists (shared with Sidebar)
-    const ensureTemplatesFanout = () => {
-        if (!window.__templatesListeners) {
-            window.__templatesListeners = [];
-        }
-        if (!window.receiveTemplatesDataFromDotNet) {
-            window.receiveTemplatesDataFromDotNet = (jsonData: any) => {
-                const data = jsonData || [];
-                window.__templatesListeners?.forEach(fn => fn(data));
-            };
-        }
-    };
+    // Get templates from context 
+    const templates = useTemplates();
 
     useEffect(() => {
         // If we are under production, we will override the graphs with the actual data sent from Dynamo
         if (process.env.NODE_ENV !== 'development') {
             window.receiveGraphDataFromDotNet = receiveGraphDataFromDotNet;
-            
-            // Use listener pattern for templates (shared with Sidebar)
-            ensureTemplatesFanout();
-            const listener = (data: any) => receiveTemplatesDataFromDotNet(data);
-            window.__templatesListeners!.push(listener);
-
-            return () => {
-                delete window.receiveGraphDataFromDotNet;
-                if (window.__templatesListeners) {
-                    window.__templatesListeners = window.__templatesListeners.filter(l => l !== listener);
-                }
-            };
         }
+
+        // Cleanup function (optional)
+        return () => {
+            if (process.env.NODE_ENV !== 'development') {
+                delete window.receiveGraphDataFromDotNet;
+            }
+        };
     }, []); 
 
     useEffect(() => {

@@ -20,8 +20,7 @@ interface Window {
   receiveGraphDataFromDotNet: (jsonData: any) => void;
   receiveSamplesDataFromDotNet: (jsonData: any) => void;
   receiveTrainingVideoDataFromDotNet: (jsonData: any) => void;
-  receiveTemplatesDataFromDotNet?: (jsonData: any) => void;
-  __templatesListeners?: Array<(data: any) => void>;
+  receiveTemplatesDataFromDotNet: (jsonData: any) => void;
   chrome?: {
     webview?: any;
   };

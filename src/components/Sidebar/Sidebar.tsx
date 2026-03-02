@@ -2,49 +2,16 @@ import { CustomDropdown } from './CustomDropDown';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
 import { openFile, sideBarCommand, newWorkspaceWithTemplate } from '../../functions/utility';
+import { useTemplates } from '../TemplatesContext';
 import styles from './Sidebar.module.css';
-import { useState, useEffect } from 'react';
-
-// Ensure the fan-out handler exists (shared by Sidebar and Homepage)
-function ensureTemplatesFanout() {
-    if (!window.__templatesListeners) {
-        window.__templatesListeners = [];
-    }
-
-    if (!window.receiveTemplatesDataFromDotNet) {
-        window.receiveTemplatesDataFromDotNet = (jsonData: any) => {
-            const data = jsonData || [];
-            window.__templatesListeners?.forEach(fn => fn(data));
-        };
-    }
-}
 
 export const Sidebar = ({ onItemSelect, selectedSidebarItem }: Sidebar) => {
     const isSelected = (item: string) => selectedSidebarItem === item;
     
-    // Store real templates from backend
-    const [realTemplates, setRealTemplates] = useState<any[]>([]);
+    // Get templates from context 
+    const realTemplates = useTemplates();
     
-    // Set up listener pattern 
-    useEffect(() => {
-        if (process.env.NODE_ENV !== 'development') {
-            ensureTemplatesFanout();
-
-            const listener = (data: any) => {
-                setRealTemplates(data || []);
-            };
-            
-            window.__templatesListeners!.push(listener);
-
-            return () => {
-                if (window.__templatesListeners) {
-                    window.__templatesListeners = window.__templatesListeners.filter(l => l !== listener);
-                }
-            };
-        }
-    }, []);
-    
-    // hardcoded template options (just for UI display)
+    // Hardcoded template options (just for UI display)
     const templateOptions: option[] = [
         { label: 'Template 1', value: 'sidebar-template-1', kind: 'item' as const },
         { label: 'Template 2', value: 'sidebar-template-2', kind: 'item' as const },
