@@ -145,6 +145,41 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
 
     return(
         <div>
+            {/* Recent Section */}
+            <div className='drop-shadow-2xl'>
+                <p className='title-paragraph'><FormattedMessage id="title.text.recent"/></p>  
+            </div>
+            <div style={{ display: "flex", alignItems: "center", marginBottom:"10px" }}>
+                <button 
+                    className={`viewmode-button ${viewMode === 'grid' ? 'active' : ''}`}
+                    onClick={() => setViewMode('grid')}
+                    disabled={viewMode === 'grid'}>
+                    <Tooltip content={<FormattedMessage id="tooltip.text.grid.view.button" />}>
+                            <GridViewIcon/>
+                    </Tooltip>
+                </button>
+                <button 
+                    className={`viewmode-button ${viewMode === 'list' ? 'active' : ''}`}
+                    onClick={() => setViewMode('list')}
+                    disabled={viewMode === 'list'}>
+                    <Tooltip content={<FormattedMessage id="tooltip.text.list.view.button" />}>
+                        <ListViewIcon/>
+                    </Tooltip>
+                </button>
+            </div>
+            <div style={{ marginRight: "20px", paddingBottom: "35px" }}>
+                {viewMode === 'list' && (
+                    <GraphTable columns={columns} data={graphs} onRowClick={handleRowClick}/>
+                )}                
+                {viewMode === 'grid' && (
+                    <div className="main-graph-grid" id="graphContainer">
+                        {graphs.map(graph => (
+                            <GraphGridItem key={graph.id} {...graph} setIsDisabled={setIsDisabled} />
+                        ))}
+                    </div>
+                )}
+            </div>
+
             {/* Templates Section */}
             <div className='drop-shadow-2xl'>
                 <p className='title-paragraph'><FormattedMessage id="title.text.templates"/></p>  
@@ -181,41 +216,6 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
                                 Description={template.Description || ''}
                                 setIsDisabled={setIsDisabled} 
                             />
-                        ))}
-                    </div>
-                )}
-            </div>
-
-            {/* Recent Section */}
-            <div className='drop-shadow-2xl'>
-                <p className='title-paragraph'><FormattedMessage id="title.text.recent"/></p>  
-            </div>
-            <div style={{ display: "flex", alignItems: "center", marginBottom:"10px" }}>
-                <button 
-                    className={`viewmode-button ${viewMode === 'grid' ? 'active' : ''}`}
-                    onClick={() => setViewMode('grid')}
-                    disabled={viewMode === 'grid'}>
-                    <Tooltip content={<FormattedMessage id="tooltip.text.grid.view.button" />}>
-                            <GridViewIcon/>
-                    </Tooltip>
-                </button>
-                <button 
-                    className={`viewmode-button ${viewMode === 'list' ? 'active' : ''}`}
-                    onClick={() => setViewMode('list')}
-                    disabled={viewMode === 'list'}>
-                    <Tooltip content={<FormattedMessage id="tooltip.text.list.view.button" />}>
-                        <ListViewIcon/>
-                    </Tooltip>
-                </button>
-            </div>
-            <div style={{ marginRight: "20px", paddingBottom: "35px" }}>
-                {viewMode === 'list' && (
-                    <GraphTable columns={columns} data={graphs} onRowClick={handleRowClick}/>
-                )}                
-                {viewMode === 'grid' && (
-                    <div className="main-graph-grid" id="graphContainer">
-                        {graphs.map(graph => (
-                            <GraphGridItem key={graph.id} {...graph} setIsDisabled={setIsDisabled} />
                         ))}
                     </div>
                 )}
