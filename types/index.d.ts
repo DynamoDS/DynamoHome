@@ -9,6 +9,7 @@ type ShowSamplesCommand = 'open-graphs' | 'open-datasets';
 type HomePageSetting = {
   recentPageViewMode: 'grid' | 'list' | undefined;
   samplesViewMode: 'grid' | 'list' | undefined;
+  templatesPageViewMode: 'grid' | 'list' | undefined;
   sideBarWidth: string | undefined;
 };
 interface Window {
@@ -19,6 +20,7 @@ interface Window {
   receiveGraphDataFromDotNet: (jsonData: any) => void;
   receiveSamplesDataFromDotNet: (jsonData: any) => void;
   receiveTrainingVideoDataFromDotNet: (jsonData: any) => void;
+  receiveTemplatesDataFromDotNet: (jsonData: any) => void;
   chrome?: {
     webview?: any;
   };

@@ -41,7 +41,6 @@ export const GraphTable = ({ columns, data, onRowClick }: GraphTable) => {
     <div className={styles['table-container']}>
       <table {...getTableProps()}>
         <thead>
-          {console.log(headerGroups)}
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column: any, columnIndex: number) => (
