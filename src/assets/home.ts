@@ -58,22 +58,3 @@ export const graphs = [
     Thumbnail: img
   }
 ];
-
-export const templates = [
-  {
-    id: '1',
-    date: 'Date modified',
-    Caption: 'Template 1',
-    ContextData: 'C:\\Users\\DeyanNenov\\Documents\\GitHub\\Dynamo\\bin\\AnyCPU\\Debug\\DynamoSandbox.exe',
-    Thumbnail: img
-  },
-  {
-    id: '2',
-    date: 'Date modified',
-    Caption: 'Template 2',
-    ContextData: 'C:\\Users\\DeyanNenov\\Documents\\GitHub\\Dynamo\\bin\\AnyCPU\\Debug\\DynamoSandbox.exe',
-    Thumbnail: img,
-    Author: 'Dynamo Team',
-    Description: 'description'
-  }
-];

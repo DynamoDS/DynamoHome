@@ -1,77 +1,15 @@
 import { CustomDropdown } from './CustomDropDown';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
-import { openFile, sideBarCommand, newWorkspaceWithTemplate } from '../../functions/utility';
-import { useTemplates } from '../TemplatesContext';
+import { sideBarCommand } from '../../functions/utility';
 import styles from './Sidebar.module.css';
 
 export const Sidebar = ({ onItemSelect, selectedSidebarItem }: Sidebar) => {
     const isSelected = (item: string) => selectedSidebarItem === item;
-    
-    // Get templates from context 
-    const realTemplates = useTemplates();
-    
-    // Hardcoded template options (just for UI display)
-    const templateOptions: option[] = [
-        { label: 'Template 1', value: 'sidebar-template-1', kind: 'item' as const },
-        { label: 'Template 2', value: 'sidebar-template-2', kind: 'item' as const },
-    ];
-    const newDropdownOptions: option[] = [
-        { label: <FormattedMessage id="button.title.text.workspace" />, value: 'workspace', kind: 'item' as const },
-        { label: <FormattedMessage id="button.title.text.custom.node" />, value: 'custom-node', kind: 'item' as const },
-        ...(templateOptions.length
-            ? [
-                { label: '', value: 'divider-templates', kind: 'divider' as const },
-                { label: 'Templates', value: 'templates-header', kind: 'header' as const },
-                ...templateOptions
-            ]
-            : [])
-    ];
 
     /**Trigger the backend command based on the drop-down value */ 
-    const setSelectedValue = (value: string) => {
-        if (
-            value === 'open-file' ||
-            value === 'open-template' ||
-            value === 'open-backup-locations' ||
-            value === 'workspace' ||
-            value === 'custom-node'
-        ) {
-            sideBarCommand(value);
-            return;
-        }
-
-        // Handle template selections by filename pattern (order-independent)
-        if (value === 'sidebar-template-1') {
-            // Template 1 = Create a Graph.dyn
-            const template1 = realTemplates.find(t => {
-                const path = (t?.ContextData || '').toLowerCase();
-                return path.includes('create a graph.dyn');
-            });
-            if (template1?.ContextData) {
-                newWorkspaceWithTemplate(template1.ContextData);
-            } else {
-                console.error('Template 1 (Create a Graph) not found. Templates not loaded yet or missing.');
-            }
-            return;
-        }
-
-        if (value === 'sidebar-template-2') {
-            // Template 2 = Import & Export Workflow.dyn
-            const template2 = realTemplates.find(t => {
-                const path = (t?.ContextData || '').toLowerCase();
-                return path.includes('import & export workflow.dyn') || path.includes('import and export workflow.dyn');
-            });
-            if (template2?.ContextData) {
-                newWorkspaceWithTemplate(template2.ContextData);
-            } else {
-                console.error('Template 2 (Import & Export Workflow) not found. Templates not loaded yet or missing.');
-            }
-            return;
-        }
-
-        // Not a template, try opening as file
-        openFile(value);
+    const setSelectedValue = (value: SidebarCommand) => {
+        sideBarCommand(value);
     };
 
     return (
@@ -97,7 +35,10 @@ export const Sidebar = ({ onItemSelect, selectedSidebarItem }: Sidebar) => {
                         id="newDropdown"
                         placeholder={<FormattedMessage id="button.title.text.new" />}
                         onSelectionChange={setSelectedValue}
-                        options={newDropdownOptions}
+                        options={[
+                            { label: <FormattedMessage id="button.title.text.workspace" />, value: 'workspace' },
+                            { label: <FormattedMessage id="button.title.text.custom.node" />, value: 'custom-node' }
+                        ]}
                     />
 
                     <div className={styles['sidebar-items-container']}>

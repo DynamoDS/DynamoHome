@@ -80,10 +80,6 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
     }, [viewMode]);
 
     useEffect(() => {
-
-    }, []);
-
-    useEffect(() => {
         if (templatesInitialized || (settings?.templatesPageViewMode && settings.templatesPageViewMode !== templatesViewMode)) {
             setTemplatesInitialized(true);
             updateSettings({ templatesPageViewMode: templatesViewMode });
