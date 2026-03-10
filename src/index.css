@@ -187,6 +187,10 @@ select {
     display: inline-block; /* or 'inline' depending on layout needs */
 }
 
+.tooltip-wrapper {
+    display: inline;
+}
+
 .tooltip-box {
     position: absolute;
     background-color: #eeeeee;
@@ -195,10 +199,7 @@ select {
     font-size: small;
     border-radius: 2px;
     z-index: 1000;
-    top: 100%;
-    left: 50%;
-    max-width: 300px;
-    transform: translateX(-50%);
+    max-width: 500px; /* Increased width to make it wider  */
     white-space: normal;
     overflow-wrap: break-word;
     opacity: 0; /* Initially, set the opacity to 0 to hide the tooltip */
@@ -214,10 +215,34 @@ select {
     position: absolute;
     bottom: 100%; /* Align it at the bottom of the tooltip box */
     left: 50%;
+    width: 0;
+    height: 0;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent transparent #eeeeee transparent;
+    border-color: transparent transparent #eeeeee transparent; /* Point upward */
     transform: translateX(-50%);
+}
+
+/* Arrow pointing left (for tooltips on the right side) */
+.tooltip-box.arrow-left .tooltip-arrow {
+    bottom: auto;
+    left: -10px; /* Position on the left side of the tooltip box, moved further left */
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-color: transparent #eeeeee transparent transparent; /* Point left (toward the title) */
+    transform: translateY(-50%);
+}
+
+/* Arrow pointing right (for tooltips on the left side) */
+.tooltip-box.arrow-right .tooltip-arrow {
+    bottom: auto;
+    right: -5px; /* Position on the right side of the tooltip box */
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-color: transparent transparent transparent #eeeeee; /* Point right (toward the title) */
+    transform: translateY(-50%);
 }
 
 /* Remove background color of the scrollbar track */

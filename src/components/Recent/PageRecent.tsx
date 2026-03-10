@@ -182,7 +182,11 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
 
             {/* Templates Section */}
             <div className='drop-shadow-2xl'>
-                <p className='title-paragraph'><FormattedMessage id="title.text.templates"/></p>  
+                <Tooltip content={<FormattedMessage id="tooltip.text.templates" />} position="right">
+                    <p className='title-paragraph' style={{ display: 'inline-block', width: 'fit-content' }}>
+                        <FormattedMessage id="title.text.templates"/>
+                    </p>
+                </Tooltip>
             </div>
             <div style={{ display: "flex", alignItems: "center", marginBottom:"10px" }}>
                 <button 

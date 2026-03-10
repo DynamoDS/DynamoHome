@@ -192,4 +192,5 @@ type Tooltip = {
   children: JSX.Element | null | string;
   content?: JSX.Element | null | string;
   verticalOffset?: number;
+  position?: 'right' | 'below';
 }
