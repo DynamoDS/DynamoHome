@@ -10,7 +10,7 @@ export const TemplatesProvider = ({ children }) => {
     
     // If we are under development, we will load the templates from the local asset folder
     if (process.env.NODE_ENV === 'development') {
-        initialTemplates = require('../../assets/home').templates;
+        initialTemplates = require('../assets/home').templates;
     }
 
     const [templates, setTemplates] = useState(initialTemplates);
