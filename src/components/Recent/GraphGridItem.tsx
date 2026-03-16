@@ -13,8 +13,9 @@ export const GraphGridItem = ({ id, Caption, ContextData, Description, DateModif
     };
 
     // Use placeholder if Thumbnail is empty, null, undefined, or the default img
-    const hasCustomThumbnail = Thumbnail && Thumbnail !== img && Thumbnail.trim() !== '';
-    const imageSrc = hasCustomThumbnail ? Thumbnail : getPlaceholderImage(ContextData);
+    const thumbnail = Thumbnail;
+    const hasCustomThumbnail = thumbnail && thumbnail !== img && thumbnail.trim() !== '';
+    const imageSrc = hasCustomThumbnail ? thumbnail : getPlaceholderImage(ContextData);
 
     return (
         <CardItem 
