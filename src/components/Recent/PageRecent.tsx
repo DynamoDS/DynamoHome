@@ -5,7 +5,7 @@ import { CustomNameCellRenderer } from './CustomNameCellRenderer';
 import { CustomLocationCellRenderer } from './CustomLocationCellRenderer';
 import { CustomAuthorCellRenderer } from "./CustomAuthorCellRenderer";
 import { GraphTable } from './GraphTable';
-import { GridViewIcon, ListViewIcon } from '../Common/CustomIcons';
+import { GridViewIcon, ListViewIcon, QuestionMarkIcon } from '../Common/CustomIcons';
 import { openFile, saveHomePageSettings } from '../../functions/utility';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
@@ -181,11 +181,12 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
             </div>
 
             {/* Templates Section */}
-            <div className='drop-shadow-2xl'>
+            <div className='drop-shadow-2xl' style={{ display: 'flex', alignItems: 'center' }}>
+                <p className='title-paragraph' style={{ display: 'inline-block', width: 'fit-content' }}>
+                    <FormattedMessage id="title.text.templates"/>
+                </p>
                 <Tooltip content={<FormattedMessage id="tooltip.text.templates" />} position="right">
-                    <p className='title-paragraph' style={{ display: 'inline-block', width: 'fit-content' }}>
-                        <FormattedMessage id="title.text.templates"/>
-                    </p>
+                    <QuestionMarkIcon />
                 </Tooltip>
             </div>
             <div style={{ display: "flex", alignItems: "center", marginBottom:"10px" }}>

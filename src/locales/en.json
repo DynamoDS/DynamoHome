@@ -13,7 +13,7 @@
     "tooltip.text.recent": "View recent files",
     "tooltip.text.samples": "View sample graphs",
     "tooltip.text.learning": "View learning content",
-    "tooltip.text.templates": "A collection of templates demonstrating how to organise Dynamo graphs.\nTemplates are graphs designed to help you start and organise workflows more efficiently. Opening a template creates a new editable graph that can be customised to match your project or office standards.",
+    "tooltip.text.templates": "Templates are workspaces with pre-built graph elements that help you start and organize workflows more efficiently. Opening a template creates a new editable graph that includes templated graph elements.",
     "tooltip.text.grid.view.button": "Grid view",
     "tooltip.text.list.view.button": "List view",
     "learning.title.text.learning": "Learning",
