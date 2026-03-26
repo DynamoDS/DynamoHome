@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/repos/DynamoHome/.claude -type f -name *.md -o -name *.json -o -name *.yaml -o -name *.yml)",
+      "Bash(npx jest:*)"
+    ]
+  }
+}

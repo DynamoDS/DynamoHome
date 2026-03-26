@@ -13,7 +13,7 @@ const { devices } = require('@playwright/test');
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: './tests',
+  testDir: './tests/e2e',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
