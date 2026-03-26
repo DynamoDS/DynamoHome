@@ -106,23 +106,25 @@ export const SamplesPage = ({ samplesViewMode }) => {
     }
 
     return (
-        <div>
+        <div data-testid="page-samples">
             <div className='drop-shadow-2xl'>
-                <p className='title-paragraph'><FormattedMessage id="title.text.samples"/></p>  
+                <p className='title-paragraph'><FormattedMessage id="title.text.samples"/></p>
             </div>
-            <div style={{ display: "flex", alignItems: "center", marginBottom:"10px" }}> 
-                <button 
+            <div style={{ display: "flex", alignItems: "center", marginBottom:"10px" }}>
+                <button
                     className={`viewmode-button ${viewMode === 'grid' ? 'active' : ''}`}
                     onClick={() => setViewMode('grid')}
-                    disabled={viewMode === 'grid'}>
+                    disabled={viewMode === 'grid'}
+                    data-testid="view-toggle-grid">
                     <Tooltip content={<FormattedMessage id="tooltip.text.grid.view.button" />}>
                         <GridViewIcon/>
                     </Tooltip>
                 </button>
-                <button 
+                <button
                     className={`viewmode-button ${viewMode === 'list' ? 'active' : ''}`}
                     onClick={() => setViewMode('list')}
-                    disabled={viewMode === 'list'}>
+                    disabled={viewMode === 'list'}
+                    data-testid="view-toggle-list">
                     <Tooltip content={<FormattedMessage id="tooltip.text.list.view.button" />}>
                         <ListViewIcon/>
                     </Tooltip>
@@ -147,7 +149,7 @@ export const SamplesPage = ({ samplesViewMode }) => {
                 {viewMode === 'list' && (
                     <SamplesTable columns={columns} data={samples} onRowClick={handleRowClick} onCollapsedRowsChange={handleCollapsedRowsChange}/>
                 )}                
-                {viewMode === 'grid' && (  
+                {viewMode === 'grid' && (
                     <div style={{ marginBottom: "20px", marginRight: "30px" }}>
                         <SamplesGrid data={samples}/>
                     </div>

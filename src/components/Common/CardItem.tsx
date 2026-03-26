@@ -3,7 +3,7 @@ import styles from './CardItems.module.css';
 
 export const CardItem = ({ imageSrc, onClick, tooltipContent, titleText, subtitleText }: CardItem) => {
     return (
-        <div className={styles['graph-container']}>
+        <div className={styles['graph-container']} data-testid="card-item">
             <a className={styles['graph-link']} onClick={onClick}>
                 <div className={styles['clipped-image-container']}>
                     <img src={imageSrc} className={styles['clipped-image']}/>

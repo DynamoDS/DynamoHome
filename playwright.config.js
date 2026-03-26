@@ -61,6 +61,7 @@ const config = {
   webServer: {
     command: 'npm run start',
     port: 8080,
+    reuseExistingServer: !process.env.CI,
   },
 };
 

@@ -57,24 +57,24 @@ export function LearningPage(){
     }, []); 
 
     return(
-        <div>
+        <div data-testid="page-learning">
             <div className='drop-shadow-2xl'>
-                <p className='title-paragraph'><FormattedMessage id="learning.title.text.learning" /></p>  
+                <p className='title-paragraph'><FormattedMessage id="learning.title.text.learning" /></p>
             </div>
             <div>
                 <div className='drop-shadow-2xl'>
-                    <p className='title-paragraph'><FormattedMessage id="learning.title.text.guides" /></p>  
+                    <p className='title-paragraph'><FormattedMessage id="learning.title.text.guides" /></p>
                 </div>
-                <div className="guides-graph-grid" id="guidesContainer">
+                <div className="guides-graph-grid" id="guidesContainer" data-testid="guides-section">
                     {guides.map(guide => (
                         <GuideGridItem key={guide.id} {...guide} />
                     ))}
                 </div>
             </div>
             <br/>
-            <div>
+            <div data-testid="videos-section">
                 <div className='drop-shadow-2xl'>
-                    <p className='title-paragraph'><FormattedMessage id="learning.title.text.videos" /></p>  
+                    <p className='title-paragraph'><FormattedMessage id="learning.title.text.videos" /></p>
                 </div>
                 <Carousel>
                     {videos.map(video => (

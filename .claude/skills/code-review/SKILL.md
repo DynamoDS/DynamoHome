@@ -4,6 +4,39 @@
 
 Focus on real problems: regressions, missing tests, broken localization, type safety gaps, Dynamo integration breakage. Do not request style changes or refactors for code not touched by the PR. Keep feedback concise and actionable.
 
+## Review process
+
+### 1. Understand the scope
+
+Read the PR description and list of changed files. Identify:
+- Which module(s) are touched: Recent, Samples, Learning, Sidebar, Common, build, tests
+- Whether it is a feature, bugfix, refactor, or dependency update
+- Any Dynamo integration touchpoints (window globals, settings schema, output path)
+
+### 2. Work through the checklist
+
+See checklist below. Flag blockers as you go; note recommendations separately.
+
+### 3. Verify test coverage
+
+- New/modified components have unit tests in `tests/unit/`
+- Changed user flows have Playwright coverage
+- `tests/e2e/e2e.test.ts` contains no selectors or direct page actions
+
+### 4. Check build integrity
+
+Confirm (or ask the author to confirm):
+```bash
+npm run lint:check   # Passes
+npm run test:unit    # Passes
+npm run build        # Dev bundle succeeds
+npm run bundle       # Production bundle succeeds (only for PRs touching webpack or build scripts)
+```
+
+### 5. Write structured feedback
+
+See "How to give feedback" section below.
+
 ## Checklist
 
 ### TypeScript
@@ -25,7 +58,7 @@ Focus on real problems: regressions, missing tests, broken localization, type sa
 - [ ] No hardcoded text in JSX (no raw string children, no `title=""` without intl)
 
 ### Unit tests
-- [ ] New or modified components have test files in `tests/`
+- [ ] New or modified components have test files in `tests/unit/`
 - [ ] Tests validate behavior (user sees X, clicking Y does Z), not implementation details
 - [ ] No re-mocking of globals already provided by `tests/__mocks__/chromeMock.ts`
 - [ ] Coverage not reduced for modified files
@@ -46,6 +79,18 @@ Focus on real problems: regressions, missing tests, broken localization, type sa
 - [ ] `npm run lint:check` passes
 - [ ] `npm run build` produces a valid bundle
 - [ ] Existing npm script names unchanged
+
+## Common blockers
+
+| Issue | Why it blocks |
+|---|---|
+| Missing locale key in any of the 14 locale files | App throws at runtime for users of that locale |
+| `window.chrome.webview` accessed without optional chaining | Crashes in dev mode / outside Dynamo |
+| Global callback renamed or removed | Dynamo .NET host calls it by name — breaking change |
+| Settings field renamed or removed | Dynamo reads/writes settings by field name — breaking change |
+| Selector in `e2e.test.ts` directly | Violates POM requirement; makes tests brittle |
+| New npm dependency without justification | Increases bundle size, adds supply chain risk |
+| Output path changed from `dist/build/` | Dynamo integration breaks at runtime |
 
 ## How to give feedback
 

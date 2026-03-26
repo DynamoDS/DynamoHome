@@ -104,23 +104,25 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
     };
 
     return(
-        <div>
+        <div data-testid="page-recent">
             <div className='drop-shadow-2xl'>
-                <p className='title-paragraph'><FormattedMessage id="title.text.recent"/></p>  
+                <p className='title-paragraph'><FormattedMessage id="title.text.recent"/></p>
             </div>
             <div style={{ display: "flex", alignItems: "center", marginBottom:"10px" }}>
-                <button 
+                <button
                     className={`viewmode-button ${viewMode === 'grid' ? 'active' : ''}`}
                     onClick={() => setViewMode('grid')}
-                    disabled={viewMode === 'grid'}>
+                    disabled={viewMode === 'grid'}
+                    data-testid="view-toggle-grid">
                     <Tooltip content={<FormattedMessage id="tooltip.text.grid.view.button" />}>
                             <GridViewIcon/>
                     </Tooltip>
                 </button>
-                <button 
+                <button
                     className={`viewmode-button ${viewMode === 'list' ? 'active' : ''}`}
                     onClick={() => setViewMode('list')}
-                    disabled={viewMode === 'list'}>
+                    disabled={viewMode === 'list'}
+                    data-testid="view-toggle-list">
                     <Tooltip content={<FormattedMessage id="tooltip.text.list.view.button" />}>
                         <ListViewIcon/>
                     </Tooltip>
@@ -131,7 +133,7 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
                     <GraphTable columns={columns} data={graphs} onRowClick={handleRowClick}/>
                 )}                
                 {viewMode === 'grid' && (
-                    <div className="main-graph-grid" id="graphContainer">
+                    <div className="main-graph-grid" id="graphContainer" data-testid="graph-grid">
                         {graphs.map(graph => (
                             <GraphGridItem key={graph.id} {...graph} setIsDisabled={setIsDisabled} />
                         ))}

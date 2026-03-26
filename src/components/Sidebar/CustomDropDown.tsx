@@ -59,12 +59,13 @@ export const CustomDropdown = ({
     return (
         <div
             className={`
-            ${styles['custom-dropdown']} 
-            ${isOpen ? styles.open : ''} 
-            ${disableArrowHoverShadow ? styles['no-hover-shadow'] : ''} 
+            ${styles['custom-dropdown']}
+            ${isOpen ? styles.open : ''}
+            ${disableArrowHoverShadow ? styles['no-hover-shadow'] : ''}
             ${className}
             `}
-            ref={dropdownRef}>
+            ref={dropdownRef}
+            data-testid={`${id}-dropdown`}>
             <div
                 className={styles['dropdown-selected']}
                 onClick={wholeButtonActionable ? toggleDropdown : handleDefaultAction}  // Button behavior depends on wholeButtonActionable
@@ -73,6 +74,7 @@ export const CustomDropdown = ({
                 {showDivider && <span className={styles['vertical-line']}></span>}
                 <div
                     className={styles['arrow-container']}
+                    data-testid={`${id}-toggle`}
                     onClick={(e) => {
                         e.stopPropagation();
                         toggleDropdown(); // Arrow always toggles the dropdown

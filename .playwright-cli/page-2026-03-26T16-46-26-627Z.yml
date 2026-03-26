@@ -1,0 +1,281 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e5]:
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - paragraph [ref=e10]: Dynamo
+        - generic [ref=e12] [cursor=pointer]:
+          - generic [ref=e13]: Open
+          - img [ref=e17]
+        - generic [ref=e20] [cursor=pointer]:
+          - generic [ref=e21]: New
+          - img [ref=e25]
+        - generic [ref=e27]:
+          - generic [ref=e29] [cursor=pointer]: Recent
+          - generic [ref=e31] [cursor=pointer]: Samples
+          - generic [ref=e33] [cursor=pointer]: Learning
+      - separator [ref=e35]
+      - generic [ref=e36]:
+        - link "Discussion Forum" [ref=e37] [cursor=pointer]:
+          - /url: https://forum.dynamobim.com/
+        - link "Dynamo Website" [ref=e38] [cursor=pointer]:
+          - /url: https://dynamobim.org/
+        - link "Dynamo Primer" [ref=e39] [cursor=pointer]:
+          - /url: https://primer2.dynamobim.org/
+        - link "Github Repository" [ref=e40] [cursor=pointer]:
+          - /url: https://github.com/dynamods
+        - link "Send Issues" [ref=e41] [cursor=pointer]:
+          - /url: https://github.com/DynamoDS/Dynamo/issues
+    - generic [ref=e673]:
+      - paragraph [ref=e675]: Learning
+      - generic [ref=e676]:
+        - paragraph [ref=e678]: Interactive Guides
+        - generic [ref=e679]:
+          - generic [ref=e681] [cursor=pointer]:
+            - img [ref=e683]
+            - generic [ref=e685]:
+              - paragraph [ref=e686]: User Interactive Tour
+              - paragraph [ref=e687]: Description
+          - generic [ref=e689] [cursor=pointer]:
+            - img [ref=e691]
+            - generic [ref=e693]:
+              - paragraph [ref=e694]: Getting Started
+              - paragraph [ref=e695]: Description
+          - generic [ref=e697] [cursor=pointer]:
+            - img [ref=e699]
+            - generic [ref=e701]:
+              - paragraph [ref=e702]: Packages
+              - paragraph [ref=e703]: Description
+      - generic [ref=e704]:
+        - paragraph [ref=e706]: Video Tutorials
+        - generic [ref=e707]:
+          - button [ref=e708] [cursor=pointer]:
+            - img [ref=e709]
+          - generic [ref=e712]:
+            - generic [ref=e714]:
+              - iframe [ref=e717]:
+                - generic "YouTube Video Player" [ref=f1e3]:
+                  - generic [ref=f1e5]:
+                    - link "Photo image of DynamoBIM" [ref=f1e8] [cursor=pointer]:
+                      - /url: https://www.youtube.com/channel/UCsTIj3LQmIeOaWl4SVCidZw?embeds_referring_euri=http%3A%2F%2Flocalhost%3A8080%2F
+                    - link "Lesson 01 - Getting Situated With Dynamo" [ref=f1e11] [cursor=pointer]:
+                      - /url: https://www.youtube.com/watch?v=V_8WsDzim44
+                  - button "Play" [ref=f1e14] [cursor=pointer]:
+                    - img
+              - generic [ref=e718]:
+                - paragraph [ref=e719] [cursor=pointer]: GETTING SITUATED WITH DYNAMO
+                - paragraph [ref=e721] [cursor=pointer]: In this course, we will provide an in-depth overview of Dynamo, a visual programming plugin for designers. We'll look at the node system and interoperability workflows to integrate computational design capabilities into your design workflows
+            - generic [ref=e723]:
+              - iframe [ref=e726]:
+                - generic "YouTube Video Player" [ref=f2e3]:
+                  - generic [ref=f2e5]:
+                    - link "Photo image of DynamoBIM" [ref=f2e8] [cursor=pointer]:
+                      - /url: https://www.youtube.com/channel/UCsTIj3LQmIeOaWl4SVCidZw?embeds_referring_euri=http%3A%2F%2Flocalhost%3A8080%2F
+                    - link "Lesson 02 - The Anatomy of a Dynamo Graph" [ref=f2e11] [cursor=pointer]:
+                      - /url: https://www.youtube.com/watch?v=-2Uau6NpmXI
+                  - button "Play" [ref=f2e14] [cursor=pointer]:
+                    - img
+              - generic [ref=e727]:
+                - paragraph [ref=e728] [cursor=pointer]: THE ANATOMY OF A DYNAMO GRAPH
+                - paragraph [ref=e730] [cursor=pointer]: In this lesson, we will take a closer look at the specific elements used to create a Dynamo graph. By the end of this lesson, you will have an understanding of the components that comprise a Dynamo graph, the basics of defining an algorithm, and what it means to map together nodes to update results.
+            - generic [ref=e732]:
+              - iframe [ref=e735]:
+                - generic [active] [ref=f3e1]:
+                  - generic "YouTube Video Player" [ref=f3e3]
+                  - generic [ref=f3e5]:
+                    - generic:
+                      - generic:
+                        - button "Play video" [ref=f3e10] [cursor=pointer]:
+                          - generic [ref=f3e13]:
+                            - img
+                        - button "Hide player controls" [ref=f3e14] [cursor=pointer]
+                        - generic [ref=f3e16]:
+                          - generic [ref=f3e21]:
+                            - generic [ref=f3e22]:
+                              - 'link "Lesson 03 - Annotating and Documenting Graphs: Groups and Notes" [ref=f3e23] [cursor=pointer]':
+                                - /url: https://www.youtube.com/watch?v=V2ZuWTutXXc
+                              - link "DynamoBIM" [ref=f3e24] [cursor=pointer]:
+                                - /url: /channel/UCsTIj3LQmIeOaWl4SVCidZw
+                                - generic [ref=f3e25]: DynamoBIM
+                            - generic [ref=f3e26]:
+                              - button "thumbnail-image" [ref=f3e27] [cursor=pointer]:
+                                - img "thumbnail-image" [ref=f3e28]
+                              - generic [ref=f3e30]:
+                                - generic: DynamoBIM
+                                - generic: 5.26K subscribers
+                          - generic [ref=f3e31]:
+                            - button "Share" [ref=f3e34] [cursor=pointer]:
+                              - generic [ref=f3e38]:
+                                - img
+                            - link "Watch on YouTube" [ref=f3e45] [cursor=pointer]:
+                              - /url: https://www.youtube.com/watch?v=V2ZuWTutXXc
+                              - generic [ref=f3e48]:
+                                - text: Watch on
+                                - img [ref=f3e50]:
+                                  - generic [ref=f3e52]:
+                                    - img
+              - generic [ref=e736]:
+                - paragraph [ref=e737] [cursor=pointer]: "ANNOTATING AND DOCUMENTING GRAPHS: GROUPS AND NOTES"
+                - paragraph [ref=e739] [cursor=pointer]: In this lesson, we're going to cover annotation strategies for your Dynamo graph. Annotating and cleaning up Dynamo graphs is a very important part of your Dynamo workflow. Specifically, if you're looking to share your graphs with anyone else, you want to be very clear and concise as to what your graph is doing.
+            - generic [ref=e741]:
+              - iframe [ref=e744]:
+                - generic "YouTube Video Player" [ref=f4e3]:
+                  - generic [ref=f4e5]:
+                    - link "Photo image of DynamoBIM" [ref=f4e8] [cursor=pointer]:
+                      - /url: https://www.youtube.com/channel/UCsTIj3LQmIeOaWl4SVCidZw?embeds_referring_euri=http%3A%2F%2Flocalhost%3A8080%2F
+                    - 'link "Lesson 04 - Annotating and Documenting: Wire Interactions and Graph Properties" [ref=f4e11] [cursor=pointer]':
+                      - /url: https://www.youtube.com/watch?v=zf-n2QL0-AU
+                  - button "Play" [ref=f4e14] [cursor=pointer]:
+                    - img
+              - generic [ref=e745]:
+                - paragraph [ref=e746] [cursor=pointer]: THE ANATOMY OF A DYNAMO GRAPH
+                - paragraph [ref=e748] [cursor=pointer]: In this lesson, we're going to take a look at additional ways of cleaning up and documenting our Dynamo graphs. By the end of this lesson, you're going to learn ways to interact with the wires of a Dynamo graph and take a look at further documentation strategies for serializing properties within our Dynamo graphs.
+            - generic [ref=e750]:
+              - iframe [ref=e753]:
+                - generic [active] [ref=f5e1]:
+                  - generic "YouTube Video Player" [ref=f5e3]
+                  - generic [ref=f5e5]:
+                    - generic:
+                      - generic:
+                        - button "Play video" [ref=f5e10] [cursor=pointer]
+                        - button "Hide player controls" [ref=f5e12] [cursor=pointer]
+                        - generic [ref=f5e14]:
+                          - generic [ref=f5e19]:
+                            - generic [ref=f5e20]:
+                              - link "Lesson 05 - Data Management" [ref=f5e21] [cursor=pointer]:
+                                - /url: https://www.youtube.com/watch?v=0urQIHKjvZA
+                              - link "DynamoBIM" [ref=f5e22] [cursor=pointer]:
+                                - /url: /channel/UCsTIj3LQmIeOaWl4SVCidZw
+                                - generic [ref=f5e23]: DynamoBIM
+                            - generic [ref=f5e24]:
+                              - button [ref=f5e25] [cursor=pointer]
+                              - generic [ref=f5e27]:
+                                - generic: DynamoBIM
+                                - generic: 5.26K subscribers
+                          - generic [ref=f5e28]:
+                            - button "Share" [ref=f5e31] [cursor=pointer]:
+                              - generic [ref=f5e35]:
+                                - img
+                            - link "Watch on YouTube" [ref=f5e42] [cursor=pointer]:
+                              - /url: https://www.youtube.com/watch?v=0urQIHKjvZA
+                              - generic [ref=f5e45]:
+                                - text: Watch on
+                                - img [ref=f5e47]:
+                                  - generic [ref=f5e49]:
+                                    - img
+              - generic [ref=e754]:
+                - paragraph [ref=e755] [cursor=pointer]: DATA MANAGEMENT
+                - paragraph [ref=e757] [cursor=pointer]: In this lesson, we will discuss the basic concepts of creating and working with lists in Dynamo. In Dynamo, we can have lists that contain data of varying lengths and depths. By the end of this lesson, you will have an understanding of list structure in Dynamo, you'll know how to create a list of points, and you'll have an understanding of what lacing is
+            - generic [ref=e759]:
+              - iframe [ref=e762]:
+                - generic [active] [ref=f6e1]:
+                  - generic "YouTube Video Player" [ref=f6e3]
+                  - generic [ref=f6e5]:
+                    - generic:
+                      - generic:
+                        - button "Play video" [ref=f6e10] [cursor=pointer]
+                        - button "Hide player controls" [ref=f6e12] [cursor=pointer]
+                        - generic [ref=f6e14]:
+                          - generic [ref=f6e19]:
+                            - generic [ref=f6e20]:
+                              - link "Lesson 06 - Nested List Management" [ref=f6e21] [cursor=pointer]:
+                                - /url: https://www.youtube.com/watch?v=8VZ_--LaemE
+                              - link "DynamoBIM" [ref=f6e22] [cursor=pointer]:
+                                - /url: /channel/UCsTIj3LQmIeOaWl4SVCidZw
+                                - generic [ref=f6e23]: DynamoBIM
+                            - generic [ref=f6e24]:
+                              - button [ref=f6e25] [cursor=pointer]
+                              - generic [ref=f6e27]:
+                                - generic: DynamoBIM
+                                - generic: 5.26K subscribers
+                          - generic [ref=f6e28]:
+                            - button "Share" [ref=f6e31] [cursor=pointer]:
+                              - generic [ref=f6e35]:
+                                - img
+                            - link "Watch on YouTube" [ref=f6e42] [cursor=pointer]:
+                              - /url: https://www.youtube.com/watch?v=8VZ_--LaemE
+                              - generic [ref=f6e45]:
+                                - text: Watch on
+                                - img [ref=f6e47]:
+                                  - generic [ref=f6e49]:
+                                    - img
+              - generic [ref=e763]:
+                - paragraph [ref=e764] [cursor=pointer]: NESTED LIST MANAGEMENT
+                - paragraph [ref=e766] [cursor=pointer]: In this lesson, we will explore concepts for how to manipulate lists and nested lists in Dynamo. By the end of this lesson, you'll have an understanding of what a nested list is and how to obtain items within a nested list.
+            - generic [ref=e768]:
+              - iframe [ref=e771]:
+                - generic "YouTube Video Player" [ref=f7e3]:
+                  - generic [ref=f7e5]:
+                    - link "Photo image of DynamoBIM" [ref=f7e8] [cursor=pointer]:
+                      - /url: https://www.youtube.com/channel/UCsTIj3LQmIeOaWl4SVCidZw?embeds_referring_euri=http%3A%2F%2Flocalhost%3A8080%2F
+                    - link "Lesson 07 - Computational Logic" [ref=f7e11] [cursor=pointer]:
+                      - /url: https://www.youtube.com/watch?v=OQU2v-uxSR8
+                  - button "Play" [ref=f7e14] [cursor=pointer]:
+                    - img
+              - generic [ref=e772]:
+                - paragraph [ref=e773] [cursor=pointer]: COMPUTATIONAL LOGIC
+                - paragraph [ref=e775] [cursor=pointer]: In this lesson, we're going to cover topics to create a graph with computational logic using an attractor algorithm. While an attractor algorithm sounds intimidating, it is simply a mathematical approach to driving geometry by proximity to any given point that is considered an attractor point. By the end of this lesson, you will reinforce your understanding of lacing, learn how to create an attractor algorithm, and learn new ways to interact with Dynamo geometry.
+            - generic [ref=e777]:
+              - iframe [ref=e780]:
+                - generic [active] [ref=f8e1]:
+                  - generic "YouTube Video Player" [ref=f8e3]
+                  - generic [ref=f8e5]:
+                    - generic:
+                      - generic:
+                        - button "Play video" [ref=f8e10] [cursor=pointer]
+                        - button "Hide player controls" [ref=f8e12] [cursor=pointer]
+                        - generic [ref=f8e14]:
+                          - generic [ref=f8e19]:
+                            - generic [ref=f8e20]:
+                              - 'link "Lesson 08 - Connecting Revit to Excel: Exporting Room Data" [ref=f8e21] [cursor=pointer]':
+                                - /url: https://www.youtube.com/watch?v=QO3-j9nav2M
+                              - link "DynamoBIM" [ref=f8e22] [cursor=pointer]:
+                                - /url: /channel/UCsTIj3LQmIeOaWl4SVCidZw
+                                - generic [ref=f8e23]: DynamoBIM
+                            - generic [ref=f8e24]:
+                              - button [ref=f8e25] [cursor=pointer]
+                              - generic [ref=f8e27]:
+                                - generic: DynamoBIM
+                                - generic: 5.26K subscribers
+                          - generic [ref=f8e28]:
+                            - button "Share" [ref=f8e31] [cursor=pointer]:
+                              - generic [ref=f8e35]:
+                                - img
+                            - link "Watch on YouTube" [ref=f8e42] [cursor=pointer]:
+                              - /url: https://www.youtube.com/watch?v=QO3-j9nav2M
+                              - generic [ref=f8e45]:
+                                - text: Watch on
+                                - img [ref=f8e47]:
+                                  - generic [ref=f8e49]:
+                                    - img
+              - generic [ref=e781]:
+                - paragraph [ref=e782] [cursor=pointer]: CONNECTING REVIT TO EXCEL - EXPORTING ROOM DATA
+                - paragraph [ref=e784] [cursor=pointer]: In this lesson, we will look at the power behind connecting Dynamo within Revit to an external program, such as Excel, to be able to extract and manipulate data from the Revit environment. By the end of this lesson, you will have an understanding of how to collect Revit room data, how to prepare the data for export, and strategies for ensuring data remains consistent for the import process at a later time.
+            - generic [ref=e786]:
+              - iframe [ref=e789]:
+                - generic "YouTube Video Player" [ref=f9e3]:
+                  - generic [ref=f9e5]:
+                    - link "Photo image of DynamoBIM" [ref=f9e8] [cursor=pointer]:
+                      - /url: https://www.youtube.com/channel/UCsTIj3LQmIeOaWl4SVCidZw?embeds_referring_euri=http%3A%2F%2Flocalhost%3A8080%2F
+                    - 'link "Lesson 09 - Connecting Revit to Excel: Importing Room Data" [ref=f9e11] [cursor=pointer]':
+                      - /url: https://www.youtube.com/watch?v=OK5gO4mPmcI
+                  - button "Play" [ref=f9e14] [cursor=pointer]:
+                    - img
+              - generic [ref=e790]:
+                - paragraph [ref=e791] [cursor=pointer]: CONNECTING REVIT TO EXCEL - IMPORTING ROOM DATA
+                - paragraph [ref=e793] [cursor=pointer]: In this lesson, we will cover strategies for reading data from Excel and relating it to Revit elements. Specifically, we're going to read corrected room names and update the related rooms in Revit. By the end of this lesson, you will know how to read Excel files with Dynamo, select Revit elements by their element ID, and update Revit element parameter values.
+            - generic [ref=e795]:
+              - iframe [ref=e798]:
+                - generic "YouTube Video Player" [ref=f10e3]:
+                  - generic [ref=f10e5]:
+                    - link "Photo image of DynamoBIM" [ref=f10e8] [cursor=pointer]:
+                      - /url: https://www.youtube.com/channel/UCsTIj3LQmIeOaWl4SVCidZw?embeds_referring_euri=http%3A%2F%2Flocalhost%3A8080%2F
+                    - link "Lesson 10 - Code Blocks for Quick Data Entry and Object Creation" [ref=f10e11] [cursor=pointer]:
+                      - /url: https://www.youtube.com/watch?v=zoE8N7zXKPI
+                  - button "Play" [ref=f10e14] [cursor=pointer]:
+                    - img
+              - generic [ref=e799]:
+                - paragraph [ref=e800] [cursor=pointer]: CODE BLOCKS FOR QUICK DATA ENTRY AND OBJECT CREATION
+                - paragraph [ref=e802] [cursor=pointer]: In this lesson, we will look at code blocks in Dynamo. Code blocks are a unique feature in Dynamo that brings together visual programming with DesignScript. DesignScript is a text-based language for computational design. By the end of this lesson, you will know how to use code blocks for numerical entry, string entry, and sequence and ranges.
+          - button [ref=e803] [cursor=pointer]:
+            - img [ref=e804]
+  - generic [ref=e808]: View learning content

@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(find /c/repos/DynamoHome/.claude -type f -name *.md -o -name *.json -o -name *.yaml -o -name *.yml)",
-      "Bash(npx jest:*)"
+      "Bash(npx jest:*)",
+      "Skill(playwright-cli)",
+      "Bash(find C:/repos/DynamoHome/tests/e2e -type f -name *.ts -o -name *.tsx)",
+      "Bash(npm run:*)"
     ]
   }
 }

@@ -1,6 +1,6 @@
-# Playwright Skills – DynamoHome
+# End-to-End Testing – DynamoHome
 
-## Configuration
+## Playwright configuration
 
 - **Config file**: `playwright.config.js` (`testDir: './tests/e2e'`)
 - **Browser**: Chromium only (Desktop Chrome profile)
@@ -92,7 +92,6 @@ test('recent page shows graphs in grid view by default', async ({ page }) => {
 test('recent page switches to list view', async ({ page }) => {
   const recentPage = new RecentPage(page);
   await recentPage.switchToListView();
-  // assert table is visible via page object method
   const isTableVisible = await recentPage.isTableVisible();
   expect(isTableVisible).toBe(true);
 });
