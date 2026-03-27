@@ -1,19 +1,19 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
 // Create the context
-const TemplatesContext = createContext<any[]>([]);
+const TemplatesContext = createContext<HomeTemplate[]>([]);
 
 // Provider component that wraps the app components
 export const TemplatesProvider = ({ children }) => {
     // Set a placeholder for the templates which will be used differently during dev and prod 
-    let initialTemplates = [];
+    let initialTemplates: HomeTemplate[] = [];
     
     // If we are under development, we will load the templates from the local asset folder
     if (process.env.NODE_ENV === 'development') {
-        initialTemplates = require('../assets/home').templates;
+        initialTemplates = require('../assets/home').templates as HomeTemplate[];
     }
 
-    const [templates, setTemplates] = useState(initialTemplates);
+    const [templates, setTemplates] = useState<HomeTemplate[]>(initialTemplates);
 
     // Set up the backend handler once in the provider
     useEffect(() => {
@@ -23,7 +23,7 @@ export const TemplatesProvider = ({ children }) => {
             window.receiveTemplatesDataFromDotNet = (jsonData: any) => {
                 try {
                     // jsonData is already an object, so no need to parse it
-                    const data = jsonData || [];
+                    const data = (jsonData || []) as HomeTemplate[];
                     setTemplates(data);
                 } catch (error) {
                     console.error('Error processing templates data:', error);
@@ -47,6 +47,6 @@ export const TemplatesProvider = ({ children }) => {
 }
 
 // Use templates hook
-export function useTemplates() {
+export function useTemplates(): HomeTemplate[] {
     return useContext(TemplatesContext);
 }

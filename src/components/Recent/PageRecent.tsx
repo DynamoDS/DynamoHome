@@ -7,6 +7,7 @@ import { CustomAuthorCellRenderer } from "./CustomAuthorCellRenderer";
 import { GraphTable } from './GraphTable';
 import { GridViewIcon, ListViewIcon, QuestionMarkIcon } from '../Common/CustomIcons';
 import { openFile, saveHomePageSettings } from '../../functions/utility';
+import { templateDateDisplay } from '../../functions/templateUtils';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
 import { useSettings } from '../SettingsContext';
@@ -117,7 +118,7 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
         }
       ], []);
 
-    // Handles mouse click over each row
+    // Handles mouse click over each row (Recent and Templates list views share the same behaviour)
     const handleRowClick = (row: Row) => {
         // freezes the UI   
         setIsDisabled(true);   
@@ -126,19 +127,11 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
         openFile(contextData);
     };
 
-    // Handles mouse click over each template row
-    const handleTemplateRowClick = (row: Row) => {
-        // freezes the UI   
-        setIsDisabled(true);   
-        
-        const contextData = row.original.ContextData;  
-        openFile(contextData);
-    };
-
-    // Map templates to match Graph structure for table view (templates use 'date' instead of 'DateModified')
+    // Map templates to match Graph structure for table view (DateModified column;'date'required on Graph)
     const templatesForTable = templates.map(template => ({
         ...template,
-        DateModified: template.date || template.DateModified || '',
+        date: template.date || templateDateDisplay(template),
+        DateModified: templateDateDisplay(template),
         Author: template.Author || '',
         Description: template.Description || ''
     }));
@@ -209,7 +202,7 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
             </div>
             <div style={{ marginRight: "20px", paddingBottom: "35px" }}>
                 {templatesViewMode === 'list' && (
-                    <GraphTable columns={columns} data={templatesForTable} onRowClick={handleTemplateRowClick}/>
+                    <GraphTable columns={columns} data={templatesForTable} onRowClick={handleRowClick}/>
                 )}                
                 {templatesViewMode === 'grid' && (
                     <div className="main-graph-grid" id="templatesContainer">
@@ -217,7 +210,7 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
                             <GraphGridItem 
                                 key={template.id} 
                                 {...template} 
-                                DateModified={template.date || template.DateModified || ''}
+                                DateModified={templateDateDisplay(template)}
                                 Description={template.Description || ''}
                                 setIsDisabled={setIsDisabled} 
                             />

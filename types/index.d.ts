@@ -2,7 +2,6 @@ declare module 'react-split-pane';
 declare module 'react-table';
 
 declare module "*.module.css";
-declare module "*.module.css";
 declare module "*.png";
 declare module "*.jpg";
 declare module "*.jpeg";
@@ -90,6 +89,18 @@ type Graph = {
   Caption: string;
   ContextData: string;
   Thumbnail: string;
+}
+
+/** Templates from dev assets or Dynamo; shape may use date and/or DateModified for the modified date. */
+type HomeTemplate = {
+  id: string;
+  Caption: string;
+  ContextData: string;
+  Thumbnail: string;
+  date?: string;
+  DateModified?: string;
+  Author?: string;
+  Description?: string;
 }
 
 type GraphTable = {
@@ -198,5 +209,5 @@ type Tooltip = {
   children: JSX.Element | null | string;
   content?: JSX.Element | null | string;
   verticalOffset?: number;
-  position?: 'right' | 'below';
+  position?: 'right';
 }
