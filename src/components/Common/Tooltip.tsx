@@ -6,8 +6,6 @@ export const Tooltip = ({ children, content, verticalOffset = 12, position: posi
     const [position, setPosition] = useState<CSSProperties>({});
     const tooltipRef = useRef(null);
     const contentRef = useRef(null); // Ref for the tooltip content
-    // Set arrow direction based on position prop - default to 'up' for tooltips below
-    const arrowDirection = positionProp === 'right' ? 'left' : 'up';
 
     useEffect(() => {
         if (tooltipRef.current && contentRef.current && show) {
