@@ -79,6 +79,14 @@ npm run build               # Dev build (webpack, unminified)
 npm run start               # Dev server on port 8080
 ```
 
+## Test selectors (`data-testid`)
+
+When adding `data-testid` attributes to support e2e tests:
+- Place `data-testid` on the **root element** of the component (or the most specific stable element), not on a wrapper added in the parent
+- Use kebab-case, descriptive names: `data-testid="page-recent"`, `data-testid="carousel-next"`
+- Never duplicate a `data-testid` value across two elements in the same render tree — this causes `getByTestId` to throw in unit tests
+- If a child component already owns a testid, do not add the same testid to the parent wrapper
+
 ## What NOT to do
 
 - Do not introduce new npm dependencies without explicit user approval

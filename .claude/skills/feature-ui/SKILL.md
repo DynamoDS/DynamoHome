@@ -85,7 +85,7 @@ npm run test:unit     # All tests must pass
 
 If the feature adds a new page, navigation path, or interactive element:
 - Add or update Page Object classes in `tests/e2e/pages/` or `tests/e2e/components/`
-- Add test cases to `tests/e2e/e2e.test.ts` (orchestration only — no selectors in the test file)
+- Add test cases to the relevant `tests/e2e/*.spec.ts` file (orchestration only — no selectors in test files)
 - Run: `npm run test:e2e` (requires `npm run start` running in another terminal)
 
 See the `end-to-end-testing` skill for POM patterns.
