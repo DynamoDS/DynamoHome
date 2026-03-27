@@ -54,7 +54,7 @@ Critical settings to preserve:
 - `testDir: './tests/e2e'` — scoped to e2e tests only
 - Web server: auto-starts `npm start` before tests, waits for port 8080
 - CI: 1 worker, 2 retries; local: unlimited workers, 0 retries
-- Run: `npm run test:e2e` (targets `tests/e2e/e2e.test.ts`)
+- Run: `npm run test:e2e` (targets all `*.spec.ts` files in `tests/e2e/`)
 
 ## When making build changes
 

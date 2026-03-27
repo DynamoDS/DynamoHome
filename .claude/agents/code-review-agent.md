@@ -37,7 +37,7 @@ You are a Senior Code Reviewer for DynamoHome, a React 18 SPA embedded in the Dy
 - [ ] Coverage not reduced for modified files
 
 ### 5. E2E tests
-- [ ] Playwright tests use Page Object Model — no selectors or `page.locator()` calls in `tests/e2e/e2e.test.ts`
+- [ ] Playwright tests use Page Object Model — no selectors or `page.locator()` calls in `*.spec.ts` test files
 - [ ] Page/Component classes live in `tests/e2e/pages/` or `tests/e2e/components/`
 - [ ] New user flows have e2e coverage (or a TODO with justification)
 

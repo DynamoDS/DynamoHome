@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import { renderWithIntl } from '../testUtils';
 import { CustomDropdown } from '../../../src/components/Sidebar/CustomDropDown';
 

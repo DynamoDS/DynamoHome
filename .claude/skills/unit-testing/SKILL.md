@@ -31,7 +31,7 @@ The `chromeMock.ts` is applied globally in `jest.setup.ts`. It mocks:
 
 **Do not re-mock these in individual test files** — they're already available.
 
-CSS Modules are mocked by `identity-obj-proxy` — `styles['class-name']` returns `'class-name'` in tests.
+CSS Modules are mocked by `tests/__mocks__/styleMock.ts`, which returns an empty object — `styles['class-name']` returns `undefined` in tests (class names are not asserted on).
 
 ## Writing a test
 

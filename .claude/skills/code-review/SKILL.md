@@ -21,7 +21,7 @@ See checklist below. Flag blockers as you go; note recommendations separately.
 
 - New/modified components have unit tests in `tests/unit/`
 - Changed user flows have Playwright coverage
-- `tests/e2e/e2e.test.ts` contains no selectors or direct page actions
+- `tests/e2e/*.spec.ts` files contain no selectors or direct page actions
 
 ### 4. Check build integrity
 
@@ -64,7 +64,7 @@ See "How to give feedback" section below.
 - [ ] Coverage not reduced for modified files
 
 ### E2E tests
-- [ ] Playwright tests have no selectors in `e2e.test.ts` (all in Page/Component classes)
+- [ ] Playwright tests have no selectors in `*.spec.ts` files (all in Page/Component classes)
 - [ ] No `page.locator()` or `page.click()` calls directly in test files
 - [ ] No `waitForTimeout()` calls
 
@@ -88,7 +88,7 @@ See "How to give feedback" section below.
 | `window.chrome.webview` accessed without optional chaining | Crashes in dev mode / outside Dynamo |
 | Global callback renamed or removed | Dynamo .NET host calls it by name — breaking change |
 | Settings field renamed or removed | Dynamo reads/writes settings by field name — breaking change |
-| Selector in `e2e.test.ts` directly | Violates POM requirement; makes tests brittle |
+| Selector in `*.spec.ts` directly | Violates POM requirement; makes tests brittle |
 | New npm dependency without justification | Increases bundle size, adds supply chain risk |
 | Output path changed from `dist/build/` | Dynamo integration breaks at runtime |
 

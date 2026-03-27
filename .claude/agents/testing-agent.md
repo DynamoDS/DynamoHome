@@ -1,6 +1,6 @@
 ---
 name: testing-agent
-description: Use when creating or maintaining end-to-end Playwright tests, implementing Page Object Model classes, or investigating test failures in tests/e2e.test.ts.
+description: Use when creating or maintaining end-to-end Playwright tests, implementing Page Object Model classes, or investigating test failures in tests/e2e/.
 tools:
   - Read
   - Write
@@ -21,7 +21,11 @@ tests/
   unit/                # Unit tests (Jest)
     App.test.tsx
   e2e/                 # End-to-end tests (Playwright)
-    e2e.test.ts        # Orchestration only — no selectors here
+    navigation.spec.ts # Navigation tests
+    sidebar.spec.ts    # Sidebar dropdown tests
+    recent.spec.ts     # Recent page tests
+    samples.spec.ts    # Samples page tests
+    learning.spec.ts   # Learning page and carousel tests
     pages/             # Page Object classes
     components/        # Component Object classes
   jest.setup.ts        # Unit test setup — applies chrome global mock
@@ -56,7 +60,7 @@ npx playwright show-report  # View HTML test report after run
 
 ## What NOT to do
 
-- Do not place selectors or `page.locator()` calls inside `e2e.test.ts`
+- Do not place selectors or `page.locator()` calls inside `*.spec.ts` test files
 - Do not use `waitForTimeout()` or arbitrary sleeps
 - Do not write tests that depend on network calls to the real Dynamo backend
 - Do not modify unit test files (`App.test.tsx`, `jest.setup.ts`)

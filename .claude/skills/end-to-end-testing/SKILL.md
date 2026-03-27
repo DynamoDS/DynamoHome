@@ -7,7 +7,7 @@
 - **Base URL**: `http://localhost:8080` (dev server must be running)
 - **Timeouts**: 30s per test, 5s for expect assertions
 - **Retries**: 2 on CI, 0 locally
-- **Run tests**: `npm run test:e2e` (targets `tests/e2e/e2e.test.ts`)
+- **Run tests**: `npm run test:e2e` (targets all `*.spec.ts` files in `tests/e2e/`)
 - **Prerequisite**: `npm run start` must be running (or configure the `webServer` in config which auto-starts it)
 
 ## Required folder structure
@@ -15,16 +15,17 @@
 ```
 tests/
   e2e/
-    e2e.test.ts              # Test orchestration only — NO selectors, NO page.locator()
+    navigation.spec.ts       # Navigation tests — NO selectors, NO page.locator()
+    sidebar.spec.ts          # Sidebar dropdown tests
+    recent.spec.ts           # Recent page tests
+    samples.spec.ts          # Samples page tests
+    learning.spec.ts         # Learning page and carousel tests
     pages/
       RecentPage.ts          # Page class for Recent files page
       SamplesPage.ts         # Page class for Samples page
       LearningPage.ts        # Page class for Learning page
     components/
       Sidebar.ts             # Sidebar navigation component class
-      GraphTable.ts          # Table component class (used by Recent + Samples)
-      Carousel.ts            # Carousel component class (used by Learning)
-      CardItem.ts            # Grid card component class
   unit/
     App.test.tsx             # Unit tests — separate from e2e
   jest.setup.ts              # Jest setup (not used by Playwright)
@@ -71,7 +72,7 @@ export class RecentPage {
 ### Test file
 
 ```typescript
-// tests/e2e/e2e.test.ts
+// tests/e2e/recent.spec.ts
 import { test, expect } from '@playwright/test';
 import { RecentPage } from './pages/RecentPage';
 import { Sidebar } from './components/Sidebar';
@@ -101,8 +102,8 @@ test('recent page switches to list view', async ({ page }) => {
 
 | Rule | Example violation |
 |---|---|
-| No selectors in test files | `await page.locator('.graph-card').click()` in `e2e.test.ts` |
-| No direct page actions in test files | `await page.click('[data-testid="button"]')` in `e2e.test.ts` |
+| No selectors in test files | `await page.locator('.graph-card').click()` in `*.spec.ts` |
+| No direct page actions in test files | `await page.click('[data-testid="button"]')` in `*.spec.ts` |
 | No `waitForTimeout()` | `await page.waitForTimeout(2000)` |
 | All selectors defined in Page/Component constructors | Inline `page.locator()` in action methods |
 

@@ -5,7 +5,7 @@ Two separate test suites — keep them isolated:
 | `unit/` | Jest + React Testing Library | `ComponentName.test.tsx` — one file per component |
 | `e2e/` | Playwright | `*.spec.ts` per feature area + `pages/` and `components/` (Page Object classes) |
 
-**Hard e2e rule:** `e2e.test.ts` must never contain selectors or direct page actions. All `page.locator()` calls live in Page/Component classes under `e2e/pages/` and `e2e/components/`.
+**Hard e2e rule:** `*.spec.ts` files must never contain selectors or direct page actions. All `page.locator()` calls live in Page/Component classes under `e2e/pages/` and `e2e/components/`.
 
 **Mocks applied globally — do not re-mock in individual test files:**
 
