@@ -1,7 +1,6 @@
 ---
 name: testing-agent
 description: Use when creating or maintaining end-to-end Playwright tests, implementing Page Object Model classes, or investigating test failures in tests/e2e.test.ts.
-model: claude-sonnet-4-6
 tools:
   - Read
   - Write

@@ -1,7 +1,6 @@
 ---
 name: build-agent
 description: Use when modifying webpack configuration, npm scripts, TypeScript config, ESLint rules, Babel config, CI/CD pipelines, or diagnosing build and bundling failures.
-model: claude-sonnet-4-6
 tools:
   - Read
   - Write

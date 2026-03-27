@@ -1,7 +1,6 @@
 ---
 name: code-review-agent
 description: Use when reviewing pull requests or code changes for correctness, architecture alignment, test coverage, localization compliance, and potential regressions in DynamoHome.
-model: claude-sonnet-4-6
 tools:
   - Read
   - Bash

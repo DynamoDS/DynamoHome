@@ -1,7 +1,6 @@
 ---
 name: frontend-agent
 description: Use when implementing or modifying React components, adding UI features, fixing visual bugs, updating localized strings, or writing unit tests. Covers all work inside src/components/, src/locales/, and src/localization/.
-model: claude-sonnet-4-6
 tools:
   - Read
   - Write
