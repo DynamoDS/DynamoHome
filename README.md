@@ -42,7 +42,7 @@ The sidebar contains links to the 3 main modules:
 ```shell
 git clone https://github.com/DynamoDS/DynamoHome.git
 cd DynamoHome
-npm install --force
+npm install --legacy-peer-deps
 ```
 
 ### Running the project
@@ -170,7 +170,11 @@ tests/
     App.test.tsx
     ComponentName.test.tsx
   e2e/                    # Playwright end-to-end tests
-    e2e.test.ts           # Orchestration only (no selectors or page actions)
+    navigation.spec.ts    # Navigation tests
+    sidebar.spec.ts       # Sidebar dropdown tests
+    recent.spec.ts        # Recent page tests
+    samples.spec.ts       # Samples page tests
+    learning.spec.ts      # Learning page and carousel tests
     pages/                # Page Object Model — page classes
     components/           # Page Object Model — component classes
   jest.setup.ts           # Jest global setup (chrome mock)
@@ -187,7 +191,7 @@ tests/
 - E2E tests live in `tests/e2e/` and are run with `npm run test:e2e`
 - All Playwright tests must follow the Page Object Model (POM)
 - Pages and components must be implemented as separate classes in `tests/e2e/pages/` and `tests/e2e/components/`
-- `e2e.test.ts` must only contain test orchestration — no selectors or direct page actions
+- Each `*.spec.ts` file must only contain test orchestration — no selectors or direct page actions
 
 #### Exploratory Testing
 - For exploratory testing or issue investigation, use `playwright-cli open http://localhost:8080`

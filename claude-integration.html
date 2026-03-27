@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude Code Integration – DynamoHome</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #0f1117;
+      --surface:     #1a1d27;
+      --surface-2:   #22263a;
+      --border:      #2e3248;
+      --accent-1:    #7c6af7; /* purple – Claude brand */
+      --accent-2:    #4fa3e0; /* blue  – agents */
+      --accent-3:    #3ecfa0; /* teal  – skills */
+      --accent-4:    #f0c060; /* amber – CLAUDE.md */
+      --text:        #e8eaf6;
+      --text-muted:  #8b90b0;
+      --tag-bg:      #2a2e45;
+      --radius:      12px;
+      --radius-sm:   8px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── Hero ────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #1a1d27 0%, #12152a 60%, #0f1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 40px 50px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(124,106,247,.15);
+      border: 1px solid rgba(124,106,247,.4);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent-1);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff 30%, var(--accent-1));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 620px;
+      margin: 0 auto 32px;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      display: block;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .stat:nth-child(1) .stat-number { color: var(--accent-4); }
+    .stat:nth-child(2) .stat-number { color: var(--accent-2); }
+    .stat:nth-child(3) .stat-number { color: var(--accent-3); }
+
+    /* ── Layout ──────────────────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+
+    /* ── Section headers ─────────────────────── */
+    .section {
+      margin-top: 64px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .icon-md   { background: rgba(240,192, 96,.15); }
+    .icon-agent{ background: rgba( 79,163,224,.15); }
+    .icon-skill{ background: rgba( 62,207,160,.15); }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ── Cards grid ──────────────────────────── */
+    .cards {
+      display: grid;
+      gap: 16px;
+    }
+    .cards-2 { grid-template-columns: repeat(auto-fill, minmax(520px, 1fr)); }
+    .cards-3 { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover {
+      border-color: var(--accent-1);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .card-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .dot-md    { background: var(--accent-4); box-shadow: 0 0 8px var(--accent-4); }
+    .dot-agent { background: var(--accent-2); box-shadow: 0 0 8px var(--accent-2); }
+    .dot-skill { background: var(--accent-3); box-shadow: 0 0 8px var(--accent-3); }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .card-path {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-family: 'SFMono-Regular', Consolas, monospace;
+    }
+    .card-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      line-height: 1.55;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2px 9px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-family: 'SFMono-Regular', Consolas, monospace;
+    }
+
+    /* ── How it fits together ─────────────────── */
+    .flow {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-top: 64px;
+    }
+    .flow h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+    .flow-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .flow-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      width: 80px;
+      flex-shrink: 0;
+    }
+    .flow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12.5px;
+      font-weight: 500;
+      border: 1px solid;
+    }
+    .pill-md    { background: rgba(240,192, 96,.1); border-color: rgba(240,192, 96,.35); color: var(--accent-4); }
+    .pill-agent { background: rgba( 79,163,224,.1); border-color: rgba( 79,163,224,.35); color: var(--accent-2); }
+    .pill-skill { background: rgba( 62,207,160,.1); border-color: rgba( 62,207,160,.35); color: var(--accent-3); }
+    .flow-arrow {
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+
+    /* ── Footer ──────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 32px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 12.5px;
+    }
+    footer a { color: var(--accent-1); text-decoration: none; }
+
+    @media (max-width: 680px) {
+      .hero h1 { font-size: 1.8rem; }
+      .cards-2, .cards-3 { grid-template-columns: 1fr; }
+      .container { padding: 0 16px 60px; }
+      .hero { padding: 40px 20px 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-badge">⬡ Claude Code Integration</div>
+  <h1>DynamoHome × Claude</h1>
+  <p>
+    How Claude Code is configured to understand, navigate, and contribute to
+    the DynamoHome codebase — covering context files, autonomous agents, and
+    reusable skill workflows.
+  </p>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-number">4</span>
+      <span class="stat-label">CLAUDE.md files</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">4</span>
+      <span class="stat-label">Agents</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">10</span>
+      <span class="stat-label">Skills</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ── CLAUDE.md files ─────────────────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-md">📄</div>
+      <div>
+        <div class="section-title">CLAUDE.md Context Files</div>
+        <div class="section-subtitle">
+          Auto-loaded into every conversation. Give Claude persistent, scoped knowledge about the codebase without repeating yourself.
+        </div>
+      </div>
+    </div>
+
+    <div class="cards cards-2">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-md"></div>
+          <div>
+            <div class="card-title">Project Root</div>
+            <div class="card-path">CLAUDE.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          The primary knowledge file. Covers the full component tree, data flow between
+          Dynamo (.NET host) and the React app via <code>window</code> globals, the
+          backend API in <code>utility.ts</code>, data shapes, settings persistence,
+          dev-mode mock data, build output paths, CI/CD pipelines, and a hard list of
+          constraints Claude must never violate (e.g. never rename window globals,
+          never change the output path <code>dist/build/</code>).
+        </p>
+        <div class="card-tags">
+          <span class="tag">architecture</span>
+          <span class="tag">data flow</span>
+          <span class="tag">constraints</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">naming conventions</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-md"></div>
+          <div>
+            <div class="card-title">Tests</div>
+            <div class="card-path">tests/CLAUDE.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Scoped to the test folder. Documents the two isolated suites — Jest + React
+          Testing Library for unit tests and Playwright for e2e — their file patterns,
+          and the global mocks (Chrome WebView, CSS modules, images) that are
+          auto-applied to every unit test. Hard rule: no <code>page.locator()</code>
+          calls in test files — all selectors live in Page Object classes.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Jest</span>
+          <span class="tag">Playwright</span>
+          <span class="tag">mocks</span>
+          <span class="tag">POM</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-md"></div>
+          <div>
+            <div class="card-title">Locales</div>
+            <div class="card-path">src/locales/CLAUDE.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Lists all 14 locale files (<code>en, cs, de, es, fr, it, ja, ko, pl,
+          pt-BR, ru, zh-Hans, zh-Hant, en-GB</code>) and the single rule that governs
+          them: <code>en.json</code> is the source of truth; every key added there must
+          be mirrored in all other files before a PR can merge.
+        </p>
+        <div class="card-tags">
+          <span class="tag">i18n</span>
+          <span class="tag">react-intl</span>
+          <span class="tag">14 locales</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-md"></div>
+          <div>
+            <div class="card-title">Components</div>
+            <div class="card-path">src/components/CLAUDE.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Decision table for where to place new components: module-specific folders
+          for single-module use, <code>Common/</code> for anything used by two or more
+          modules, and <code>src/components/</code> for app-level concerns. Enforces
+          the CSS Module co-location rule — every component must have a matching
+          <code>.module.css</code> file in the same folder.
+        </p>
+        <div class="card-tags">
+          <span class="tag">folder structure</span>
+          <span class="tag">CSS Modules</span>
+          <span class="tag">co-location</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Agents ──────────────────────────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-agent">🤖</div>
+      <div>
+        <div class="section-title">Agents</div>
+        <div class="section-subtitle">
+          Specialized autonomous subprocesses. Claude launches them to delegate focused work — each has a defined role, a curated tool set, and deep project context baked in.
+        </div>
+      </div>
+    </div>
+
+    <div class="cards cards-2">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-agent"></div>
+          <div>
+            <div class="card-title">frontend-agent</div>
+            <div class="card-path">.claude/agents/frontend-agent.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Senior React + TypeScript engineer persona. Owns everything inside
+          <code>src/components/</code>, <code>src/locales/</code>, and
+          <code>src/localization/</code>. Enforces functional components, explicit prop
+          interfaces, CSS Modules, no hardcoded text, and the <code>data-testid</code>
+          placement rules (testid belongs on the component's own root element, never on
+          a parent wrapper). Also responsible for running unit tests after every change.
+        </p>
+        <div class="card-tags">
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">CSS Modules</span>
+          <span class="tag">localization</span>
+          <span class="tag">data-testid</span>
+          <span class="tag">unit tests</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-agent"></div>
+          <div>
+            <div class="card-title">testing-agent</div>
+            <div class="card-path">.claude/agents/testing-agent.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          E2E testing engineer persona. Writes and maintains Playwright tests following
+          the Page Object Model pattern. Knows all three pages (Recent, Samples,
+          Learning), the sidebar, and how the app receives data from the Dynamo host.
+          Always uses <code>data-testid</code> selectors and delegates
+          <code>data-testid</code> additions to the frontend-agent when they're missing
+          from the source.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Playwright</span>
+          <span class="tag">POM</span>
+          <span class="tag">e2e</span>
+          <span class="tag">data-testid</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-agent"></div>
+          <div>
+            <div class="card-title">build-agent</div>
+            <div class="card-path">.claude/agents/build-agent.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Build and tooling engineer persona. Handles changes to Webpack 5 config,
+          TypeScript config, ESLint rules, Jest setup, and npm scripts. Knows the hard
+          constraint that the output path <code>dist/build/index.bundle.js</code> is
+          hardcoded in the Dynamo desktop app and must never change. Diagnoses bundle
+          failures and CI pipeline issues.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Webpack</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">ESLint</span>
+          <span class="tag">Jest</span>
+          <span class="tag">CI</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-agent"></div>
+          <div>
+            <div class="card-title">code-review-agent</div>
+            <div class="card-path">.claude/agents/code-review-agent.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Code reviewer persona. Runs a structured five-step review (understand intent →
+          read diff → check correctness → check tests → check architecture) and applies
+          a project-specific checklist covering TypeScript safety, React patterns,
+          localization completeness, test coverage, backend integration safety (window
+          globals), and build constraints.
+        </p>
+        <div class="card-tags">
+          <span class="tag">PR review</span>
+          <span class="tag">checklist</span>
+          <span class="tag">architecture</span>
+          <span class="tag">localization</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Skills ──────────────────────────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-skill">⚡</div>
+      <div>
+        <div class="section-title">Skills</div>
+        <div class="section-subtitle">
+          Invokable slash commands that inject a focused workflow or pattern guide into the conversation. Type <code>/skill-name</code> to activate.
+        </div>
+      </div>
+    </div>
+
+    <div class="cards cards-3">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-skill"></div>
+          <div>
+            <div class="card-title">/feature-ui</div>
+            <div class="card-path">skills/feature-ui/SKILL.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Seven-step workflow for new UI features: identify scope → add localized
+          strings first → implement component → update SettingsContext if needed →
+          write unit tests → verify build and lint → update e2e tests.
+        </p>
+        <div class="card-tags">
+          <span class="tag">workflow</span>
+          <span class="tag">UI</span>
+          <span class="tag">end-to-end</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-skill"></div>
+          <div>
+            <div class="card-title">/end-to-end-testing</div>
+            <div class="card-path">skills/end-to-end-testing/SKILL.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Full Playwright POM guide. Hard rules table (no raw locators in test files),
+          selector priority (<code>data-testid</code> first), waiting strategies, and
+          patterns for Page Object and Component classes. Reference for testing-agent.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Playwright</span>
+          <span class="tag">POM</span>
+          <span class="tag">selectors</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-skill"></div>
+          <div>
+            <div class="card-title">/unit-testing</div>
+            <div class="card-path">skills/unit-testing/SKILL.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Jest + React Testing Library patterns. Covers test file location, the globally
+          applied mocks, how to wrap components with <code>IntlProvider</code> or
+          <code>SettingsContext</code>, what to test, and the 100% coverage target.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Jest</span>
+          <span class="tag">RTL</span>
+          <span class="tag">coverage</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-skill"></div>
+          <div>
+            <div class="card-title">/react</div>
+            <div class="card-path">skills/react/SKILL.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          DynamoHome-specific React best practices: functional components, explicit prop
+          interfaces, CSS Module access pattern, approved libraries only, <code>useSettings()</code>
+          hook for context, and folder placement rules.
+        </p>
+        <div class="card-tags">
+          <span class="tag">React 18</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">hooks</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-skill"></div>
+          <div>
+            <div class="card-title">/localization</div>
+            <div class="card-path">skills/localization/SKILL.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          react-intl patterns, key naming convention (<code>module.element.descriptor</code>),
+          step-by-step guide for adding a new string across all 14 locale files, and
+          how to add a new locale end-to-end.
+        </p>
+        <div class="card-tags">
+          <span class="tag">react-intl</span>
+          <span class="tag">i18n</span>
+          <span class="tag">14 locales</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-skill"></div>
+          <div>
+            <div class="card-title">/code-review</div>
+            <div class="card-path">skills/code-review/SKILL.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Review mindset, five-step process, a detailed checklist (TypeScript, React,
+          localization, tests, build, backend safety), common blockers that should fail
+          a PR, and guidance on what not to nitpick.
+        </p>
+        <div class="card-tags">
+          <span class="tag">PR review</span>
+          <span class="tag">checklist</span>
+          <span class="tag">quality</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-skill"></div>
+          <div>
+            <div class="card-title">/build-tooling</div>
+            <div class="card-path">skills/build-tooling/SKILL.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Reference for Webpack 5, TypeScript, ESLint, Jest, and Playwright configs.
+          Defines when it's appropriate to touch build files and what must never change
+          (output path, npm script names, <code>strict: true</code> in tsconfig).
+        </p>
+        <div class="card-tags">
+          <span class="tag">Webpack</span>
+          <span class="tag">tsconfig</span>
+          <span class="tag">ESLint</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-skill"></div>
+          <div>
+            <div class="card-title">/bugfix</div>
+            <div class="card-path">skills/bugfix/SKILL.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Structured bug fix workflow: reproduce → locate root cause → apply minimal
+          fix → add regression test → verify. Includes DynamoHome-specific notes on
+          checking window globals and WebView guards before assuming it's a React bug.
+        </p>
+        <div class="card-tags">
+          <span class="tag">debugging</span>
+          <span class="tag">regression</span>
+          <span class="tag">workflow</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-skill"></div>
+          <div>
+            <div class="card-title">/refactor</div>
+            <div class="card-path">skills/refactor/SKILL.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Safe refactor workflow: define scope → establish baseline tests → refactor
+          incrementally → verify no regressions. Highlights DynamoHome-specific risks
+          such as accidentally renaming window globals or breaking the settings JSON shape.
+        </p>
+        <div class="card-tags">
+          <span class="tag">refactoring</span>
+          <span class="tag">safety</span>
+          <span class="tag">incremental</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot dot-skill"></div>
+          <div>
+            <div class="card-title">/playwright-cli</div>
+            <div class="card-path">skills/playwright-cli/SKILL.md</div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Browser automation tool for live exploratory testing. Used to navigate the
+          running app, take snapshots, interact with elements, and discover
+          <code>data-testid</code> gaps before writing stable Playwright tests. Includes
+          sub-references for mocking, tracing, storage state, and video recording.
+        </p>
+        <div class="card-tags">
+          <span class="tag">exploratory</span>
+          <span class="tag">snapshots</span>
+          <span class="tag">browser</span>
+          <span class="tag">tracing</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── How it fits together ────────────────────────────────────────────── -->
+  <div class="flow">
+    <h2>🔗 How it fits together</h2>
+
+    <div class="flow-row">
+      <span class="flow-label">Always on</span>
+      <span class="flow-pill pill-md">📄 CLAUDE.md (root)</span>
+      <span class="flow-arrow">+</span>
+      <span class="flow-pill pill-md">📄 tests/CLAUDE.md</span>
+      <span class="flow-arrow">+</span>
+      <span class="flow-pill pill-md">📄 src/locales/CLAUDE.md</span>
+      <span class="flow-arrow">+</span>
+      <span class="flow-pill pill-md">📄 src/components/CLAUDE.md</span>
+    </div>
+
+    <div class="flow-row">
+      <span class="flow-label">New feature</span>
+      <span class="flow-pill pill-skill">⚡ /feature-ui</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill pill-agent">🤖 frontend-agent</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill pill-skill">⚡ /localization</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill pill-skill">⚡ /unit-testing</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill pill-skill">⚡ /end-to-end-testing</span>
+    </div>
+
+    <div class="flow-row">
+      <span class="flow-label">Bug fix</span>
+      <span class="flow-pill pill-skill">⚡ /bugfix</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill pill-agent">🤖 frontend-agent</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill pill-agent">🤖 testing-agent</span>
+    </div>
+
+    <div class="flow-row">
+      <span class="flow-label">PR review</span>
+      <span class="flow-pill pill-skill">⚡ /code-review</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill pill-agent">🤖 code-review-agent</span>
+    </div>
+
+    <div class="flow-row">
+      <span class="flow-label">E2E tests</span>
+      <span class="flow-pill pill-skill">⚡ /playwright-cli</span>
+      <span class="flow-arrow">explore →</span>
+      <span class="flow-pill pill-agent">🤖 testing-agent</span>
+      <span class="flow-arrow">+</span>
+      <span class="flow-pill pill-skill">⚡ /end-to-end-testing</span>
+      <span class="flow-arrow">write →</span>
+      <span class="flow-pill pill-agent">🤖 frontend-agent</span>
+      <span class="flow-arrow">add data-testid</span>
+    </div>
+
+    <div class="flow-row">
+      <span class="flow-label">Build issue</span>
+      <span class="flow-pill pill-skill">⚡ /build-tooling</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill pill-agent">🤖 build-agent</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Footer ─────────────────────────────────────────────────────────────── -->
+<footer>
+  Generated for the DynamoHome team &nbsp;·&nbsp;
+  Powered by <a href="https://claude.ai/code" target="_blank">Claude Code</a>
+</footer>
+
+</body>
+</html>
