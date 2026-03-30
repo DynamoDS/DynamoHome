@@ -17,7 +17,11 @@ export const MainContent = ({ selectedSidebarItem, settings, isDisabled, setIsDi
                 )}
 
                 <div className={`page-container ${selectedSidebarItem === 'Recent' ? '' : 'hidden'}`}>
-                    <RecentPage setIsDisabled={setIsDisabled} recentPageViewMode={settings?.recentPageViewMode || "grid"} />
+                    <RecentPage
+                        setIsDisabled={setIsDisabled}
+                        recentPageViewMode={settings?.recentPageViewMode || 'grid'}
+                        templatesPageViewMode={settings?.templatesPageViewMode || 'grid'}
+                    />
                 </div>
                 <div className={`page-container ${selectedSidebarItem === 'Samples' ? '' : 'hidden'}`}>
                     <SamplesPage samplesViewMode={settings?.samplesViewMode || "grid"} />

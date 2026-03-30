@@ -3,14 +3,13 @@ import { MainContent } from './MainContent';
 import { Sidebar } from './Sidebar/Sidebar';
 import SplitPane from 'react-split-pane';
 import { useSettings } from './SettingsContext';
-import { saveHomePageSettings } from '../functions/utility';
 
 export const LayoutContainer = ({ id }: { id?: string }) => {
   const defaultMinSize = 250;
   const defaultMaxSize = 500;
   const defaultBarWidth = 300;
 
-  const { settings, updateSettings } = useSettings();
+  const { settings, updateSettings, updateAndSaveSettings } = useSettings();
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [selectedSidebarItem, setSelectedSidebarItem] = useState<SidebarItem>('Recent');
   const [sideBarWidth, setSideBarWidth] = useState<number | null>(null);
@@ -28,8 +27,8 @@ export const LayoutContainer = ({ id }: { id?: string }) => {
   const handleSplitPaneResize = (size: number) => {
     setSideBarWidth(size);
 
-    // Persist the new sidebar width in settings
-    updateSettings({ sideBarWidth: size.toString() });
+    // persist the new sidebar width using latest merged settings.
+    updateAndSaveSettings({ sideBarWidth: size.toString() });
   };
 
   useEffect(() => {
@@ -39,12 +38,6 @@ export const LayoutContainer = ({ id }: { id?: string }) => {
       setSideBarWidth(defaultBarWidth);
     }
   }, [settings?.sideBarWidth]);
-
-  useEffect(() => {
-    if (sideBarWidth !== null && settings) {
-      saveHomePageSettings({ ...settings, sideBarWidth: sideBarWidth.toString() });
-    }
-  }, [sideBarWidth]);
 
   const setHomePageSettings = (settingsJson: string) => {
     try {
