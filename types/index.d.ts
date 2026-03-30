@@ -203,7 +203,11 @@ type VideoCarouselItem = {
   description: string;
 }
 
-type RecentPage = { setIsDisabled: (disable: boolean) => void, recentPageViewMode: string }
+type RecentPage = {
+  setIsDisabled: (disable: boolean) => void;
+  recentPageViewMode: string;
+  templatesPageViewMode: string;
+}
 
 type Tooltip = {
   children: JSX.Element | null | string;

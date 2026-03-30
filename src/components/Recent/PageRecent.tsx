@@ -1,24 +1,23 @@
 import React from "react";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { GraphGridItem } from './GraphGridItem';
 import { CustomNameCellRenderer } from './CustomNameCellRenderer';
 import { CustomLocationCellRenderer } from './CustomLocationCellRenderer';
 import { CustomAuthorCellRenderer } from "./CustomAuthorCellRenderer";
 import { GraphTable } from './GraphTable';
 import { GridViewIcon, ListViewIcon, QuestionMarkIcon } from '../Common/CustomIcons';
-import { openFile, saveHomePageSettings } from '../../functions/utility';
+import { openFile } from '../../functions/utility';
 import { templateDateDisplay } from '../../functions/templateUtils';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
 import { useSettings } from '../SettingsContext';
 import { useTemplates } from '../TemplatesContext';
 
-export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) => {    
-    const { settings, updateSettings } = useSettings();
+export const RecentPage = ({ setIsDisabled, recentPageViewMode, templatesPageViewMode: templatesPageViewModeProp }: RecentPage) => {    
+    const { updateAndSaveSettings } = useSettings();
     const [viewMode, setViewMode] = useState(recentPageViewMode); 
-    const [templatesViewMode, setTemplatesViewMode] = useState(settings?.templatesPageViewMode || 'grid');
+    const [templatesViewMode, setTemplatesViewMode] = useState(templatesPageViewModeProp);
     const [initialized, setInitialized] = useState<boolean>(false);
-    const [templatesInitialized, setTemplatesInitialized] = useState<boolean>(false);
 
     // Set a placeholder for the graphs which will be used differently during dev and prod 
     let initialGraphs = [];
@@ -58,36 +57,34 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
         };
     }, []); 
 
-    useEffect(() => {
-        // Set the viewMode based on the HomePage preferences
+    // Sync from context before paint so we do not flash the default grid while settings load.
+    useLayoutEffect(() => {
         setViewMode(recentPageViewMode);
     }, [recentPageViewMode]);
 
-    useEffect(() => {
-        // Set the templatesViewMode based on the HomePage preferences
-        if (settings?.templatesPageViewMode) {
-            setTemplatesViewMode(settings.templatesPageViewMode);
-        }
-    }, [settings?.templatesPageViewMode]); 
+    useLayoutEffect(() => {
+        setTemplatesViewMode(templatesPageViewModeProp);
+    }, [templatesPageViewModeProp]);
 
+    // Persist when the user changes view mode (this effect only lists [viewMode] on purpose).
+    // Do not add recentPageViewMode to the dependency array: when Dynamo loads saved settings, that
+    // prop can change in a render before local viewMode state is updated, and saving here would
+    // write the wrong mode (for example grid) to stored settings.
     useEffect(() => {
         if (initialized || recentPageViewMode !== viewMode) {
             setInitialized(true);
-            updateSettings({ recentPageViewMode: viewMode });
-            
-            // Send settings to Dynamo to save
-            saveHomePageSettings({ ...settings, recentPageViewMode: viewMode });
-        } 
+            updateAndSaveSettings({ recentPageViewMode: viewMode });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- intentionally only on viewMode; see above
     }, [viewMode]);
 
+    // Same idea as recent graphs: persist when local mode differs from host-backed prop. Do not require
+    // settings.templatesPageViewMode to exist first,  that blocked the first save when the key was missing.
     useEffect(() => {
-        if (templatesInitialized || (settings?.templatesPageViewMode && settings.templatesPageViewMode !== templatesViewMode)) {
-            setTemplatesInitialized(true);
-            updateSettings({ templatesPageViewMode: templatesViewMode });
-            
-            // Send settings to Dynamo to save
-            saveHomePageSettings({ ...settings, templatesPageViewMode: templatesViewMode });
-        } 
+        if (templatesViewMode !== templatesPageViewModeProp) {
+            updateAndSaveSettings({ templatesPageViewMode: templatesViewMode });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- only persist on local toggle; see recent graphs effect
     }, [templatesViewMode]);
 
     // This variable defins the table structure displaying the graphs
