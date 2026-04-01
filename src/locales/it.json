@@ -13,7 +13,7 @@
   "tooltip.text.recent": "Visualizza file recenti",
   "tooltip.text.samples": "Visualizza grafici di esempio",
   "tooltip.text.learning": "Visualizza contenuto di formazione",
-  "tooltip.text.templates": "Templates are workspaces with pre-built graph elements that help you start and organize workflows more efficiently. Opening a template creates a new editable graph that includes templated graph elements.",
+  "tooltip.text.templates": "I modelli sono aree di lavoro con elementi dei grafici predefiniti che consentono di avviare e organizzare i workflow in modo più efficiente. L'apertura di un modello crea un nuovo grafico modificabile che include elementi dei grafici basati su modelli.",
   "tooltip.text.grid.view.button": "Vista griglia",
   "tooltip.text.list.view.button": "Vista elenco",
   "learning.title.text.learning": "Apprendimento",

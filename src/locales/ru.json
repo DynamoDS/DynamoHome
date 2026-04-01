@@ -13,7 +13,7 @@
   "tooltip.text.recent": "Просмотр последних файлов",
   "tooltip.text.samples": "Просмотр образцов графиков",
   "tooltip.text.learning": "Просмотр обучающих материалов",
-  "tooltip.text.templates": "Templates are workspaces with pre-built graph elements that help you start and organize workflows more efficiently. Opening a template creates a new editable graph that includes templated graph elements.",
+  "tooltip.text.templates": "Шаблоны представляют собой рабочие пространства с предварительно созданными элементами графов, которые помогают более эффективно запускать и организовывать рабочие процессы. При открытии шаблона создается редактируемый граф, который включает в себя шаблоны элементов графов.",
   "tooltip.text.grid.view.button": "Сетка",
   "tooltip.text.list.view.button": "Список",
   "learning.title.text.learning": "Обучение",
