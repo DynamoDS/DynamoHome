@@ -1,8 +1,7 @@
-import { getPlaceholderImage } from '../../functions/placeholder';
+import { img } from '../../assets/home';
 import { Tooltip } from '../Common/Tooltip';
 import styles from './CustomCellRenderer.module.css';
 import cardStyles from '../Common/CardItems.module.css';
-import { img } from '../../assets/home';
 
 
 /**
@@ -11,10 +10,7 @@ import { img } from '../../assets/home';
  * @param row - the data associate with this row containing all the information for the graph
  */
 export const CustomNameCellRenderer = ({ value, row }: CellParams) => {
-  // Use placeholder if Thumbnail is empty, null, undefined, or the default img
-  const thumbnail = row.original.Thumbnail;
-  const hasCustomThumbnail = thumbnail && thumbnail !== img && thumbnail.trim() !== '';
-  const imgSrc = hasCustomThumbnail ? thumbnail : getPlaceholderImage(row.original.ContextData);
+  const imgSrc = row.original.Thumbnail || img;
   const description = row.original.Description;
   return (
     <div className={styles["title-cell"]}>

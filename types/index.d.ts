@@ -2,10 +2,6 @@ declare module 'react-split-pane';
 declare module 'react-table';
 
 declare module "*.module.css";
-declare module "*.png";
-declare module "*.jpg";
-declare module "*.jpeg";
-declare module "*.svg";
 type Locale = 'en' | 'en-US' | 'es-ES' | 'de-DE' | 'cs-CZ' | 'fr-FR' | 'it-IT' | 'ja-JP' | 'ko-KR' | 'pl-PL' | 'pt-BR' | 'ru-RU' | 'zh-Hans' | 'zh-Hant' | 'zh-CN' | 'zh-TW';
 type SidebarCommand = 'open-file' | 'open-template' | 'open-backup-locations' | 'workspace' | 'custom-node';
 type SidebarItem = 'Recent' | 'Samples' | 'Learning';
@@ -13,7 +9,6 @@ type ShowSamplesCommand = 'open-graphs' | 'open-datasets';
 type HomePageSetting = {
   recentPageViewMode: 'grid' | 'list' | undefined;
   samplesViewMode: 'grid' | 'list' | undefined;
-  templatesPageViewMode: 'grid' | 'list' | undefined;
   sideBarWidth: string | undefined;
 };
 interface Window {
@@ -24,7 +19,6 @@ interface Window {
   receiveGraphDataFromDotNet: (jsonData: any) => void;
   receiveSamplesDataFromDotNet: (jsonData: any) => void;
   receiveTrainingVideoDataFromDotNet: (jsonData: any) => void;
-  receiveTemplatesDataFromDotNet: (jsonData: any) => void;
   chrome?: {
     webview?: any;
   };
@@ -91,18 +85,6 @@ type Graph = {
   Thumbnail: string;
 }
 
-/** Templates from dev assets or Dynamo; shape may use date and/or DateModified for the modified date. */
-type HomeTemplate = {
-  id: string;
-  Caption: string;
-  ContextData: string;
-  Thumbnail: string;
-  date?: string;
-  DateModified?: string;
-  Author?: string;
-  Description?: string;
-}
-
 type GraphTable = {
   columns: Column[];
   data: Graph[];
@@ -130,7 +112,6 @@ type CellParams = {
     original: {
       Thumbnail?: string;
       Description: string;
-      ContextData?: string;
     }
   }
 }
@@ -203,15 +184,10 @@ type VideoCarouselItem = {
   description: string;
 }
 
-type RecentPage = {
-  setIsDisabled: (disable: boolean) => void;
-  recentPageViewMode: string;
-  templatesPageViewMode: string;
-}
+type RecentPage = { setIsDisabled: (disable: boolean) => void, recentPageViewMode: string }
 
 type Tooltip = {
   children: JSX.Element | null | string;
   content?: JSX.Element | null | string;
   verticalOffset?: number;
-  position?: 'right';
 }

@@ -1,22 +1,19 @@
 import React from "react";
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { GraphGridItem } from './GraphGridItem';
 import { CustomNameCellRenderer } from './CustomNameCellRenderer';
 import { CustomLocationCellRenderer } from './CustomLocationCellRenderer';
 import { CustomAuthorCellRenderer } from "./CustomAuthorCellRenderer";
 import { GraphTable } from './GraphTable';
-import { GridViewIcon, ListViewIcon, QuestionMarkIcon } from '../Common/CustomIcons';
-import { openFile } from '../../functions/utility';
-import { templateDateDisplay } from '../../functions/templateUtils';
+import { GridViewIcon, ListViewIcon } from '../Common/CustomIcons';
+import { openFile, saveHomePageSettings } from '../../functions/utility';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
 import { useSettings } from '../SettingsContext';
-import { useTemplates } from '../TemplatesContext';
 
-export const RecentPage = ({ setIsDisabled, recentPageViewMode, templatesPageViewMode: templatesPageViewModeProp }: RecentPage) => {    
-    const { updateAndSaveSettings } = useSettings();
+export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) => {    
+    const { settings, updateSettings } = useSettings();
     const [viewMode, setViewMode] = useState(recentPageViewMode); 
-    const [templatesViewMode, setTemplatesViewMode] = useState(templatesPageViewModeProp);
     const [initialized, setInitialized] = useState<boolean>(false);
 
     // Set a placeholder for the graphs which will be used differently during dev and prod 
@@ -27,7 +24,7 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode, templatesPageVie
         initialGraphs = require('../../assets/home').graphs;
     }
 
-    const [graphs, setGraphs] = useState(initialGraphs);
+    const [graphs, setGraphs] = useState(initialGraphs);    
 
     // A method exposed to the backend used to set the graph data coming from Dynamo
     const receiveGraphDataFromDotNet = (jsonData) => {
@@ -39,9 +36,6 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode, templatesPageVie
           console.error('Error processing data:', error);
         }
     };
-
-    // Get templates from context 
-    const templates = useTemplates();
 
     useEffect(() => {
         // If we are under production, we will override the graphs with the actual data sent from Dynamo
@@ -57,35 +51,20 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode, templatesPageVie
         };
     }, []); 
 
-    // Sync from context before paint so we do not flash the default grid while settings load.
-    useLayoutEffect(() => {
+    useEffect(() => {
+        // Set the viewMode based on the HomePage preferences
         setViewMode(recentPageViewMode);
-    }, [recentPageViewMode]);
+    }, [recentPageViewMode]); 
 
-    useLayoutEffect(() => {
-        setTemplatesViewMode(templatesPageViewModeProp);
-    }, [templatesPageViewModeProp]);
-
-    // Persist when the user changes view mode (this effect only lists [viewMode] on purpose).
-    // Do not add recentPageViewMode to the dependency array: when Dynamo loads saved settings, that
-    // prop can change in a render before local viewMode state is updated, and saving here would
-    // write the wrong mode (for example grid) to stored settings.
     useEffect(() => {
         if (initialized || recentPageViewMode !== viewMode) {
             setInitialized(true);
-            updateAndSaveSettings({ recentPageViewMode: viewMode });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps -- intentionally only on viewMode; see above
+            updateSettings({ recentPageViewMode: viewMode });
+            
+            // Send settings to Dynamo to save
+            saveHomePageSettings({ ...settings, recentPageViewMode: viewMode });
+        } 
     }, [viewMode]);
-
-    // Same idea as recent graphs: persist when local mode differs from host-backed prop. Do not require
-    // settings.templatesPageViewMode to exist first,  that blocked the first save when the key was missing.
-    useEffect(() => {
-        if (templatesViewMode !== templatesPageViewModeProp) {
-            updateAndSaveSettings({ templatesPageViewMode: templatesViewMode });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps -- only persist on local toggle; see recent graphs effect
-    }, [templatesViewMode]);
 
     // This variable defins the table structure displaying the graphs
     const columns: Column[] = React.useMemo(() => [
@@ -115,7 +94,7 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode, templatesPageVie
         }
       ], []);
 
-    // Handles mouse click over each row (Recent and Templates list views share the same behaviour)
+    // Handles mouse click over each row
     const handleRowClick = (row: Row) => {
         // freezes the UI   
         setIsDisabled(true);   
@@ -124,18 +103,8 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode, templatesPageVie
         openFile(contextData);
     };
 
-    // Map templates to match Graph structure for table view (DateModified column;'date'required on Graph)
-    const templatesForTable = templates.map(template => ({
-        ...template,
-        date: template.date || templateDateDisplay(template),
-        DateModified: templateDateDisplay(template),
-        Author: template.Author || '',
-        Description: template.Description || ''
-    }));
-
     return(
         <div>
-            {/* Recent Section */}
             <div className='drop-shadow-2xl'>
                 <p className='title-paragraph'><FormattedMessage id="title.text.recent"/></p>  
             </div>
@@ -165,52 +134,6 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode, templatesPageVie
                     <div className="main-graph-grid" id="graphContainer">
                         {graphs.map(graph => (
                             <GraphGridItem key={graph.id} {...graph} setIsDisabled={setIsDisabled} />
-                        ))}
-                    </div>
-                )}
-            </div>
-
-            {/* Templates Section */}
-            <div className='drop-shadow-2xl' style={{ display: 'flex', alignItems: 'center' }}>
-                <p className='title-paragraph' style={{ display: 'inline-block', width: 'fit-content' }}>
-                    <FormattedMessage id="title.text.templates"/>
-                </p>
-                <Tooltip content={<FormattedMessage id="tooltip.text.templates" />} position="right">
-                    <QuestionMarkIcon />
-                </Tooltip>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", marginBottom:"10px" }}>
-                <button 
-                    className={`viewmode-button ${templatesViewMode === 'grid' ? 'active' : ''}`}
-                    onClick={() => setTemplatesViewMode('grid')}
-                    disabled={templatesViewMode === 'grid'}>
-                    <Tooltip content={<FormattedMessage id="tooltip.text.grid.view.button" />}>
-                            <GridViewIcon/>
-                    </Tooltip>
-                </button>
-                <button 
-                    className={`viewmode-button ${templatesViewMode === 'list' ? 'active' : ''}`}
-                    onClick={() => setTemplatesViewMode('list')}
-                    disabled={templatesViewMode === 'list'}>
-                    <Tooltip content={<FormattedMessage id="tooltip.text.list.view.button" />}>
-                        <ListViewIcon/>
-                    </Tooltip>
-                </button>
-            </div>
-            <div style={{ marginRight: "20px", paddingBottom: "35px" }}>
-                {templatesViewMode === 'list' && (
-                    <GraphTable columns={columns} data={templatesForTable} onRowClick={handleRowClick}/>
-                )}                
-                {templatesViewMode === 'grid' && (
-                    <div className="main-graph-grid" id="templatesContainer">
-                        {templates.map(template => (
-                            <GraphGridItem 
-                                key={template.id} 
-                                {...template} 
-                                DateModified={templateDateDisplay(template)}
-                                Description={template.Description || ''}
-                                setIsDisabled={setIsDisabled} 
-                            />
                         ))}
                     </div>
                 )}
