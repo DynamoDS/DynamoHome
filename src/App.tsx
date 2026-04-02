@@ -4,7 +4,6 @@ import { IntlProvider } from 'react-intl';
 import { getMessagesForLocale } from './localization/localization';
 import { LayoutContainer } from './components/LayoutContainer';
 import { SettingsProvider } from './components/SettingsContext';
-import { TemplatesProvider } from './components/TemplatesContext';
 
 const App = () => {
   const [locale, setLocale] = useState<Locale>("en");
@@ -26,9 +25,7 @@ const App = () => {
   return (
     <IntlProvider locale={locale} messages={messages}>
       <SettingsProvider>
-        <TemplatesProvider>
-          <LayoutContainer id='homeContainer' />
-        </TemplatesProvider>
+        <LayoutContainer id='homeContainer' />
       </SettingsProvider>
     </IntlProvider>
   );
