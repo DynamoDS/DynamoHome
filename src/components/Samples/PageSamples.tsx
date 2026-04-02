@@ -1,18 +1,18 @@
 import React from "react";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { SamplesTable } from './SamplesTable';
 import { FormattedMessage } from 'react-intl';
 import { GridViewIcon, ListViewIcon } from '../Common/CustomIcons';
 import { Tooltip } from '../Common/Tooltip';
 import { CustomSampleFirstCellRenderer } from "./CustomSampleFirstCellRenderer";
 import { SamplesGrid } from './SamplesGrid';
-import { openFile, showSamplesCommand, saveHomePageSettings } from '../../functions/utility';
+import { openFile, showSamplesCommand } from '../../functions/utility';
 import { useSettings } from '../SettingsContext';
 import { CustomDropdown } from '../Sidebar/CustomDropDown';
 import styles from './PageSamples.module.css';
 
 export const SamplesPage = ({ samplesViewMode }) => {
-    const { settings, updateSettings } = useSettings();
+    const { updateAndSaveSettings } = useSettings();
     const [viewMode, setViewMode] = useState(samplesViewMode); 
     const [collapsedRows, setCollapsedRows] = useState<CollapsedRow>({});
     const [initialized, setInitialized] = useState<boolean>(false);
@@ -57,19 +57,16 @@ export const SamplesPage = ({ samplesViewMode }) => {
     }, []); 
 
     
-    useEffect(() => {
-        // Set the viewMode based on the HomePage preferences
+    useLayoutEffect(() => {
         setViewMode(samplesViewMode);
-    }, [samplesViewMode]); 
+    }, [samplesViewMode]);
 
     useEffect(() => {
         if (initialized || samplesViewMode !== viewMode) {
             setInitialized(true);
-            updateSettings({ samplesViewMode: viewMode });
-            
-            // Send settings to Dynamo to save
-            saveHomePageSettings({ ...settings, samplesViewMode: viewMode });
-        } 
+            updateAndSaveSettings({ samplesViewMode: viewMode });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- only on viewMode; see PageRecent (hydration vs stale save)
     }, [viewMode]);
 
     // This variable defins the table structure displaying the graphs
