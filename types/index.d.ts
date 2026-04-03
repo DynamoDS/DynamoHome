@@ -112,6 +112,7 @@ type CellParams = {
     original: {
       Thumbnail?: string;
       Description: string;
+      ContextData?: string;
     }
   }
 }
