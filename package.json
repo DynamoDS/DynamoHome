@@ -7,7 +7,7 @@
   "scripts": {
     "lint:check": "eslint src/ tests/",
     "lint:fix": "eslint src/ tests/ --fix",
-    "test:unit": "NODE_ENV=test & jest tests/unit",
+    "test:unit": "jest tests/unit",
     "test:e2e": "playwright test tests/e2e/",
     "test": "npm run test:unit && npm run test:e2e",
     "start": "webpack serve --config webpack.config.ts",
@@ -73,6 +73,9 @@
     "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.2.2"
+  },
+  "overrides": {
+    "ajv": "^8.12.0"
   },
   "bugs": {
     "url": "https://github.com/DynamoDS/DynamoHome/issues"

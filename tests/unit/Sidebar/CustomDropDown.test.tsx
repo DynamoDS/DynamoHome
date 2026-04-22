@@ -72,7 +72,7 @@ describe('CustomDropdown', () => {
 
   it('when wholeButtonActionable=true, clicking placeholder toggles the dropdown', () => {
     const onChange = jest.fn();
-    const { container } = renderWithIntl(
+    renderWithIntl(
       <CustomDropdown
         id="test-dd"
         placeholder="Select..."
