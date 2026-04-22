@@ -1,6 +1,7 @@
-import { img } from '../../assets/home';
+import { getPlaceholderImage } from '../../functions/placeholder';
 import { openFile } from '../../functions/utility';
 import { CardItem } from '../Common/CardItem';
+import { img } from '../../assets/home';
 
 export const GraphGridItem = ({ id, Caption, ContextData, Description, DateModified, Thumbnail, setIsDisabled }: GraphItem) => {
     const handleClick = (e:MouseEvent) => {
@@ -11,9 +12,14 @@ export const GraphGridItem = ({ id, Caption, ContextData, Description, DateModif
         openFile(ContextData);
     };
 
+    // Use placeholder if Thumbnail is empty, null, undefined, or the default img
+    const thumbnail = Thumbnail;
+    const hasCustomThumbnail = thumbnail && thumbnail !== img && thumbnail.trim() !== '';
+    const imageSrc = hasCustomThumbnail ? thumbnail : getPlaceholderImage(ContextData);
+
     return (
         <CardItem 
-            imageSrc={Thumbnail || img} 
+            imageSrc={imageSrc} 
             onClick={handleClick} 
             tooltipContent={
                 <>
@@ -26,4 +32,4 @@ export const GraphGridItem = ({ id, Caption, ContextData, Description, DateModif
             subtitleText={DateModified} 
         />
     );
-}
+};
