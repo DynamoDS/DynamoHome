@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { ClosedArrow, OpenArrow } from '../../../src/components/Common/Arrow';
 

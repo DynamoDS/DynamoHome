@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { SamplesGrid } from '../../../src/components/Samples/SamplesGrid';
 

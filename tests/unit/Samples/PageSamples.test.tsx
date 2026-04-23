@@ -1,4 +1,3 @@
-import React from 'react';
 import { screen, fireEvent, act } from '@testing-library/react';
 import { renderWithProviders } from '../testUtils';
 import { SamplesPage } from '../../../src/components/Samples/PageSamples';
@@ -16,7 +15,7 @@ jest.mock('../../../src/components/Samples/SamplesTable', () => ({
 }));
 
 jest.mock('../../../src/components/Samples/SamplesGrid', () => ({
-  SamplesGrid: ({ data }: any) => <div data-testid="samples-grid">SamplesGrid</div>,
+  SamplesGrid: () => <div data-testid="samples-grid">SamplesGrid</div>,
 }));
 
 jest.mock('../../../src/functions/utility', () => ({
@@ -24,12 +23,6 @@ jest.mock('../../../src/functions/utility', () => ({
   showSamplesCommand: jest.fn(),
   saveHomePageSettings: jest.fn(),
 }));
-
-const { openFile, showSamplesCommand } = require('../../../src/functions/utility');
-
-const mockSamples = [
-  { FileName: 'Sample One', FilePath: '/path/one.dyn', Description: '', DateModified: '2024-01-01', Thumbnail: '' },
-];
 
 describe('SamplesPage', () => {
   beforeEach(() => {

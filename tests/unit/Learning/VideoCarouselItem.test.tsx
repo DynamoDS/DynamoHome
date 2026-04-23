@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { VideoCarouselItem } from '../../../src/components/Learning/VideoCarouselItem';
 
@@ -33,7 +32,7 @@ describe('VideoCarouselItem', () => {
   it('renders an iframe with the correct YouTube embed URL', () => {
     const { container } = render(<VideoCarouselItem {...defaultProps} />);
     const iframes = container.querySelectorAll('iframe');
-    const youtubeUrl = `https://www.youtube.com/embed/abc123xyz?autoplay=1`;
+    const youtubeUrl = 'https://www.youtube.com/embed/abc123xyz?autoplay=1';
     const hasYoutubeIframe = Array.from(iframes).some(
       (iframe) => iframe.getAttribute('src') === youtubeUrl
     );

@@ -1,4 +1,3 @@
-import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
 import { renderWithIntl } from '../testUtils';
 import { Sidebar } from '../../../src/components/Sidebar/Sidebar';

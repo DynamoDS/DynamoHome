@@ -1,12 +1,10 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { startGuidedTour } from '../../../src/functions/utility';
 import { GuideGridItem } from '../../../src/components/Learning/GuideGridItem';
 
 jest.mock('../../../src/functions/utility', () => ({
   startGuidedTour: jest.fn(),
 }));
-
-const { startGuidedTour } = require('../../../src/functions/utility');
 
 const defaultProps: Guide = {
   id: 'guide-1',

@@ -1,13 +1,11 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { openFile } from '../../../src/functions/utility';
 import { GraphGridItem } from '../../../src/components/Recent/GraphGridItem';
 
 jest.mock('../../../src/functions/utility', () => ({
   openFile: jest.fn(),
   saveHomePageSettings: jest.fn(),
 }));
-
-const { openFile } = require('../../../src/functions/utility');
 
 const defaultProps = {
   id: 'graph-1',

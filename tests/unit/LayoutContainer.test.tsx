@@ -1,9 +1,9 @@
-import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { SettingsProvider } from '../../src/components/SettingsContext';
 import { LayoutContainer } from '../../src/components/LayoutContainer';
 import { getMessagesForLocale } from '../../src/localization/localization';
+import { saveHomePageSettings } from '../../src/functions/utility';
 
 jest.mock('react-split-pane', () => {
   return function SplitPaneMock({ children, onDragFinished }: any) {
@@ -130,7 +130,6 @@ describe('LayoutContainer', () => {
   });
 
   it('triggering resize calls saveHomePageSettings', async () => {
-    const { saveHomePageSettings } = require('../../src/functions/utility');
     renderLayout();
     await act(async () => {
       fireEvent.click(screen.getByTestId('trigger-resize'));

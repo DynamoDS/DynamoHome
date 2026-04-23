@@ -1,12 +1,10 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { openFile } from '../../../src/functions/utility';
 import { SamplesGridItem } from '../../../src/components/Samples/SamplesGridItem';
 
 jest.mock('../../../src/functions/utility', () => ({
   openFile: jest.fn(),
 }));
-
-const { openFile } = require('../../../src/functions/utility');
 
 const defaultProps: Samples = {
   FileName: 'Sample Graph',

@@ -1,4 +1,3 @@
-import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
 import { renderWithIntl } from '../testUtils';
 import { CustomDropdown } from '../../../src/components/Sidebar/CustomDropDown';
@@ -108,8 +107,6 @@ describe('CustomDropdown', () => {
         showDivider={false}
       />
     );
-    const spansTrue = cTrue.querySelector('[class*="dropdown-selected"]')?.querySelectorAll('span') ?? [];
-    const spansFalse = cFalse.querySelector('[class*="dropdown-selected"]')?.querySelectorAll('span') ?? [];
     // With divider: more spans than without
     // Note: CSS module class is undefined, so we find dropdown-selected by first div containing spans
     // Alternative: count all spans in the whole dropdown
