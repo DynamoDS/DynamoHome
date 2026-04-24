@@ -7,8 +7,8 @@
   "scripts": {
     "lint:check": "eslint src/ tests/",
     "lint:fix": "eslint src/ tests/ --fix",
-    "test:unit": "jest tests/App.test.ts",
-    "test:e2e": "playwright test tests/e2e.test.ts",
+    "test:unit": "jest tests/unit",
+    "test:e2e": "playwright test tests/e2e",
     "test": "npm run test:unit && npm run test:e2e",
     "start": "webpack serve --config webpack.config.ts",
     "build": "webpack --config webpack.config.ts --mode=development",
