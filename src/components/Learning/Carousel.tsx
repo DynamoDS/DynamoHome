@@ -18,7 +18,7 @@ export const Carousel = ({ children }: {children: ReactNode}) => {
 
     return (
         <div className={styles['carousel-container']}>
-            <button onClick={goLeft}>
+            <button type="button" onClick={goLeft} data-testid="carousel-prev" aria-label="Previous videos">
                 <OpenArrow isOpen={true} direction="left" />
             </button>
             <div className={styles['carousel-content-wrapper']}>
@@ -26,7 +26,7 @@ export const Carousel = ({ children }: {children: ReactNode}) => {
                     {children}
                 </div>
             </div>
-            <button onClick={goRight}>
+            <button type="button" onClick={goRight} data-testid="carousel-next" aria-label="Next videos">
                 <OpenArrow isOpen={false} direction="right" />
             </button>
         </div>

@@ -19,3 +19,7 @@ coverage
 test-results
 playwright-report
 playwright/.cache
+.playwright-cli
+
+# claude code personal settings
+.claude/settings.local.json

@@ -7,8 +7,8 @@
   "scripts": {
     "lint:check": "eslint src/ tests/",
     "lint:fix": "eslint src/ tests/ --fix",
-    "test:unit": "NODE_ENV=test & jest tests/App.test.ts",
-    "test:e2e": "playwright test tests/e2e.test.ts",
+    "test:unit": "jest tests/unit",
+    "test:e2e": "playwright test tests/e2e",
     "test": "npm run test:unit && npm run test:e2e",
     "start": "webpack serve --config webpack.config.ts",
     "build": "webpack --config webpack.config.ts --mode=development",
@@ -51,6 +51,7 @@
     "@babel/preset-react": "^7.23.3",
     "@playwright/test": "^1.27.1",
     "@testing-library/dom": "^10.3.0",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^15.0.6",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.3.3",

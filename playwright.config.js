@@ -13,7 +13,7 @@ const { devices } = require('@playwright/test');
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: './tests',
+  testDir: './tests/e2e',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -61,6 +61,7 @@ const config = {
   webServer: {
     command: 'npm run start',
     port: 8080,
+    reuseExistingServer: !process.env.CI,
   },
 };
 

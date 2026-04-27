@@ -1,3 +1,5 @@
+/// <reference types="@testing-library/jest-dom" />
+
 declare module 'react-split-pane';
 declare module 'react-table';
 

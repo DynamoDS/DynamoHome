@@ -45,7 +45,7 @@ const renderSample = (sample: Samples, keyPrefix: string | number) => {
 export const SamplesGrid = ({ data }:{ data: Samples[]}) => {
     const rootChildren = data[0]?.Children || [];
     return (
-        <div id="samplesContainer">
+        <div id="samplesContainer" data-testid="samples-grid">
             {rootChildren.map((sample: Samples, index) => renderSample(sample, sample.FileName || index))}
         </div>
     );
