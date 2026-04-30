@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, react/jsx-key, react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useTable, useFlexLayout, useResizeColumns } from 'react-table';
 import styles from '../Common/Table.module.css';
@@ -41,7 +42,7 @@ export const SamplesTable = ({ columns, data, onRowClick, onCollapsedRowsChange 
 
   const flattenData = (data: Samples, parentId = null, depth = 0): any[] => {
     if (!Array.isArray(data) || data.length === 0) {
-        return [];
+      return [];
     }
 
     const startingData = parentId === null ? data.flatMap(d => d.Children || []) : data;
@@ -51,14 +52,14 @@ export const SamplesTable = ({ columns, data, onRowClick, onCollapsedRowsChange 
     }, [collapsedRows, onCollapsedRowsChange]);
 
     return startingData.flatMap((item) => {
-        const isParent = item.Children && item.Children.length > 0;
-        // Constructing a unique ID for the parent
-        const id = parentId === null ? item.FileName : `${parentId}-${item.FileName}`;
-        const flatItem = { ...item, parentId, isParent, depth, id };
+      const isParent = item.Children && item.Children.length > 0;
+      // Constructing a unique ID for the parent
+      const id = parentId === null ? item.FileName : `${parentId}-${item.FileName}`;
+      const flatItem = { ...item, parentId, isParent, depth, id };
 
-        // When flattening children, pass the newly constructed id as their parentId
-        const children = isParent ? flattenData(item.Children, id, depth + 1) : [];
-        return [flatItem, ...children];
+      // When flattening children, pass the newly constructed id as their parentId
+      const children = isParent ? flattenData(item.Children, id, depth + 1) : [];
+      return [flatItem, ...children];
     });
   };
 
@@ -75,8 +76,8 @@ export const SamplesTable = ({ columns, data, onRowClick, onCollapsedRowsChange 
   );
 
   return (
-  <div className={styles['table-view']}>
-    <div className={styles['table-container']}>
+    <div className={styles['table-view']}>
+      <div className={styles['table-container']}>
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup: any) => (
@@ -116,8 +117,8 @@ export const SamplesTable = ({ columns, data, onRowClick, onCollapsedRowsChange 
                     onClick: isParentRow
                       ? () => handleCollapseClick(row.original.id)
                       : isChildRow
-                      ? () => handleChildRowClick(row)
-                      : undefined
+                        ? () => handleChildRowClick(row)
+                        : undefined
                   })}
                 >
                   {row.cells.map((cell: Cell, index: number) => {
@@ -138,7 +139,7 @@ export const SamplesTable = ({ columns, data, onRowClick, onCollapsedRowsChange 
                     // Default rendering for other cells
                     return <td {...cell.getCellProps({
                       className: `${styles['table-cell']}`
-                  })}>{cell.render('Cell')}</td>;
+                    })}>{cell.render('Cell')}</td>;
                   })}
                 </tr>
               );

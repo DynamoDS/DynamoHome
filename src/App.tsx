@@ -6,7 +6,7 @@ import { LayoutContainer } from './components/LayoutContainer';
 import { SettingsProvider } from './components/SettingsContext';
 
 const App = () => {
-  const [locale, setLocale] = useState<Locale>("en");
+  const [locale, setLocale] = useState<Locale>('en');
 
   // Function to get messages based on locale
   const messages = getMessagesForLocale(locale);
@@ -29,6 +29,6 @@ const App = () => {
       </SettingsProvider>
     </IntlProvider>
   );
-}
+};
 
 export default App;

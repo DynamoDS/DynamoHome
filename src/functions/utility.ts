@@ -56,6 +56,7 @@ export function showSamplesCommand(value: ShowSamplesCommand) {
 /**
  * A call to a backend function requesting to save the current HomePage settings
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function saveHomePageSettings(settings: any) {
   if (window.chrome?.webview !== undefined) {
     const settingsJson = JSON.stringify(settings);

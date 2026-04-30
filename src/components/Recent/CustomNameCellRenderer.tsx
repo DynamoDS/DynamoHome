@@ -17,18 +17,18 @@ export const CustomNameCellRenderer = ({ value, row }: CellParams) => {
   const imgSrc = hasCustomThumbnail ? thumbnail : getPlaceholderImage(row.original.ContextData);
   const description = row.original.Description;
   return (
-    <div className={styles["title-cell"]}>
+    <div className={styles['title-cell']}>
       <a className={`${styles['graph-link']} ${styles['row-img']}`}>
         <div className={`${cardStyles['clipped-image-container']} ${styles['row-img-container']}`}>
           <img src={imgSrc} className={cardStyles['clipped-image']} />
         </div>
       </a>
-        <div>
-          {description
-            ? <Tooltip content={description}>{value}</Tooltip>
-            : value
-          }
-        </div>
+      <div>
+        {description
+          ? <Tooltip content={description}>{value}</Tooltip>
+          : value
+        }
+      </div>
     </div>
   );
 };

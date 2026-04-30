@@ -3,33 +3,34 @@ import { openFile } from '../../functions/utility';
 import { CardItem } from '../Common/CardItem';
 import { img } from '../../assets/home';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const GraphGridItem = ({ id, Caption, ContextData, Description, DateModified, Thumbnail, setIsDisabled }: GraphItem) => {
-    const handleClick = (e:MouseEvent) => {
-        // freezes the UI 
-        setIsDisabled(true);
+  const handleClick = (e:MouseEvent) => {
+    // freezes the UI 
+    setIsDisabled(true);
 
-        e.preventDefault();
-        openFile(ContextData);
-    };
+    e.preventDefault();
+    openFile(ContextData);
+  };
 
-    // Use placeholder if Thumbnail is empty, null, undefined, or the default img
-    const thumbnail = Thumbnail;
-    const hasCustomThumbnail = thumbnail && thumbnail !== img && thumbnail.trim() !== '';
-    const imageSrc = hasCustomThumbnail ? thumbnail : getPlaceholderImage(ContextData);
+  // Use placeholder if Thumbnail is empty, null, undefined, or the default img
+  const thumbnail = Thumbnail;
+  const hasCustomThumbnail = thumbnail && thumbnail !== img && thumbnail.trim() !== '';
+  const imageSrc = hasCustomThumbnail ? thumbnail : getPlaceholderImage(ContextData);
 
-    return (
-        <CardItem 
-            imageSrc={imageSrc} 
-            onClick={handleClick} 
-            tooltipContent={
-                <>
-                <div>{Caption}</div>
-                <div>{ContextData}</div>
-                <div>{Description}</div>
-                </>
-                } 
-            titleText={Caption} 
-            subtitleText={DateModified} 
-        />
-    );
+  return (
+    <CardItem 
+      imageSrc={imageSrc} 
+      onClick={handleClick} 
+      tooltipContent={
+        <>
+          <div>{Caption}</div>
+          <div>{ContextData}</div>
+          <div>{Description}</div>
+        </>
+      } 
+      titleText={Caption} 
+      subtitleText={DateModified} 
+    />
+  );
 };

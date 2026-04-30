@@ -1,8 +1,10 @@
+import type { ReactNode } from 'react';
 import { render, screen, act } from '@testing-library/react';
 import App from '../../src/App';
 
 jest.mock('react-split-pane', () => {
-  return function SplitPaneMock({ children }: any) {
+  return function SplitPaneMock(props: unknown) {
+    const { children } = props as { children: ReactNode };
     return <div data-testid="split-pane">{children}</div>;
   };
 });

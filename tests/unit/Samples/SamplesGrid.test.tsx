@@ -2,7 +2,10 @@ import { render, screen } from '@testing-library/react';
 import { SamplesGrid } from '../../../src/components/Samples/SamplesGrid';
 
 jest.mock('../../../src/components/Samples/SamplesGridItem', () => ({
-  SamplesGridItem: ({ FileName }: any) => <div data-testid="sample-grid-item">{FileName}</div>,
+  SamplesGridItem: (props: unknown) => {
+    const { FileName } = props as { FileName: string };
+    return <div data-testid="sample-grid-item">{FileName}</div>;
+  },
 }));
 
 const makeLeaf = (name: string, path = '/path'): Samples => ({

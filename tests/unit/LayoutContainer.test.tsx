@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { SettingsProvider } from '../../src/components/SettingsContext';
@@ -6,7 +7,11 @@ import { getMessagesForLocale } from '../../src/localization/localization';
 import { saveHomePageSettings } from '../../src/functions/utility';
 
 jest.mock('react-split-pane', () => {
-  return function SplitPaneMock({ children, onDragFinished }: any) {
+  return function SplitPaneMock(props: unknown) {
+    const { children, onDragFinished } = props as {
+      children: ReactNode;
+      onDragFinished?: (size: number) => void;
+    };
     return (
       <div data-testid="split-pane">
         <button data-testid="trigger-resize" onClick={() => onDragFinished && onDragFinished(350)}>
@@ -19,17 +24,26 @@ jest.mock('react-split-pane', () => {
 });
 
 jest.mock('../../src/components/Sidebar/Sidebar', () => ({
-  Sidebar: ({ selectedSidebarItem }: any) => (
-    <div data-testid="sidebar">Sidebar - {selectedSidebarItem}</div>
-  ),
+  Sidebar: (props: unknown) => {
+    const { selectedSidebarItem } = props as { selectedSidebarItem: SidebarItem };
+    return (
+      <div data-testid="sidebar">Sidebar - {selectedSidebarItem}</div>
+    );
+  },
 }));
 
 jest.mock('../../src/components/MainContent', () => ({
-  MainContent: ({ isDisabled, selectedSidebarItem }: any) => (
-    <div data-testid="main-content" data-disabled={String(isDisabled)}>
-      MainContent - {selectedSidebarItem}
-    </div>
-  ),
+  MainContent: (props: unknown) => {
+    const { isDisabled, selectedSidebarItem } = props as {
+      isDisabled: boolean;
+      selectedSidebarItem: SidebarItem;
+    };
+    return (
+      <div data-testid="main-content" data-disabled={String(isDisabled)}>
+        MainContent - {selectedSidebarItem}
+      </div>
+    );
+  },
 }));
 
 jest.mock('../../src/functions/utility', () => ({
