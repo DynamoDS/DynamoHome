@@ -1,17 +1,27 @@
+import type { ReactNode } from 'react';
 import { screen, act } from '@testing-library/react';
 import { renderWithIntl } from '../testUtils';
 import { LearningPage } from '../../../src/components/Learning/PageLearning';
 
 jest.mock('../../../src/components/Learning/GuideGridItem', () => ({
-  GuideGridItem: ({ Name }: any) => <div data-testid="guide-item">{Name}</div>,
+  GuideGridItem: (props: unknown) => {
+    const { Name } = props as { Name: string };
+    return <div data-testid="guide-item">{Name}</div>;
+  },
 }));
 
 jest.mock('../../../src/components/Learning/Carousel', () => ({
-  Carousel: ({ children }: any) => <div data-testid="carousel">{children}</div>,
+  Carousel: (props: unknown) => {
+    const { children } = props as { children: ReactNode };
+    return <div data-testid="carousel">{children}</div>;
+  },
 }));
 
 jest.mock('../../../src/components/Learning/VideoCarouselItem', () => ({
-  VideoCarouselItem: ({ title }: any) => <div data-testid="video-item">{title}</div>,
+  VideoCarouselItem: (props: unknown) => {
+    const { title } = props as { title: string };
+    return <div data-testid="video-item">{title}</div>;
+  },
 }));
 
 const mockGuides: Guide[] = [

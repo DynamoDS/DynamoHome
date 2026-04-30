@@ -16,7 +16,7 @@ const columns: Column[] = [
   { Header: 'Location', accessor: 'ContextData', resizable: true },
 ];
 
-const mockData: any[] = [
+const mockData: unknown[] = [
   {
     id: '1',
     date: '2024-01-01',
@@ -39,7 +39,7 @@ const mockData: any[] = [
 
 describe('GraphTable', () => {
   it('renders column headers', () => {
-    render(<GraphTable columns={columns} data={mockData} onRowClick={jest.fn()} />);
+    render(<GraphTable columns={columns} data={mockData as Graph[]} onRowClick={jest.fn()} />);
     expect(screen.getByText('Title')).toBeInTheDocument();
     expect(screen.getByText('Author')).toBeInTheDocument();
     expect(screen.getByText('Date Modified')).toBeInTheDocument();
@@ -47,14 +47,14 @@ describe('GraphTable', () => {
   });
 
   it('renders a row for each data item', () => {
-    render(<GraphTable columns={columns} data={mockData} onRowClick={jest.fn()} />);
+    render(<GraphTable columns={columns} data={mockData as Graph[]} onRowClick={jest.fn()} />);
     expect(screen.getByText('Graph One')).toBeInTheDocument();
     expect(screen.getByText('Graph Two')).toBeInTheDocument();
   });
 
   it('calls onRowClick when a row is clicked', () => {
     const onRowClick = jest.fn();
-    render(<GraphTable columns={columns} data={mockData} onRowClick={onRowClick} />);
+    render(<GraphTable columns={columns} data={mockData as Graph[]} onRowClick={onRowClick} />);
     // Click the first row
     const rows = screen.getAllByRole('row');
     // rows[0] is the header row, rows[1] is first data row

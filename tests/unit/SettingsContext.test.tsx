@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { SettingsProvider, useSettings } from '../../src/components/SettingsContext';
 
-const TestConsumer = ({ onRender }: { onRender?: (val: any) => void }) => {
+const TestConsumer = ({ onRender }: { onRender?: (val: unknown) => void }) => {
   const ctx = useSettings();
   if (onRender) onRender(ctx);
   return (
@@ -25,15 +25,16 @@ describe('SettingsContext', () => {
   });
 
   it('useSettings returns settings and updateSettings', () => {
-    let captured: any;
+    let captured: unknown;
     render(
       <SettingsProvider>
         <TestConsumer onRender={(val) => { captured = val; }} />
       </SettingsProvider>
     );
-    expect(captured).toHaveProperty('settings');
-    expect(captured).toHaveProperty('updateSettings');
-    expect(typeof captured.updateSettings).toBe('function');
+    const capturedObj = captured as { settings: unknown; updateSettings: unknown };
+    expect(capturedObj).toHaveProperty('settings');
+    expect(capturedObj).toHaveProperty('updateSettings');
+    expect(typeof capturedObj.updateSettings).toBe('function');
   });
 
   it('initial settings is an empty object', () => {

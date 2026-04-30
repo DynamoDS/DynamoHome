@@ -1,11 +1,11 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { CustomNameCellRenderer } from '../../../src/components/Recent/CustomNameCellRenderer';
 
-const makeRow = (overrides: any = {}) => ({
+const makeRow = (overrides: unknown = {}) => ({
   original: {
     Thumbnail: null,
     Description: '',
-    ...overrides,
+    ...(overrides as Record<string, unknown>),
   },
 });
 
