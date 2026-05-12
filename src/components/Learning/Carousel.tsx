@@ -3,32 +3,32 @@ import { OpenArrow } from '../Common/Arrow';
 import styles from './Carousel.module.css';
 
 export const Carousel = ({ children }: {children: ReactNode}) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const itemsPerPage = 4;
-    const totalItems = React.Children.count(children);
-    const maxIndex = totalItems - itemsPerPage
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const itemsPerPage = 4;
+  const totalItems = React.Children.count(children);
+  const maxIndex = totalItems - itemsPerPage;
 
-    const goLeft = () => {
-        setCurrentIndex(currentIndex === 0 ? maxIndex : currentIndex - 1);
-    };
+  const goLeft = () => {
+    setCurrentIndex(currentIndex === 0 ? maxIndex : currentIndex - 1);
+  };
 
-    const goRight = () => {
-        setCurrentIndex(currentIndex === maxIndex ? 0 : currentIndex + 1);
-    }
+  const goRight = () => {
+    setCurrentIndex(currentIndex === maxIndex ? 0 : currentIndex + 1);
+  };
 
-    return (
-        <div className={styles['carousel-container']}>
-            <button type="button" onClick={goLeft} data-testid="carousel-prev" aria-label="Previous videos">
-                <OpenArrow isOpen={true} direction="left" />
-            </button>
-            <div className={styles['carousel-content-wrapper']}>
-                <div id="videoCarousel" className={styles['carousel-content']} style={{ transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)` }}>
-                    {children}
-                </div>
-            </div>
-            <button type="button" onClick={goRight} data-testid="carousel-next" aria-label="Next videos">
-                <OpenArrow isOpen={false} direction="right" />
-            </button>
+  return (
+    <div className={styles['carousel-container']}>
+      <button type="button" onClick={goLeft} data-testid="carousel-prev" aria-label="Previous videos">
+        <OpenArrow isOpen={true} direction="left" />
+      </button>
+      <div className={styles['carousel-content-wrapper']}>
+        <div id="videoCarousel" className={styles['carousel-content']} style={{ transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)` }}>
+          {children}
         </div>
-    );
+      </div>
+      <button type="button" onClick={goRight} data-testid="carousel-next" aria-label="Next videos">
+        <OpenArrow isOpen={false} direction="right" />
+      </button>
+    </div>
+  );
 };

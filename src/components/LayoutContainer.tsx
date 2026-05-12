@@ -5,6 +5,7 @@ import SplitPane from 'react-split-pane';
 import { useSettings } from './SettingsContext';
 import { saveHomePageSettings } from '../functions/utility';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const LayoutContainer = ({ id }: { id?: string }) => {
   const defaultMinSize = 250;
   const defaultMaxSize = 500;
@@ -44,6 +45,7 @@ export const LayoutContainer = ({ id }: { id?: string }) => {
     if (sideBarWidth !== null && settings) {
       saveHomePageSettings({ ...settings, sideBarWidth: sideBarWidth.toString() });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sideBarWidth]);
 
   const setHomePageSettings = (settingsJson: string) => {
@@ -52,7 +54,7 @@ export const LayoutContainer = ({ id }: { id?: string }) => {
         const settingsObject = JSON.parse(settingsJson);
         updateSettings(settingsObject);
       } else {
-        console.log(`Received null or empty settings`);
+        console.log('Received null or empty settings');
       }
     } catch (exception) {
       console.log(`Failed to set the HomePage settings with the following error ${exception}`);
@@ -68,6 +70,7 @@ export const LayoutContainer = ({ id }: { id?: string }) => {
       delete window.setShowStartPageChanged;
       delete window.setHomePageSettings;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDisabled, settings]);
 
   const parseOrDefault = (value: string | undefined, defaultValue: number) => {

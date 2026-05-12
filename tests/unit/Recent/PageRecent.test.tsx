@@ -3,21 +3,28 @@ import { renderWithProviders } from '../testUtils';
 import { RecentPage } from '../../../src/components/Recent/PageRecent';
 
 jest.mock('../../../src/components/Recent/GraphGridItem', () => ({
-  GraphGridItem: ({ Caption }: any) => (
-    <div data-testid="graph-grid-item">{Caption}</div>
-  ),
+  GraphGridItem: (props: unknown) => {
+    const { Caption } = props as { Caption: string };
+    return <div data-testid="graph-grid-item">{Caption}</div>;
+  },
 }));
 
 jest.mock('../../../src/components/Recent/GraphTable', () => ({
-  GraphTable: ({ data, onRowClick }: any) => (
-    <div data-testid="graph-table">
-      {data.map((d: any) => (
-        <div key={d.id} data-testid="table-row" onClick={() => onRowClick({ original: d })}>
-          {d.Caption}
-        </div>
-      ))}
-    </div>
-  ),
+  GraphTable: (props: unknown) => {
+    const { data, onRowClick } = props as {
+      data: Array<{ id: string; Caption: string }>;
+      onRowClick: (row: { original: { id: string; Caption: string } }) => void;
+    };
+    return (
+      <div data-testid="graph-table">
+        {data.map((d) => (
+          <div key={d.id} data-testid="table-row" onClick={() => onRowClick({ original: d })}>
+            {d.Caption}
+          </div>
+        ))}
+      </div>
+    );
+  },
 }));
 
 jest.mock('../../../src/functions/utility', () => ({

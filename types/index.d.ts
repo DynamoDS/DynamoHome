@@ -3,6 +3,7 @@
 declare module 'react-split-pane';
 declare module 'react-table';
 
+declare module "*.css";
 declare module "*.module.css";
 type Locale = 'en' | 'en-US' | 'es-ES' | 'de-DE' | 'cs-CZ' | 'fr-FR' | 'it-IT' | 'ja-JP' | 'ko-KR' | 'pl-PL' | 'pt-BR' | 'ru-RU' | 'zh-Hans' | 'zh-Hant' | 'zh-CN' | 'zh-TW';
 type SidebarCommand = 'open-file' | 'open-template' | 'open-backup-locations' | 'workspace' | 'custom-node';

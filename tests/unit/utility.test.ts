@@ -1,5 +1,7 @@
 import { openFile, startGuidedTour, sideBarCommand, showSamplesCommand, saveHomePageSettings } from '../../src/functions/utility';
 
+type MutableWindow = Window & { chrome?: Window['chrome'] };
+
 describe('utility functions', () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -13,7 +15,7 @@ describe('utility functions', () => {
 
     it('does not throw when chrome is undefined', () => {
       const savedChrome = window.chrome;
-      (window as any).chrome = undefined;
+      (window as unknown as MutableWindow).chrome = undefined;
       expect(() => openFile('/path')).not.toThrow();
       window.chrome = savedChrome;
     });
@@ -27,7 +29,7 @@ describe('utility functions', () => {
 
     it('does not throw when chrome is undefined', () => {
       const savedChrome = window.chrome;
-      (window as any).chrome = undefined;
+      (window as unknown as MutableWindow).chrome = undefined;
       expect(() => startGuidedTour('geometry')).not.toThrow();
       window.chrome = savedChrome;
     });
@@ -61,7 +63,7 @@ describe('utility functions', () => {
 
     it('does not call any function when chrome is undefined', () => {
       const savedChrome = window.chrome;
-      (window as any).chrome = undefined;
+      (window as unknown as MutableWindow).chrome = undefined;
       expect(() => sideBarCommand('open-file')).not.toThrow();
       window.chrome = savedChrome;
       expect(window.chrome.webview.hostObjects.scriptObject.OpenWorkspace).not.toHaveBeenCalled();
@@ -81,7 +83,7 @@ describe('utility functions', () => {
 
     it('does not throw when chrome is undefined', () => {
       const savedChrome = window.chrome;
-      (window as any).chrome = undefined;
+      (window as unknown as MutableWindow).chrome = undefined;
       expect(() => showSamplesCommand('open-graphs')).not.toThrow();
       window.chrome = savedChrome;
     });
@@ -98,7 +100,7 @@ describe('utility functions', () => {
 
     it('does not throw when chrome is undefined', () => {
       const savedChrome = window.chrome;
-      (window as any).chrome = undefined;
+      (window as unknown as MutableWindow).chrome = undefined;
       expect(() => saveHomePageSettings({ a: 1 })).not.toThrow();
       window.chrome = savedChrome;
     });

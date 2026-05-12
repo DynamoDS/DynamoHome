@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { CustomSampleFirstCellRenderer } from '../../../src/components/Samples/CustomSampleFirstCellRenderer';
 
 // Cast so TypeScript doesn't complain about the string return case
-const Renderer = CustomSampleFirstCellRenderer as FC<any>;
+const Renderer = CustomSampleFirstCellRenderer as unknown as FC<CustomSampleCellRenderer>;
 
 const makeRow = (overrides: Partial<Original> = {}): Row => ({
   original: {

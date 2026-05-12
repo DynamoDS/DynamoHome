@@ -3,15 +3,21 @@ import { renderWithProviders } from '../testUtils';
 import { SamplesPage } from '../../../src/components/Samples/PageSamples';
 
 jest.mock('../../../src/components/Samples/SamplesTable', () => ({
-  SamplesTable: ({ data, onRowClick }: any) => (
-    <div data-testid="samples-table">
-      {data.map((d: any, i: number) => (
-        <div key={i} data-testid="table-row" onClick={() => onRowClick(d)}>
-          {d.FileName}
-        </div>
-      ))}
-    </div>
-  ),
+  SamplesTable: (props: unknown) => {
+    const { data, onRowClick } = props as {
+      data: Array<{ FileName: string }>;
+      onRowClick: (row: unknown) => void;
+    };
+    return (
+      <div data-testid="samples-table">
+        {data.map((d, i: number) => (
+          <div key={i} data-testid="table-row" onClick={() => onRowClick(d)}>
+            {d.FileName}
+          </div>
+        ))}
+      </div>
+    );
+  },
 }));
 
 jest.mock('../../../src/components/Samples/SamplesGrid', () => ({

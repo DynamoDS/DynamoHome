@@ -9,6 +9,7 @@ export const CustomSampleFirstCellRenderer = ({ value, row, rows, rowIndex, coll
   const isChildRow = row.original.parentId !== null;
   const depth = row.original.depth || 0;
   const indent = (depth - 1) * 20; // Adjust the indent as needed
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const arrowIndent = (depth) * 20; // Adjust the indent as needed
   const isParentRow = row.original.isParent;
 
@@ -79,13 +80,13 @@ export const CustomSampleFirstCellRenderer = ({ value, row, rows, rowIndex, coll
             justifyContent: 'center',
             marginRight: '10px'
           }}
-          >
+        >
           <span style={{ paddingLeft: `${indent}px`, marginBottom: '6px' }}>
             <ClosedArrow isOpen={!collapsedRows[row.original.id]} />
           </span>
         </span>
         {/* cell content */}
-        <div style={{ paddingLeft: `12px` }}>{value}</div>
+        <div style={{ paddingLeft: '12px' }}>{value}</div>
       </div>
     );
   } 
@@ -101,7 +102,7 @@ export const CustomSampleFirstCellRenderer = ({ value, row, rows, rowIndex, coll
             justifyContent: 'center',
             marginRight: '10px'
           }}
-          >
+        >
           <span style={{ paddingLeft: `${indent}px` }}>
             <ClosedArrow isOpen={!collapsedRows[row.original.id]} />
           </span>
