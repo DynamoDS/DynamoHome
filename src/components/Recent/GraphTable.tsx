@@ -13,11 +13,11 @@ export const GraphTable = ({ columns, data, onRowClick }: GraphTable) => {
     }),
     []
   );
-  const { 
-    getTableProps, 
-    getTableBodyProps, 
-    headerGroups, 
-    rows, 
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
     prepareRow,
     resetResizing
   } = useTable(
@@ -27,7 +27,7 @@ export const GraphTable = ({ columns, data, onRowClick }: GraphTable) => {
       defaultColumn
     },
     useFlexLayout,
-    useResizeColumns 
+    useResizeColumns
   );
 
   const handleRowClick = (row:Row) => {
@@ -42,7 +42,6 @@ export const GraphTable = ({ columns, data, onRowClick }: GraphTable) => {
       <div className={styles['table-container']}>
         <table {...getTableProps()}>
           <thead>
-            {console.log(headerGroups)}
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column: any, columnIndex: number) => (

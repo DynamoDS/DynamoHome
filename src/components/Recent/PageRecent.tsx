@@ -5,27 +5,31 @@ import { CustomNameCellRenderer } from './CustomNameCellRenderer';
 import { CustomLocationCellRenderer } from './CustomLocationCellRenderer';
 import { CustomAuthorCellRenderer } from './CustomAuthorCellRenderer';
 import { GraphTable } from './GraphTable';
-import { GridViewIcon, ListViewIcon } from '../Common/CustomIcons';
+import { GridViewIcon, ListViewIcon, QuestionMarkIcon } from '../Common/CustomIcons';
 import { openFile, saveHomePageSettings } from '../../functions/utility';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
 import { useSettings } from '../SettingsContext';
+import { useTemplates } from '../TemplatesContext';
 
-export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) => {    
+export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) => {
   const { settings, updateSettings } = useSettings();
-  const [viewMode, setViewMode] = useState(recentPageViewMode); 
+  const templates = useTemplates();
+  const [viewMode, setViewMode] = useState(recentPageViewMode);
+  const [templatesViewMode, setTemplatesViewMode] = useState(settings?.templatesPageViewMode || 'grid');
   const [initialized, setInitialized] = useState<boolean>(false);
+  const [templatesInitialized, setTemplatesInitialized] = useState<boolean>(false);
 
-  // Set a placeholder for the graphs which will be used differently during dev and prod 
+  // Set a placeholder for the graphs which will be used differently during dev and prod
   let initialGraphs = [];
-    
+
   // If we are under development, we will load the graphs from the local asset folder
   if (process.env.NODE_ENV === 'development') {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     initialGraphs = require('../../assets/home').graphs;
   }
 
-  const [graphs, setGraphs] = useState(initialGraphs);    
+  const [graphs, setGraphs] = useState(initialGraphs);
 
   // A method exposed to the backend used to set the graph data coming from Dynamo
   const receiveGraphDataFromDotNet = (jsonData) => {
@@ -50,23 +54,41 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
         delete window.receiveGraphDataFromDotNet;
       }
     };
-  }, []); 
+  }, []);
 
   useEffect(() => {
     // Set the viewMode based on the HomePage preferences
     setViewMode(recentPageViewMode);
-  }, [recentPageViewMode]); 
+  }, [recentPageViewMode]);
+
+  useEffect(() => {
+    // Set the templatesViewMode based on the HomePage preferences
+    if (settings?.templatesPageViewMode) {
+      setTemplatesViewMode(settings.templatesPageViewMode);
+    }
+  }, [settings?.templatesPageViewMode]);
 
   useEffect(() => {
     if (initialized || recentPageViewMode !== viewMode) {
       setInitialized(true);
       updateSettings({ recentPageViewMode: viewMode });
-            
+
       // Send settings to Dynamo to save
       saveHomePageSettings({ ...settings, recentPageViewMode: viewMode });
-    } 
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [viewMode]);
+
+  useEffect(() => {
+    if (templatesInitialized || (settings?.templatesPageViewMode && settings.templatesPageViewMode !== templatesViewMode)) {
+      setTemplatesInitialized(true);
+      updateSettings({ templatesPageViewMode: templatesViewMode });
+
+      // Send settings to Dynamo to save
+      saveHomePageSettings({ ...settings, templatesPageViewMode: templatesViewMode });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [templatesViewMode]);
 
   // This variable defins the table structure displaying the graphs
   const columns: Column[] = React.useMemo(() => [
@@ -74,7 +96,7 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
       Header: 'Title',
       accessor: 'Caption',
       width: 300,
-      resizable: true, 
+      resizable: true,
       Cell: CustomNameCellRenderer,
     },
     {
@@ -98,15 +120,33 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
 
   // Handles mouse click over each row
   const handleRowClick = (row: Row) => {
-    // freezes the UI   
-    setIsDisabled(true);   
-        
-    const contextData = row.original.ContextData;  
+    // freezes the UI
+    setIsDisabled(true);
+
+    const contextData = row.original.ContextData;
     openFile(contextData);
   };
 
+  // Handles mouse click over each template row
+  const handleTemplateRowClick = (row: Row) => {
+    // freezes the UI
+    setIsDisabled(true);
+
+    const contextData = row.original.ContextData;
+    openFile(contextData);
+  };
+
+  // Map templates to match Graph structure for table view (templates use 'date' instead of 'DateModified')
+  const templatesForTable = templates.map(template => ({
+    ...template,
+    DateModified: template.date || template.DateModified || '',
+    Author: template.Author || '',
+    Description: template.Description || ''
+  }));
+
   return(
     <div data-testid="page-recent">
+      {/* Recent Section */}
       <div className='drop-shadow-2xl'>
         <p className='title-paragraph'><FormattedMessage id="title.text.recent"/></p>
       </div>
@@ -133,11 +173,59 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
       <div style={{ marginRight: '20px', paddingBottom: '35px' }}>
         {viewMode === 'list' && (
           <GraphTable columns={columns} data={graphs} onRowClick={handleRowClick}/>
-        )}                
+        )}
         {viewMode === 'grid' && (
           <div className="main-graph-grid" id="graphContainer" data-testid="graph-grid">
             {graphs.map(graph => (
               <GraphGridItem key={graph.id} {...graph} setIsDisabled={setIsDisabled} />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Templates Section */}
+      <div className='drop-shadow-2xl' style={{ display: 'flex', alignItems: 'center' }}>
+        <p className='title-paragraph' style={{ display: 'inline-block', width: 'fit-content' }}>
+          <FormattedMessage id="title.text.templates"/>
+        </p>
+        <Tooltip content={<FormattedMessage id="tooltip.text.templates" />} position="right">
+          <QuestionMarkIcon />
+        </Tooltip>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom:'10px' }}>
+        <button
+          className={`viewmode-button ${templatesViewMode === 'grid' ? 'active' : ''}`}
+          onClick={() => setTemplatesViewMode('grid')}
+          disabled={templatesViewMode === 'grid'}
+          data-testid="templates-view-toggle-grid">
+          <Tooltip content={<FormattedMessage id="tooltip.text.grid.view.button" />}>
+            <GridViewIcon/>
+          </Tooltip>
+        </button>
+        <button
+          className={`viewmode-button ${templatesViewMode === 'list' ? 'active' : ''}`}
+          onClick={() => setTemplatesViewMode('list')}
+          disabled={templatesViewMode === 'list'}
+          data-testid="templates-view-toggle-list">
+          <Tooltip content={<FormattedMessage id="tooltip.text.list.view.button" />}>
+            <ListViewIcon/>
+          </Tooltip>
+        </button>
+      </div>
+      <div style={{ marginRight: '20px', paddingBottom: '35px' }}>
+        {templatesViewMode === 'list' && (
+          <GraphTable columns={columns} data={templatesForTable} onRowClick={handleTemplateRowClick}/>
+        )}
+        {templatesViewMode === 'grid' && (
+          <div className="main-graph-grid" id="templatesContainer">
+            {templates.map(template => (
+              <GraphGridItem
+                key={template.id}
+                {...template}
+                DateModified={template.date || template.DateModified || ''}
+                Description={template.Description || ''}
+                setIsDisabled={setIsDisabled}
+              />
             ))}
           </div>
         )}
