@@ -35,9 +35,9 @@ export const ListViewIcon = () => (
 );
 
 export const QuestionMarkIcon = () => (
-  <div style={{ verticalAlign: "center", marginLeft: "5px", marginTop: "4px", marginRight: "5px" }}>
+  <div style={{ verticalAlign: 'center', marginLeft: '5px', marginTop: '4px', marginRight: '5px' }}>
     <svg
-       className={styles['questionMarkIcon']} 
+      className={styles['questionMarkIcon']} 
       width="16"
       height="16"
       viewBox="0 0 16 16"

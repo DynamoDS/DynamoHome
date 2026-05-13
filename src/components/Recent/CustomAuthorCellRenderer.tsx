@@ -14,11 +14,11 @@ export const CustomAuthorCellRenderer = ({ value }: CellParams) => {
   const isOldFormat = value === intl.formatMessage({ id: 'recent.item.old.format' });
 
   return (
-    <div className={styles["title-cell"]}>
-        <p>{value}</p>
-        {isOldFormat && 
+    <div className={styles['title-cell']}>
+      <p>{value}</p>
+      {isOldFormat && 
             <Tooltip content={<FormattedMessage id="recent.item.old.format.tooltip" />}>
-                <QuestionMarkIcon />
+              <QuestionMarkIcon />
             </Tooltip>}
     </div>
   );

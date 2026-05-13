@@ -10,7 +10,7 @@ export const samples = [
         FilePath:
           'D:\\ProgramData\\Autodesk\\RVT 2025\\Dynamo\\non-samples\\Loco_file.dyn',
         Thumbnail: img,
-        Description: "Test description",
+        Description: 'Test description',
         DateModified: '1/9/2024 6:24:35 PM',
         Children: null
       },

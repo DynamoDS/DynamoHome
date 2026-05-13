@@ -42,7 +42,7 @@ The sidebar contains links to the 3 main modules:
 ```shell
 git clone https://github.com/DynamoDS/DynamoHome.git
 cd DynamoHome
-npm install --force
+npm install --legacy-peer-deps
 ```
 
 ### Running the project
@@ -118,3 +118,84 @@ The use of 3rd party libraries was kept to the bare minimum, where developing na
 
 - To generate about box html files use `npm run license`, this will output alternative about box files to [license_output](license_output). One will contain the full transitive production dep list, the other will contain the direct production deps.
 - These files will be packed into the released npm package
+
+## Claude Code Integration
+
+This repository includes configuration files for **Claude Code** to assist
+with development, testing, and maintenance.
+
+The `.claude/` directory defines:
+- AI agents with specific roles (frontend, testing, build)
+- Project-specific knowledge and conventions
+- Reusable workflows for common tasks
+
+### How to use Claude Code
+
+1. Install and authenticate Claude Code (see Anthropic documentation)
+2. Open a terminal at the root of this repository
+3. Run:
+
+```bash
+claude
+```
+
+### Code Review and Pull Request Checks
+
+A dedicated Claude agent is available for code reviews and pull request checks.
+
+The `code-review-agent` is designed to:
+- Review changes for quality and consistency
+- Validate alignment with DynamoHome conventions
+- Detect potential regressions or risks
+- Provide actionable PR feedback
+
+#### Example prompts
+
+- “Use the code-review-agent to review this pull request”
+- “Review these changes as a PR and list any issues”
+- “Run a PR check using the code-review workflow”
+
+This helps ensure consistent, high-quality contributions while keeping reviews
+focused, incremental, and aligned with project standards.
+
+### Testing Strategy with Claude Code
+
+This repository follows a strict testing responsibility model when using Claude Code.
+
+#### Test folder structure
+
+```
+tests/
+  unit/                   # Jest unit tests
+    App.test.tsx
+    ComponentName.test.tsx
+  e2e/                    # Playwright end-to-end tests
+    navigation.spec.ts    # Navigation tests
+    sidebar.spec.ts       # Sidebar dropdown tests
+    recent.spec.ts        # Recent page tests
+    samples.spec.ts       # Samples page tests
+    learning.spec.ts      # Learning page and carousel tests
+    pages/                # Page Object Model — page classes
+    components/           # Page Object Model — component classes
+  jest.setup.ts           # Jest global setup (chrome mock)
+  __mocks__/              # Auto-applied mocks (CSS, images, chrome WebView)
+```
+
+#### Unit Testing
+- Unit tests live in `tests/unit/` and are run with `npm run test:unit`
+- Every component and module must have unit tests
+- The target is 100% unit test coverage
+- Missing unit tests must be created when coverage gaps are found
+
+#### End-to-End Testing (Playwright)
+- E2E tests live in `tests/e2e/` and are run with `npm run test:e2e`
+- All Playwright tests must follow the Page Object Model (POM)
+- Pages and components must be implemented as separate classes in `tests/e2e/pages/` and `tests/e2e/components/`
+- Each `*.spec.ts` file must only contain test orchestration — no selectors or direct page actions
+
+#### Exploratory Testing
+- For exploratory testing or issue investigation, use `playwright-cli open http://localhost:8080`
+- Findings from exploratory testing should be converted into formal Page Object classes
+- Any feature without test coverage must have new tests added
+
+This setup ensures consistent test quality, clear ownership, and long-term maintainability.

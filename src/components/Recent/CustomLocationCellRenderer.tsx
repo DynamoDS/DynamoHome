@@ -8,12 +8,12 @@ import styles from './CustomCellRenderer.module.css';
 export const CustomLocationCellRenderer = ({ value }: CellParams) => {
 
   return (
-    <div className={styles["title-cell"]}>
-        <div>
-          <Tooltip content={value}>
-            {value}
-          </Tooltip>
-        </div>
+    <div className={styles['title-cell']}>
+      <div>
+        <Tooltip content={value}>
+          {value}
+        </Tooltip>
+      </div>
     </div>
   );
 };
