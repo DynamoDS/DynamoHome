@@ -112,6 +112,14 @@ describe('RecentPage', () => {
     expect(screen.getByText('Graph Two')).toBeInTheDocument();
   });
 
+  it('window.receiveGraphDataFromDotNet clears loading state', () => {
+    renderWithProviders(<RecentPage {...defaultProps} recentPageViewMode="grid" />);
+    act(() => {
+      window.receiveGraphDataFromDotNet(mockGraphs);
+    });
+    expect(defaultProps.setIsDisabled).toHaveBeenCalledWith(false);
+  });
+
   it('receiveGraphDataFromDotNet with empty array does not crash', () => {
     renderWithProviders(<RecentPage {...defaultProps} />);
     expect(() => {
