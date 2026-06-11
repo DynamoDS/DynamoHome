@@ -84,10 +84,12 @@ type GraphItem = {
 
 type Graph = {
   id: string;
-  date: string;
+  DateModified: string;
   Caption: string;
   ContextData: string;
   Thumbnail: string;
+  Author?: string;
+  Description?: string;
 }
 
 type GraphTable = {
@@ -197,4 +199,5 @@ type Tooltip = {
   content?: JSX.Element | null | string;
   verticalOffset?: number;
   position?: 'right' | 'below';
+  tooltipClassName?: string;
 }

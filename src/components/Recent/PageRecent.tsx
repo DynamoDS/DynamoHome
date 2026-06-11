@@ -5,7 +5,8 @@ import { CustomNameCellRenderer } from './CustomNameCellRenderer';
 import { CustomLocationCellRenderer } from './CustomLocationCellRenderer';
 import { CustomAuthorCellRenderer } from './CustomAuthorCellRenderer';
 import { GraphTable } from './GraphTable';
-import { GridViewIcon, ListViewIcon, QuestionMarkIcon } from '../Common/CustomIcons';
+import { TemplatesSection } from './TemplatesSection';
+import { GridViewIcon, ListViewIcon } from '../Common/CustomIcons';
 import { openFile, saveHomePageSettings } from '../../functions/utility';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '../Common/Tooltip';
@@ -71,10 +72,11 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
   useEffect(() => {
     if (initialized || recentPageViewMode !== viewMode) {
       setInitialized(true);
-      updateSettings({ recentPageViewMode: viewMode });
+      const mergedSettings = { ...settings, recentPageViewMode: viewMode };
+      updateSettings(mergedSettings);
 
       // Send settings to Dynamo to save
-      saveHomePageSettings({ ...settings, recentPageViewMode: viewMode });
+      saveHomePageSettings(mergedSettings);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [viewMode]);
@@ -82,10 +84,11 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
   useEffect(() => {
     if (templatesInitialized || (settings?.templatesPageViewMode && settings.templatesPageViewMode !== templatesViewMode)) {
       setTemplatesInitialized(true);
-      updateSettings({ templatesPageViewMode: templatesViewMode });
+      const mergedSettings = { ...settings, templatesPageViewMode: templatesViewMode };
+      updateSettings(mergedSettings);
 
       // Send settings to Dynamo to save
-      saveHomePageSettings({ ...settings, templatesPageViewMode: templatesViewMode });
+      saveHomePageSettings(mergedSettings);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [templatesViewMode]);
@@ -127,23 +130,6 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
     openFile(contextData);
   };
 
-  // Handles mouse click over each template row
-  const handleTemplateRowClick = (row: Row) => {
-    // freezes the UI
-    setIsDisabled(true);
-
-    const contextData = row.original.ContextData;
-    openFile(contextData);
-  };
-
-  // Map templates to match Graph structure for table view (templates use 'date' instead of 'DateModified')
-  const templatesForTable = templates.map(template => ({
-    ...template,
-    DateModified: template.date || template.DateModified || '',
-    Author: template.Author || '',
-    Description: template.Description || ''
-  }));
-
   return(
     <div data-testid="page-recent">
       {/* Recent Section */}
@@ -183,53 +169,14 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
         )}
       </div>
 
-      {/* Templates Section */}
-      <div className='drop-shadow-2xl' style={{ display: 'flex', alignItems: 'center' }}>
-        <p className='title-paragraph' style={{ display: 'inline-block', width: 'fit-content' }}>
-          <FormattedMessage id="title.text.templates"/>
-        </p>
-        <Tooltip content={<FormattedMessage id="tooltip.text.templates" />} position="right">
-          <QuestionMarkIcon />
-        </Tooltip>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom:'10px' }}>
-        <button
-          className={`viewmode-button ${templatesViewMode === 'grid' ? 'active' : ''}`}
-          onClick={() => setTemplatesViewMode('grid')}
-          disabled={templatesViewMode === 'grid'}
-          data-testid="templates-view-toggle-grid">
-          <Tooltip content={<FormattedMessage id="tooltip.text.grid.view.button" />}>
-            <GridViewIcon/>
-          </Tooltip>
-        </button>
-        <button
-          className={`viewmode-button ${templatesViewMode === 'list' ? 'active' : ''}`}
-          onClick={() => setTemplatesViewMode('list')}
-          disabled={templatesViewMode === 'list'}
-          data-testid="templates-view-toggle-list">
-          <Tooltip content={<FormattedMessage id="tooltip.text.list.view.button" />}>
-            <ListViewIcon/>
-          </Tooltip>
-        </button>
-      </div>
-      <div style={{ marginRight: '20px', paddingBottom: '35px' }}>
-        {templatesViewMode === 'list' && (
-          <GraphTable columns={columns} data={templatesForTable} onRowClick={handleTemplateRowClick}/>
-        )}
-        {templatesViewMode === 'grid' && (
-          <div className="main-graph-grid" id="templatesContainer">
-            {templates.map(template => (
-              <GraphGridItem
-                key={template.id}
-                {...template}
-                DateModified={template.date || template.DateModified || ''}
-                Description={template.Description || ''}
-                setIsDisabled={setIsDisabled}
-              />
-            ))}
-          </div>
-        )}
-      </div>
+      <TemplatesSection
+        columns={columns}
+        templates={templates}
+        templatesViewMode={templatesViewMode}
+        setTemplatesViewMode={setTemplatesViewMode}
+        onRowClick={handleRowClick}
+        setIsDisabled={setIsDisabled}
+      />
     </div>
   );
 };

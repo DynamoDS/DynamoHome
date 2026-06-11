@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, CSSProperties } from 'react';
 import Portal from './Portal'; // Import your Portal component
 
-export const Tooltip = ({ children, content, verticalOffset = 12, position: positionProp = 'below' }: Tooltip) => {
+export const Tooltip = ({ children, content, verticalOffset = 12, position: positionProp = 'below', tooltipClassName = '' }: Tooltip) => {
   const [show, setShow] = useState<boolean>(false);
   const [position, setPosition] = useState<CSSProperties>({});
   const tooltipRef = useRef<HTMLSpanElement | null>(null);
@@ -75,7 +75,7 @@ export const Tooltip = ({ children, content, verticalOffset = 12, position: posi
       {children}
       {show && (
         <Portal>
-          <div className={`tooltip-box ${show ? 'show' : ''} ${positionProp === 'right' ? 'arrow-left' : ''}`} ref={contentRef} style={position}>
+          <div className={`tooltip-box ${show ? 'show' : ''} ${positionProp === 'right' ? 'arrow-left' : ''} ${tooltipClassName}`} ref={contentRef} style={position}>
             <div className="tooltip-arrow" />
             <div style={{ whiteSpace: 'pre-line' }}>{content}</div>
           </div>

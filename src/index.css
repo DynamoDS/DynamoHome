@@ -199,7 +199,7 @@ select {
     font-size: small;
     border-radius: 2px;
     z-index: 1000;
-    max-width: 500px; /* Increased width to make it wider  */
+    max-width: 300px;
     white-space: normal;
     overflow-wrap: break-word;
     opacity: 0; /* Initially, set the opacity to 0 to hide the tooltip */
@@ -209,6 +209,10 @@ select {
 
 .tooltip-box.show {
     animation-play-state: running; /* Start the animation when the tooltip is shown */
+}
+
+.tooltip-box.template-info-tooltip {
+    max-width: 500px;
 }
 
 .tooltip-arrow {
@@ -231,17 +235,6 @@ select {
     width: 0;
     height: 0;
     border-color: transparent #eeeeee transparent transparent; /* Point left (toward the title) */
-    transform: translateY(-50%);
-}
-
-/* Arrow pointing right (for tooltips on the left side) */
-.tooltip-box.arrow-right .tooltip-arrow {
-    bottom: auto;
-    right: -5px; /* Position on the right side of the tooltip box */
-    top: 50%;
-    width: 0;
-    height: 0;
-    border-color: transparent transparent transparent #eeeeee; /* Point right (toward the title) */
     transform: translateY(-50%);
 }
 
