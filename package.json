@@ -3,7 +3,10 @@
   "version": "1.0.31",
   "description": "Dynamo Home",
   "author": "Autodesk Inc.",
-  "main": "index.tsx",
+  "main": "build/index.bundle.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "lint:check": "eslint \"src/**/*.{js,jsx,ts,tsx}\" \"tests/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"src/**/*.{js,jsx,ts,tsx}\" \"tests/**/*.{js,jsx,ts,tsx}\" --fix",
