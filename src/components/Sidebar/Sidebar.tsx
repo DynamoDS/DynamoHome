@@ -7,19 +7,19 @@ import styles from './Sidebar.module.css';
 export const Sidebar = ({ onItemSelect, selectedSidebarItem }: Sidebar) => {
   const isSelected = (item: string) => selectedSidebarItem === item;
 
-  /**Trigger the backend command based on the drop-down value */ 
+  /**Trigger the backend command based on the drop-down value */
   const setSelectedValue = (value: SidebarCommand) => {
     sideBarCommand(value);
   };
 
   return (
-        
+
     <div className={'sidebar-container'} data-testid="sidebar">
       <div className={styles['sidebar-grid-container']}>
         <div className={styles.cell}>
           <p className={styles['dynamo-logo']}>Dynamo</p>
           {/* Files Dropdown */}
-          <CustomDropdown 
+          <CustomDropdown
             id="openDropdown"
             placeholder={<FormattedMessage id="button.title.text.open" />}
             onSelectionChange={setSelectedValue}
@@ -31,7 +31,7 @@ export const Sidebar = ({ onItemSelect, selectedSidebarItem }: Sidebar) => {
           />
 
           {/* New Dropdown */}
-          <CustomDropdown 
+          <CustomDropdown
             id="newDropdown"
             placeholder={<FormattedMessage id="button.title.text.new" />}
             onSelectionChange={setSelectedValue}
@@ -43,21 +43,21 @@ export const Sidebar = ({ onItemSelect, selectedSidebarItem }: Sidebar) => {
 
           <div className={styles['sidebar-items-container']}>
             <div className={`${styles['sidebar-link-container']} ${isSelected('Recent') ? styles.selected : ''}`} onClick={() => onItemSelect('Recent')} data-testid="nav-recent">
-              <Tooltip content={<FormattedMessage id="tooltip.text.recent" />}>  
+              <Tooltip content={<FormattedMessage id="tooltip.text.recent" />}>
                 <span className={styles['sidebar-text']}>
                   <FormattedMessage id="title.text.recent" />
                 </span>
               </Tooltip>
             </div>
             <div className={`${styles['sidebar-link-container']} ${isSelected('Samples') ? styles.selected : ''}`} onClick={() => onItemSelect('Samples')} data-testid="nav-samples">
-              <Tooltip content={<FormattedMessage id="tooltip.text.samples" />}>  
+              <Tooltip content={<FormattedMessage id="tooltip.text.samples" />}>
                 <span className={styles['sidebar-text']}>
                   <FormattedMessage id="title.text.samples" />
                 </span>
               </Tooltip>
             </div>
             <div className={`${styles['sidebar-link-container']} ${isSelected('Learning') ? styles.selected : ''}`} onClick={() => onItemSelect('Learning')} data-testid="nav-learning">
-              <Tooltip content={<FormattedMessage id="tooltip.text.learning" />}>  
+              <Tooltip content={<FormattedMessage id="tooltip.text.learning" />}>
                 <span className={styles['sidebar-text']}>
                   <FormattedMessage id="title.text.learning" />
                 </span>

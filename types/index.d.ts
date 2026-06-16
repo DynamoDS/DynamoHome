@@ -12,6 +12,7 @@ type ShowSamplesCommand = 'open-graphs' | 'open-datasets';
 type HomePageSetting = {
   recentPageViewMode: 'grid' | 'list' | undefined;
   samplesViewMode: 'grid' | 'list' | undefined;
+  templatesPageViewMode?: 'grid' | 'list';
   sideBarWidth: string | undefined;
 };
 interface Window {
@@ -22,6 +23,7 @@ interface Window {
   receiveGraphDataFromDotNet: (jsonData: any) => void;
   receiveSamplesDataFromDotNet: (jsonData: any) => void;
   receiveTrainingVideoDataFromDotNet: (jsonData: any) => void;
+  receiveTemplatesDataFromDotNet: (jsonData: any) => void;
   chrome?: {
     webview?: any;
   };
@@ -82,10 +84,12 @@ type GraphItem = {
 
 type Graph = {
   id: string;
-  date: string;
+  DateModified: string;
   Caption: string;
   ContextData: string;
   Thumbnail: string;
+  Author?: string;
+  Description?: string;
 }
 
 type GraphTable = {
@@ -194,4 +198,6 @@ type Tooltip = {
   children: JSX.Element | null | string;
   content?: JSX.Element | null | string;
   verticalOffset?: number;
+  position?: 'right' | 'below';
+  tooltipClassName?: string;
 }

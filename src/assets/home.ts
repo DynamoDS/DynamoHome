@@ -61,3 +61,5 @@ export const graphs = [
     Thumbnail: img
   }
 ];
+
+export const templates = graphs;
