@@ -38,6 +38,7 @@ export const RecentPage = ({ setIsDisabled, recentPageViewMode }: RecentPage) =>
       // jsonData is already an object, so no need to parse it
       const data = jsonData;
       setGraphs(data);
+      setIsDisabled(false);
     } catch (error) {
       console.error('Error processing data:', error);
     }

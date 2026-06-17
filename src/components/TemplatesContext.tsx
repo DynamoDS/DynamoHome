@@ -54,6 +54,7 @@ export const TemplatesProvider = ({ children }: TemplatesProviderProps) => {
           // jsonData is already an object, so no need to parse it
           const data = (jsonData || []).map(normalizeTemplate);
           setTemplates(data);
+          window.setShowStartPageChanged?.(true);
         } catch (error) {
           console.error('Error processing templates data:', error);
         }
