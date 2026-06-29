@@ -1,6 +1,8 @@
 import { screen, fireEvent, act } from '@testing-library/react';
 import { renderWithProviders } from '../testUtils';
 import { RecentPage } from '../../../src/components/Recent/PageRecent';
+import { useTemplates } from '../../../src/components/TemplatesContext';
+import { openFile } from '../../../src/functions/utility';
 
 jest.mock('../../../src/components/Recent/GraphGridItem', () => ({
   GraphGridItem: (props: unknown) => {
@@ -12,8 +14,8 @@ jest.mock('../../../src/components/Recent/GraphGridItem', () => ({
 jest.mock('../../../src/components/Recent/GraphTable', () => ({
   GraphTable: (props: unknown) => {
     const { data, onRowClick } = props as {
-      data: Array<{ id: string; Caption: string }>;
-      onRowClick: (row: { original: { id: string; Caption: string } }) => void;
+      data: Array<{ id: string; Caption: string; ContextData: string }>;
+      onRowClick: (row: { original: { id: string; Caption: string; ContextData: string } }) => void;
     };
     return (
       <div data-testid="graph-table">
@@ -32,6 +34,10 @@ jest.mock('../../../src/functions/utility', () => ({
   saveHomePageSettings: jest.fn(),
 }));
 
+jest.mock('../../../src/components/TemplatesContext', () => ({
+  useTemplates: jest.fn(),
+}));
+
 const defaultProps = {
   setIsDisabled: jest.fn(),
   recentPageViewMode: 'grid' as const,
@@ -42,9 +48,24 @@ const mockGraphs = [
   { id: '2', Caption: 'Graph Two', ContextData: '/path/two.dyn', DateModified: '2024-01-02', Thumbnail: null, Description: '' },
 ];
 
+const mockTemplates = [
+  {
+    id: 'template-1',
+    Caption: 'Template One',
+    ContextData: '/path/template-one.dyn',
+    DateModified: '2024-02-01',
+    Thumbnail: '',
+    Author: '',
+    Description: '',
+  },
+];
+
+const mockUseTemplates = useTemplates as jest.MockedFunction<typeof useTemplates>;
+
 describe('RecentPage', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockUseTemplates.mockReturnValue([]);
   });
 
   it('renders "Recent" title', () => {
@@ -133,5 +154,34 @@ describe('RecentPage', () => {
     const { unmount } = renderWithProviders(<RecentPage {...defaultProps} />);
     unmount();
     expect(window.receiveGraphDataFromDotNet).toBeUndefined();
+  });
+
+  it('renders templates returned by TemplatesContext', () => {
+    mockUseTemplates.mockReturnValue(mockTemplates);
+    renderWithProviders(<RecentPage {...defaultProps} recentPageViewMode="grid" />);
+
+    expect(screen.getByText('Templates')).toBeInTheDocument();
+    expect(screen.getByText('Template One')).toBeInTheDocument();
+  });
+
+  it('switches templates to list view', () => {
+    mockUseTemplates.mockReturnValue(mockTemplates);
+    renderWithProviders(<RecentPage {...defaultProps} recentPageViewMode="grid" />);
+
+    fireEvent.click(screen.getByTestId('templates-view-toggle-list'));
+
+    expect(screen.getByTestId('graph-table')).toBeInTheDocument();
+    expect(screen.getByText('Template One')).toBeInTheDocument();
+  });
+
+  it('opens a template from the templates table', () => {
+    mockUseTemplates.mockReturnValue(mockTemplates);
+    renderWithProviders(<RecentPage {...defaultProps} recentPageViewMode="grid" />);
+
+    fireEvent.click(screen.getByTestId('templates-view-toggle-list'));
+    fireEvent.click(screen.getByText('Template One'));
+
+    expect(defaultProps.setIsDisabled).toHaveBeenCalledWith(true);
+    expect(openFile).toHaveBeenCalledWith('/path/template-one.dyn');
   });
 });
