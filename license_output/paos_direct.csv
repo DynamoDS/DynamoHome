@@ -1,7 +1,8 @@
 publisher,name,version,copyright,dateAdded,estimatedReleaseDate,license,distributed
-"Autodesk Inc.",dynamo-home,"1.0.1","Copyright (c) 2025 DynamoDS","","",MIT,false
-"",react-dom,"18.2.0","Copyright (c) Facebook, Inc. and its affiliates.","","",MIT,false
-"Eric Ferraiuolo",react-intl,"6.6.2","Copyright 2019 Oath Inc.. All rights reserved.","","",BSD-3-Clause,false
+"Autodesk Inc.",@dynamods/dynamo-home,"1.0.32","Copyright (c) 2025 DynamoDS","","",MIT,false
+"",@types/node,"20.19.43","","","",MIT,false
+"",react-dom,"18.3.1","Copyright (c) Facebook, Inc. and its affiliates.","","",MIT,false
+"Eric Ferraiuolo",react-intl,"6.8.9","Copyright 2019 Oath Inc.. All rights reserved.","","",BSD-3-Clause,false
 tomkp,react-split-pane,"0.1.92","Copyright (c) 2015 tomkp","","",MIT,false
 "",react-table,"7.8.0","Copyright (c) 2016 Tanner Linsley","","",MIT,false
-"",react,"18.2.0","Copyright (c) Facebook, Inc. and its affiliates.","","",MIT,false
+"",react,"18.3.1","Copyright (c) Facebook, Inc. and its affiliates.","","",MIT,false
