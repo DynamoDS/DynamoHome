@@ -36,14 +36,14 @@ describe('Sidebar', () => {
     expect(screen.getByText('Learning')).toBeInTheDocument();
   });
 
-  it('renders Discussion Forum external link', () => {
+  it('renders Discussion forum external link', () => {
     renderWithIntl(<Sidebar {...defaultProps} />);
-    expect(screen.getByText('Discussion Forum')).toBeInTheDocument();
+    expect(screen.getByText('Discussion forum')).toBeInTheDocument();
   });
 
-  it('renders Dynamo Website external link', () => {
+  it('renders Dynamo website external link', () => {
     renderWithIntl(<Sidebar {...defaultProps} />);
-    expect(screen.getByText('Dynamo Website')).toBeInTheDocument();
+    expect(screen.getByText('Dynamo website')).toBeInTheDocument();
   });
 
   it('renders Dynamo Primer external link', () => {
@@ -51,14 +51,14 @@ describe('Sidebar', () => {
     expect(screen.getByText('Dynamo Primer')).toBeInTheDocument();
   });
 
-  it('renders Github Repository external link', () => {
+  it('renders GitHub repository external link', () => {
     renderWithIntl(<Sidebar {...defaultProps} />);
-    expect(screen.getByText('Github Repository')).toBeInTheDocument();
+    expect(screen.getByText('GitHub repository')).toBeInTheDocument();
   });
 
-  it('renders Send Issues external link', () => {
+  it('renders Send issues external link', () => {
     renderWithIntl(<Sidebar {...defaultProps} />);
-    expect(screen.getByText('Send Issues')).toBeInTheDocument();
+    expect(screen.getByText('Send issues')).toBeInTheDocument();
   });
 
   it('clicking Recent calls onItemSelect with "Recent"', () => {

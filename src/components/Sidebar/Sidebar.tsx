@@ -69,11 +69,11 @@ export const Sidebar = ({ onItemSelect, selectedSidebarItem }: Sidebar) => {
           <hr className={styles.separator}/>
         </div>
         <div className={`${styles['link-container']} ${styles.cell}`}>
-          <a className={styles['sidebar-link']} target="_blank" rel="noopener noreferrer" href="https://forum.dynamobim.com/">Discussion Forum</a>
-          <a className={styles['sidebar-link']} target="_blank" rel="noopener noreferrer" href="https://dynamobim.org/">Dynamo Website</a>
-          <a className={styles['sidebar-link']} target="_blank" rel="noopener noreferrer" href="https://primer2.dynamobim.org/">Dynamo Primer</a>
-          <a className={styles['sidebar-link']} target="_blank" rel="noopener noreferrer" href="https://github.com/dynamods">Github Repository</a>
-          <a className={styles['sidebar-link']} target="_blank" rel="noopener noreferrer" href="https://github.com/DynamoDS/Dynamo/issues">Send Issues</a>
+          <a className={styles['sidebar-link']} target="_blank" rel="noopener noreferrer" href="https://forum.dynamobim.com/"><FormattedMessage id="link.text.discussion.forum" /></a>
+          <a className={styles['sidebar-link']} target="_blank" rel="noopener noreferrer" href="https://dynamobim.org/"><FormattedMessage id="link.text.dynamo.website" /></a>
+          <a className={styles['sidebar-link']} target="_blank" rel="noopener noreferrer" href="https://primer2.dynamobim.org/"><FormattedMessage id="link.text.dynamo.primer" /></a>
+          <a className={styles['sidebar-link']} target="_blank" rel="noopener noreferrer" href="https://github.com/dynamods"><FormattedMessage id="link.text.github.repository" /></a>
+          <a className={styles['sidebar-link']} target="_blank" rel="noopener noreferrer" href="https://github.com/DynamoDS/Dynamo/issues"><FormattedMessage id="link.text.send.issues" /></a>
         </div>
       </div>
     </div>
